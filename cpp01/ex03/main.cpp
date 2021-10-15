@@ -1,34 +1,18 @@
-#include "HumanA.hpp"
-#include "HumanB.hpp"
-#include "Weapon.hpp"
+#include "Zombie.hpp"
+
+Zombie* zombieHorde(int N, std::string name);
 
 int main(void) {
-  {
-    Weapon club = Weapon("crude spiked club");
+  Zombie* h;
+  int n = 5;
 
-    HumanA bob("Bob", club);
-    bob.attack();
-    club.setType("some other type of club");
-    bob.attack();
-  }
-  {
-    Weapon club = Weapon("crude spiked club");
+  h = zombieHorde(n, "John");
 
-    HumanB jim("Jim");
-    jim.attack();
-    jim.setWeapon(club);
-    jim.attack();
-    club.setType("some other type of club");
-    jim.attack();
+  for (int i = 0; i < n; i++) {
+    h[i].announce();
   }
 
-  {
-    Weapon club = Weapon("crude spiked club");
+  delete[] h;
 
-    HumanB tom("Tom", club);
-    tom.attack();
-    club.setType("some other type of club");
-    tom.attack();
-  }
   return 0;
 }

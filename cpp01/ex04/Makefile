@@ -1,9 +1,8 @@
-NAME = replace
+NAME = brain
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
-SRC =	./main.cpp \
-			./sed.cpp
+SRC =	./main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

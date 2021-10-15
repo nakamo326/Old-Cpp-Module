@@ -1,9 +1,11 @@
-NAME = karenFilter
+NAME = ex03
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
 SRC =	./main.cpp \
-			./Karen.cpp
+		./Weapon.cpp \
+		./HumanA.cpp \
+		./HumanB.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

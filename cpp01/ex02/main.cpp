@@ -1,20 +1,19 @@
-#include <iostream>
+#include "Zombie.hpp"
+
+Zombie* newZombie(std::string name);
+void randomChump(std::string name);
 
 int main(void) {
-  std::string str = std::string("HI THIS IS BRAIN");
-  std::string *stringPTR = &str;
-  std::string &stringREF = str;
+  Zombie a("Shaun");
+  Zombie* p;
 
-  std::cout << *stringPTR << std::endl;
-  std::cout << stringREF << std::endl;
+  p = newZombie("Ed");
+  randomChump("Liz");
 
-  // *stringPTR = std::string("HELLO WORLD");
-  // std::cout << *stringPTR << std::endl;
-  // std::cout << stringREF << std::endl;
+  a.announce();
+  p->announce();
 
-  // stringREF = std::string("HELL WORD");
-  // std::cout << *stringPTR << std::endl;
-  // std::cout << stringREF << std::endl;
+  delete p;
 
   return 0;
 }

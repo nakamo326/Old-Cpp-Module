@@ -1,10 +1,9 @@
-NAME = zombieHorde
+NAME = replace
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
 SRC =	./main.cpp \
-		./Zombie.cpp \
-		./ZombieHorde.cpp
+			./sed.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

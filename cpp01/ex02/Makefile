@@ -1,8 +1,11 @@
-NAME = brain
+NAME = zombie
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
-SRC =	./main.cpp
+SRC =	./main.cpp \
+		./Zombie.cpp \
+		./newZombie.cpp \
+		./randomChump.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

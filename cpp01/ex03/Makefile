@@ -1,11 +1,10 @@
-NAME = ex03
+NAME = zombieHorde
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
 SRC =	./main.cpp \
-		./Weapon.cpp \
-		./HumanA.cpp \
-		./HumanB.cpp
+		./Zombie.cpp \
+		./ZombieHorde.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
