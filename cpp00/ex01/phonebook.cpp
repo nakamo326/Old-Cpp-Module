@@ -4,17 +4,31 @@ PhoneBook::PhoneBook() {
   this->index = 0;
 }
 
+std::string PhoneBook::get_question(int i) {
+  const std::string q_list[11] = {"first name",
+                                  "last name",
+                                  "nickname",
+                                  "login",
+                                  "postal address",
+                                  "email address",
+                                  "phone number",
+                                  "birthday date",
+                                  "favorite meal",
+                                  "underwear color",
+                                  "darkest secret"};
+
+  return q_list[i];
+}
+
 bool PhoneBook::add() {
-  const char q_list[][15] = {
-      "first name", "last name", "nickname", "phone number", "darkest secret"};
   std::string answer;
 
   if (this->index == MAX_LINE) {
     std::cout << "CONTACT IS MAX!" << std::endl;
     return true;
   }
-  for (int i = 0; i < 5; i++) {
-    std::cout << q_list[i] << ": ";
+  for (int i = 0; i < this->q_num; i++) {
+    std::cout << get_question(i) << ": ";
     std::getline(std::cin, answer, '\n');
     if (std::cin.eof())
       return false;
@@ -25,20 +39,9 @@ bool PhoneBook::add() {
   return true;
 }
 
-bool PhoneBook::search() {
-  const char q_list[][15] = {
-      "first name", "last name", "nickname", "phone number", "darkest secret"};
+void PhoneBook::display_list() {
   std::string str;
-  int index;
-  bool f;
 
-  // if there is no contact, then return.
-  if (this->index == 0) {
-    std::cout << "NO CONTACT RECORDED..." << std::endl;
-    return true;
-  }
-
-  // print contact's list. if field has more than 10 chars, make new string.
   std::cout << "INDEX     |FIRST NAME|LAST NAME |NICKNAME  |" << std::endl;
   for (int i = 0; i < this->index; i++) {
     std::cout << std::left << std::setw(10) << i << "|";
@@ -50,27 +53,44 @@ bool PhoneBook::search() {
     }
     std::cout << std::endl;
   }
+}
 
-  // get index number.
-  f = false;
-  while (f == false) {
+// get index number. return -1 when error is.
+int PhoneBook::get_index() {
+  std::string str;
+  int index = -1;
+
+  while (true) {
     std::cout << "INPUT INDEX: ";
     std::getline(std::cin, str);
     if (std::cin.eof())
-      return false;
-    if (str.length() != 1 || !(str[0] >= '0' && str[0] <= '7') ||
-        std::atoi(str.c_str()) >= this->index) {
+      break;
+    if (str.length() != 1 ||
+        !(str[0] >= '0' && str[0] <= 48 + (this->index - 1))) {
       std::cout << "INVALID INPUT!" << std::endl
                 << "PLEASE INPUT: 0 ~ " << this->index - 1 << std::endl;
     } else {
       index = std::atoi(str.c_str());
-      f = true;
+      break;
     }
   }
+  return index;
+}
 
-  // print all fields per line.
-  for (int i = 0; i < 5; i++) {
-    std::cout << std::left << std::setw(14) << q_list[i] << " | ";
+bool PhoneBook::search() {
+  std::string str;
+  int index;
+
+  if (this->index == 0) {
+    std::cout << "NO CONTACT RECORDED..." << std::endl;
+    return true;
+  }
+  display_list();
+  index = get_index();
+  if (index == -1)
+    return false;
+  for (int i = 0; i < this->q_num; i++) {
+    std::cout << std::left << std::setw(15) << get_question(i) << " | ";
     std::cout << std::left << this->book[index].get_info(i) << std::endl;
   }
   return true;

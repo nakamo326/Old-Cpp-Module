@@ -11,11 +11,16 @@
 #define MAX_LINE 8
 
 class PhoneBook {
- private:
+  private:
   Contact book[MAX_LINE];
   int index;
+  static const int q_num = 11;
 
- public:
+  std::string get_question(int i);
+  void display_list();
+  int get_index();
+
+  public:
   PhoneBook();
   bool add();
   bool search();

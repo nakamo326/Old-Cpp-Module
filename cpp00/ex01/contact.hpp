@@ -4,10 +4,10 @@
 #include <string>
 
 class Contact {
- private:
-  std::string info[5];
+  private:
+  std::string info[11];
 
- public:
+  public:
   void set_info(int index, std::string str);
   std::string get_info(int index);
 };

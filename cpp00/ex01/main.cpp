@@ -8,7 +8,7 @@ int main(void) {
   std::string cmd;
   PhoneBook pb;
 
-  while (1) {
+  while (true) {
     std::cout << "INPUT COMMAND: ";
     std::getline(std::cin, cmd);
     if (std::cin.eof())
