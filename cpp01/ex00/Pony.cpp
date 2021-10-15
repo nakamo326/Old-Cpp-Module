@@ -1,3 +1,6 @@
+#ifndef PONY_HPP
+#define PONY_HPP
+
 #include "Pony.hpp"
 
 Pony::Pony(std::string name) {
@@ -15,3 +18,5 @@ void Pony::cry() {
 void Pony::run() {
   std::cout << m_name << " is running! clip-clop." << std::endl;
 };
+
+#endif
