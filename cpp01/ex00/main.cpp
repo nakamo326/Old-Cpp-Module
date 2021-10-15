@@ -18,7 +18,10 @@ void ponyOnTheStack() {
 }
 
 int main() {
+  std::cout << "call ponyOnTheHeap" << std::endl;
   ponyOnTheHeap();
+  std::cout << "call ponyOnTheStack" << std::endl;
   ponyOnTheStack();
+  std::cout << "done" << std::endl;
   return 0;
 }
