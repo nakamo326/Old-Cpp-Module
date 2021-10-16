@@ -1,11 +1,10 @@
-NAME = zombie
+NAME = ex02
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
 SRC =	./main.cpp \
 		./Zombie.cpp \
-		./newZombie.cpp \
-		./randomChump.cpp
+		./ZombieEvent.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
