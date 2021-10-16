@@ -1,4 +1,4 @@
-NAME = brain
+NAME = ex04
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
