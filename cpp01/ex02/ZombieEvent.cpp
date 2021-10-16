@@ -1,8 +1,5 @@
 #include "ZombieEvent.hpp"
 
-#include <cstdlib>
-#include <ctime>
-
 ZombieEvent::ZombieEvent() {
   m_type = std::string("none");
   std::srand(std::time(NULL));

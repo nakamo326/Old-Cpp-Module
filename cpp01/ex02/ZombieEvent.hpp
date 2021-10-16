@@ -1,6 +1,8 @@
 #ifndef ZOMBIEEVENT_HPP
 #define ZOMBIEEVENT_HPP
 
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 #include "Zombie.hpp"
