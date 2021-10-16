@@ -1,18 +1,9 @@
-#include "Zombie.hpp"
-
-Zombie* zombieHorde(int N, std::string name);
+#include "ZombieHorde.hpp"
 
 int main(void) {
-  Zombie* h;
-  int n = 5;
+  ZombieHorde h(5, "human");
 
-  h = zombieHorde(n, "John");
-
-  for (int i = 0; i < n; i++) {
-    h[i].announce();
-  }
-
-  delete[] h;
+  h.announce();
 
   return 0;
 }

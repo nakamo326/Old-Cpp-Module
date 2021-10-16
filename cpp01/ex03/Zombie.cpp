@@ -1,26 +1,33 @@
 #include "Zombie.hpp"
 
 Zombie::Zombie() {
-  this->name = std::string("Nameless");
-  std::cout << this->name << "'s corpse awakened..." << std::endl;
+  m_name = std::string("Nameless");
+  m_type = std::string("none");
+  std::cout << m_name << " (" << m_type << ")"
+            << "'s corpse awakened..." << std::endl;
 }
 
-Zombie::Zombie(std::string name) {
-  this->name = name;
-  std::cout << this->name << "'s corpse awakened..." << std::endl;
+Zombie::Zombie(std::string name, std::string type) {
+  m_name = name;
+  m_type = type;
+  std::cout << m_name << " (" << m_type << ")"
+            << "'s corpse awakened..." << std::endl;
 }
 
 Zombie::~Zombie() {
-  std::cout << this->name << " doesn't seem to move anymore..." << std::endl;
-}
-
-void Zombie::set_name(std::string name) {
-  std::cout << this->name;
-  this->name = name;
-  std::cout << " is named " << this->name << "." << std::endl;
+  std::cout << m_name << " (" << m_type << ")"
+            << " doesn't seem to move anymore..." << std::endl;
 }
 
 void Zombie::announce(void) {
-  std::cout << "<" << this->name << ">"
-            << " BraiiiiiiinnnzzzZ..." << std::endl;
+  std::cout << "<" << m_name << " (" << m_type << ")>"
+            << " Braiiiiiiinnnssss..." << std::endl;
+}
+
+void Zombie::set_characteristics(std::string name, std::string type) {
+  std::cout << m_name << " (" << m_type << ")";
+  m_name = name;
+  m_type = type;
+  std::cout << " is changed name and type to " << m_name << " and " << m_type
+            << std::endl;
 }
