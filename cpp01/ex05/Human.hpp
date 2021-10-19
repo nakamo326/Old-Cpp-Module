@@ -10,7 +10,7 @@ class Human {
   Brain m_brain;
 
   public:
-  Human(/* args */);
+  Human();
   ~Human();
   Brain& getBrain();
   std::string identify();
