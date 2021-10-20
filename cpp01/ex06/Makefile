@@ -1,4 +1,4 @@
-NAME = ex03
+NAME = ex06
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
