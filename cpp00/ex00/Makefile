@@ -12,6 +12,6 @@ $(NAME): $(SRC)
 clean:
 	$(RM) ./megaphone
 
-re: clean all
+re: fclean all
 
 .PHONY: all clean re
