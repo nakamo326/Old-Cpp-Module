@@ -1,23 +1,22 @@
 #ifndef LOGGER_HPP
 #define LOGGER_HPP
 
+#include <cstring>
+#include <ctime>
+#include <fstream>
 #include <iostream>
+#include <sstream>
+
 class Logger {
   private:
-  void logToConsole(std::string log);
-  void logToFile(std::string log);
-  void makeLogEntry(std::string msg);
+  void logToConsole(std::string const& message);
+  void logToFile(std::string const& message);
+  std::string makeLogEntry(std::string const& message);
 
   public:
   Logger();
   ~Logger();
-  log(std::string const& dest, std::string const& message);
+  void log(std::string const& dest, std::string const& message);
 };
-
-Logger::Logger() {
-}
-
-Logger::~Logger() {
-}
 
 #endif
