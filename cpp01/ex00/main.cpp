@@ -11,17 +11,17 @@ void ponyOnTheHeap() {
 }
 
 void ponyOnTheStack() {
-  Pony stack("stack");
+  Pony stack("Pony on stack");
   std::cout << &stack << std::endl;
   stack.cry();
   stack.run();
 }
 
 int main() {
-  std::cout << "call ponyOnTheHeap" << std::endl;
+  std::cout << "[call ponyOnTheHeap]" << std::endl;
   ponyOnTheHeap();
-  std::cout << "call ponyOnTheStack" << std::endl;
+  std::cout << "[call ponyOnTheStack]" << std::endl;
   ponyOnTheStack();
-  std::cout << "done" << std::endl;
+  std::cout << "[done]" << std::endl;
   return 0;
 }
