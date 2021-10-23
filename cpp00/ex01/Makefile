@@ -11,10 +11,10 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	clang++ -g -std=c++03 $(CFLAGS) $^ -I $(INCLUDE) -o $@
+	clang++ -g -std=c++98 $(CFLAGS) $^ -I $(INCLUDE) -o $@
 
 %.o: %.cpp
-	clang++ -g -std=c++03 $(CFLAGS) -c $< -o $@
+	clang++ -g -std=c++98 $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(NAME)

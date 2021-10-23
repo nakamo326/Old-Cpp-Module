@@ -7,7 +7,7 @@ SRC = ./megaphone.cpp
 all: $(NAME)
 
 $(NAME): $(SRC)
-	clang++ -g -std=c++03 $(CFLAGS) $^ -o $@
+	clang++ -g -std=c++98 $(CFLAGS) $^ -o $@
 
 clean:
 	$(RM) ./megaphone
