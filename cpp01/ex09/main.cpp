@@ -2,7 +2,10 @@
 
 int main() {
   Logger logger;
-  logger.log("dest tmp", "log of something");
+  logger.log("File", "first append to logfile");
+  logger.log("File", "log of something2");
+  logger.log("File", "log of something3");
+  logger.log("Console", "log of something4");
 
   return 0;
 }
