@@ -2,13 +2,13 @@
 #define CAT_HPP
 
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
-#include <istream>
 #include <sstream>
 
 class Cat {
   private:
-  int outputError();
+  int outputError(const std::string& msg);
 
   public:
   Cat();
