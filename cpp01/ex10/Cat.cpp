@@ -26,7 +26,7 @@ int Cat::readFile(const char* path) {
   std::string line;
 
   if (!ifs)
-    return outputError(std::string(path) + ": Failed to open file.");
+    return outputError(std::string(path) + ": " + strerror(errno));
   while (std::getline(ifs, line)) {
     if (!ifs.eof()) {
       std::cout << line << std::endl;
