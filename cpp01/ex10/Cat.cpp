@@ -7,7 +7,7 @@ Cat::~Cat() {
 }
 
 int Cat::outputError(const std::string& msg) {
-  std::cout << "cato9tails: " << msg << std::endl;
+  std::cerr << "cato9tails: " << msg << std::endl;
   return EXIT_FAILURE;
 }
 
