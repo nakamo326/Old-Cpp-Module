@@ -14,8 +14,8 @@ Fixed::Fixed(float num) {
 }
 
 Fixed::Fixed(const Fixed &other) {
-  m_num = other.m_num;
   std::cout << "Copy constructor called" << std::endl;
+  m_num = other.getRawBits();
 }
 
 Fixed::~Fixed() {
@@ -23,8 +23,10 @@ Fixed::~Fixed() {
 }
 
 Fixed &Fixed::operator=(const Fixed &other) {
-  m_num = other.m_num;
   std::cout << "Assignation operator called" << std::endl;
+  if (this == &other)
+    return *this;
+  m_num = other.getRawBits();
   return *this;
 }
 
