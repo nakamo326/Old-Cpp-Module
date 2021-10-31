@@ -11,8 +11,8 @@ class Fixed {
 
   public:
   Fixed();
-  Fixed(int num);
-  Fixed(float num);
+  Fixed(const int num);
+  Fixed(const float num);
   Fixed(const Fixed &a);
   ~Fixed();
   Fixed &operator=(const Fixed &a);
