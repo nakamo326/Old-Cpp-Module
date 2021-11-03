@@ -5,11 +5,13 @@ Fixed::Fixed() {
   // std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(int num) {
+Fixed::Fixed(const int num) {
+  // std::cout << "Int constructor called" << std::endl;
   m_num = num << m_bp;
 }
 
-Fixed::Fixed(float num) {
+Fixed::Fixed(const float num) {
+  // std::cout << "Float constructor called" << std::endl;
   m_num = (int)roundf(num * (1 << m_bp));
 }
 
@@ -53,6 +55,7 @@ std::ostream &operator<<(std::ostream &stream, const Fixed &f) {
 }
 
 // comparison operator overload
+
 bool Fixed::operator>(const Fixed &a) const {
   return m_num > a.m_num;
 }
@@ -77,6 +80,7 @@ bool Fixed::operator!=(const Fixed &a) const {
 }
 
 // arithmetic operator overload
+
 Fixed Fixed::operator+(const Fixed &a) const {
   Fixed tmp;
   tmp.m_num = m_num + a.m_num;
