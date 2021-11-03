@@ -7,7 +7,7 @@ Fixed::Fixed() {
 
 Fixed::Fixed(const Fixed &other) {
   std::cout << "Copy constructor called" << std::endl;
-  m_num = other.getRawBits();
+  *this = other;
 }
 
 Fixed::~Fixed() {
@@ -16,9 +16,8 @@ Fixed::~Fixed() {
 
 Fixed &Fixed::operator=(const Fixed &other) {
   std::cout << "Assignation operator called" << std::endl;
-  if (this == &other)
-    return *this;
-  m_num = other.getRawBits();
+  if (this != &other)
+    m_num = other.getRawBits();
   return *this;
 }
 
