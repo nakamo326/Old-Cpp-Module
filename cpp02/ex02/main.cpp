@@ -30,5 +30,15 @@ int main(void) {
   std::cout << "Fixed::min(a, b) = " << Fixed::min(a, b) << std::endl;
   std::cout << "Fixed::min(c, d) = " << Fixed::min(c, d) << std::endl;
 
+  std::cout << "====check overflow====" << std::endl;
+  // 2^(23 + 8) - 1
+  std::cout << std::fixed << Fixed(8388607) << std::endl;
+  std::cout << std::fixed << Fixed(8388608) << std::endl;
+
+  // 2^(10 + 8) * 2^(10 + 8)
+  std::cout << Fixed(1024) * Fixed(1024) << std::endl;
+
+  std::cout << Fixed(0.1f) * Fixed(0.1f) << std::endl;
+  std::cout << Fixed(4096) / Fixed(0.125f) << std::endl;
   return 0;
 }
