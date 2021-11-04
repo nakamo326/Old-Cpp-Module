@@ -41,20 +41,20 @@ FragTrap &FragTrap::operator=(const FragTrap &rhs) {
 }
 
 void FragTrap::rangedAttack(std::string const &target) {
-  std::cout << "FR4G-TP " << m_name << " attacks " << target
-            << " at range, causing " << m_ranged_attack << "points of damage!"
+  std::cout << "[FR4G-TP " << m_name << " attacks " << target
+            << " at range, causing " << m_ranged_attack << "points of damage!]"
             << std::endl;
 }
 
 void FragTrap::meleeAttack(std::string const &target) {
-  std::cout << "FR4G-TP " << m_name << " attacks " << target
-            << " at melee, causing " << m_melee_attack << "points of damage!"
+  std::cout << "[FR4G-TP " << m_name << " attacks " << target
+            << " at melee, causing " << m_melee_attack << "points of damage!]"
             << std::endl;
 }
 
 void FragTrap::takeDamage(unsigned int amount) {
-  std::cout << "FR4G-TP " << m_name << " takes " << amount - m_armor_reduction
-            << "points of damage!" << std::endl;
+  std::cout << "[FR4G-TP " << m_name << " takes " << amount - m_armor_reduction
+            << "points of damage!]" << std::endl;
   std::cout << "FR4G-TP " << m_name << ": Ow hohoho, that hurts! Yipes!"
             << std::endl;
   m_hp -= amount - m_armor_reduction;
@@ -64,13 +64,13 @@ void FragTrap::takeDamage(unsigned int amount) {
 
 void FragTrap::beRepaired(unsigned int amount) {
   int gain_hp;
-  if ((amount + m_hp) > m_max_hp)
+  if ((int)(amount + m_hp) > m_max_hp)
     gain_hp = m_max_hp - m_hp;
   else
     gain_hp = amount;
   m_hp += gain_hp;
-  std::cout << "FR4G-TP " << m_name << " takes " << gain_hp << "life points!"
-            << std::endl;
+  std::cout << "[FR4G-TP " << m_name << " is recovered " << gain_hp
+            << "life points!]" << std::endl;
   std::cout << "FR4G-TP " << m_name << ": Sweet life juice!" << std::endl;
 }
 
@@ -87,5 +87,7 @@ void FragTrap::vaulthunter_dot_exe(std::string const &target) {
   }
   m_energy -= 25;
   int random_val = std::rand() % 5;
-  std::cout << arr[random_val] << std::endl;
+  std::cout << "[FR4G-TP " << m_name << " attacks " << target
+            << " with VaultHunter.EXE!!]" << std::endl;
+  std::cout << "FR4G-TP " << m_name << ": " << arr[random_val] << std::endl;
 }
