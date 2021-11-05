@@ -4,12 +4,14 @@
 #include <string>
 
 class Contact {
-  private:
-  std::string info[11];
-
   public:
-  void set_info(int index, std::string str);
-  std::string get_info(int index);
+  static const int q_num = 11;
+  static const std::string q_list[q_num];
+  void set_info(int index, std::string &str);
+  const std::string &get_info(int index);
+
+  private:
+  std::string info[q_num];
 };
 
 #endif

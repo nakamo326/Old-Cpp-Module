@@ -8,11 +8,9 @@ int main(void) {
   std::string cmd;
   PhoneBook pb;
 
-  while (true) {
+  while (std::cin.good()) {
     std::cout << "INPUT COMMAND: ";
     std::getline(std::cin, cmd);
-    if (std::cin.eof())
-      break;
     if (cmd == "ADD") {
       if (!pb.add())
         break;
@@ -22,7 +20,7 @@ int main(void) {
     } else if (cmd == "EXIT") {
       std::cout << "BYE~" << std::endl;
       break;
-    } else {
+    } else if (std::cin.good()) {
       std::cout << "INVALID COMMAND!" << std::endl;
       std::cout << "USAGE: ADD, SEARCH, EXIT" << std::endl;
       continue;

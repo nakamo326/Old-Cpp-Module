@@ -12,11 +12,8 @@
 
 class PhoneBook {
   private:
-  Contact book[MAX_LINE];
-  int index;
-  static const int q_num = 11;
-
-  std::string get_question(int i);
+  Contact m_book[MAX_LINE];
+  int m_index;
   void display_list();
   int get_index();
 
