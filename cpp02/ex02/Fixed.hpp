@@ -13,7 +13,7 @@ class Fixed {
   Fixed();
   Fixed(int num);
   Fixed(float num);
-  Fixed(const Fixed &other);
+  Fixed(const Fixed &obj);
   ~Fixed();
   int getRawBits(void) const;
   void setRawBits(int const raw);
@@ -21,7 +21,7 @@ class Fixed {
   int toInt(void) const;
 
   // Assignation operator overload
-  Fixed &operator=(const Fixed &other);
+  Fixed &operator=(const Fixed &rhs);
 
   // comparison operator overload
   bool operator>(const Fixed &a) const;

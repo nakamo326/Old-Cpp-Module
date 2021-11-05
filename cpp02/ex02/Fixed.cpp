@@ -12,16 +12,16 @@ Fixed::Fixed(const float num) {
   m_num = (int)roundf(num * (1 << m_bp));
 }
 
-Fixed::Fixed(const Fixed &other) {
-  *this = other;
+Fixed::Fixed(const Fixed &obj) {
+  *this = obj;
 }
 
 Fixed::~Fixed() {
 }
 
-Fixed &Fixed::operator=(const Fixed &other) {
-  if (this != &other)
-    m_num = other.getRawBits();
+Fixed &Fixed::operator=(const Fixed &rhs) {
+  if (this != &rhs)
+    m_num = rhs.getRawBits();
   return *this;
 }
 

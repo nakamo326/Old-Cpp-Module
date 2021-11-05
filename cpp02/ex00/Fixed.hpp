@@ -10,9 +10,9 @@ class Fixed {
 
   public:
   Fixed();
-  Fixed(const Fixed &a);
+  Fixed(const Fixed &obj);
   ~Fixed();
-  Fixed &operator=(const Fixed &a);
+  Fixed &operator=(const Fixed &rhs);
   int getRawBits(void) const;
   void setRawBits(int const raw);
 };
