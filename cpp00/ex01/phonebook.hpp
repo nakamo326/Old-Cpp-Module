@@ -14,13 +14,14 @@ class PhoneBook {
   private:
   Contact m_book[MAX_LINE];
   int m_index;
+  void add();
+  void search();
   void display_list();
-  int get_index();
+  void display_contact();
 
   public:
   PhoneBook();
-  bool add();
-  bool search();
+  void entry();
 };
 
 #endif
