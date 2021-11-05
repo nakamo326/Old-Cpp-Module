@@ -12,11 +12,10 @@ int Account::_totalNbWithdrawals = 0;
 Account::Account(void) {
 }
 
-// [19920104_091532] index:0;amount:42;created
 Account::Account(int initial_deposit) {
   _accountIndex = _nbAccounts;
   _amount = initial_deposit;
-  _totalAmount += _amount;  // checkAmount()?
+  _totalAmount += _amount;
   _nbDeposits = 0;
   _nbWithdrawals = 0;
   _nbAccounts++;
@@ -54,8 +53,6 @@ void Account::displayAccountsInfos(void) {
             << ";withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
-// total~へ変化量格納
-// [19920104_091532] index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
 void Account::makeDeposit(int deposit) {
   int p_amount = _amount;
   _amount += deposit;
@@ -68,9 +65,6 @@ void Account::makeDeposit(int deposit) {
             << ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
-//[19920104_091532] index:0;p_amount:47;withdrawal:refused
-//[19920104_091532]
-// index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
 bool Account::makeWithdrawal(int withdrawal) {
   int p_amount = _amount;
   _displayTimestamp();
@@ -93,7 +87,6 @@ int Account::checkAmount(void) const {
   return _amount;
 }
 
-// [19920104_091532] index:0;amount:42;deposits:0;withdrawals:0
 void Account::displayStatus(void) const {
   _displayTimestamp();
   std::cout << "index:" << _accountIndex << ";amount:" << _amount
