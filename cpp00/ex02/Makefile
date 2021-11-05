@@ -1,20 +1,26 @@
 NAME = ex02
-
 CFLAGS = -Wall -Wextra -Werror
+INCLUDE = ./
 
-SRC = ./test.cpp \
-			./Account.cpp
+SRC =	./tests.cpp \
+		./Account.cpp
+
+OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	clang++ -g -std=c++98 $(CFLAGS) $^ -o $@
+$(NAME): $(OBJ)
+	clang++ -g -std=c++98 $(CFLAGS) $^ -I $(INCLUDE) -o $@
 
-test: all
-	diff 19920104_091532.log `./ex02`
+%.o: %.cpp
+	clang++ -g -std=c++98 $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) ./megaphone
+	$(RM) $(NAME)
+
+fclean:
+	$(RM) $(OBJ)
+	$(RM) $(NAME)
 
 re: fclean all
 
