@@ -1,6 +1,18 @@
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() {
+  m_name = std::string("namelss");
+  std::cout << "FR4G-TP " << m_name << ": Hey everybody! Check out my package!"
+            << std::endl;
+  m_level = 1;
+  m_hp = 100;
+  m_max_hp = 100;
+  m_energy = 100;
+  m_max_energy = 100;
+  m_melee_attack = 30;
+  m_ranged_attack = 20;
+  m_armor_reduction = 5;
+  std::srand(std::time(NULL));
 }
 
 FragTrap::FragTrap(std::string const &name) : m_name(name) {
