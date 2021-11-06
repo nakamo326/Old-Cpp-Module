@@ -18,7 +18,7 @@ class FragTrap {
   int m_armor_reduction;
 
   public:
-  FragTrap::FragTrap();
+  FragTrap();
   FragTrap(std::string const &name);
   ~FragTrap();
   FragTrap(const FragTrap &rhs);
