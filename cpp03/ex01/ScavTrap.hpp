@@ -25,6 +25,7 @@ class ScavTrap {
   void meleeAttack(std::string const &target);
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
+  void challengeNewcomer();
 };
 
 #endif  // SCAVTRAP_HPP
