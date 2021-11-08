@@ -60,12 +60,12 @@ void PhoneBook::display_list() {
   for (int i = 0; i < m_index; i++) {
     if (is_empty_contact(m_book[i]))
       continue;
-    std::cout << std::left << std::setw(10) << i << "|";
+    std::cout << std::right << std::setw(10) << i << "|";
     for (int j = 0; j < 3; j++) {
       str = m_book[i].get_info(j);
       if (str.length() > 10)
         str = str.substr(0, 9) + ".";
-      std::cout << std::left << std::setw(10) << str << "|";
+      std::cout << std::right << std::setw(10) << str << "|";
     }
     std::cout << std::endl;
   }
@@ -98,7 +98,7 @@ void PhoneBook::display_contact() {
     }
   }
   for (int i = 0; i < Contact::q_num; i++) {
-    std::cout << std::left << std::setw(15) << Contact::q_list[i] << " | ";
-    std::cout << std::left << m_book[target_i].get_info(i) << std::endl;
+    std::cout << std::right << std::setw(15) << Contact::q_list[i] << " | ";
+    std::cout << std::right << m_book[target_i].get_info(i) << std::endl;
   }
 }
