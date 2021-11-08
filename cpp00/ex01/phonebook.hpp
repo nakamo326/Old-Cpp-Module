@@ -16,6 +16,7 @@ class PhoneBook {
   int m_index;
   void add();
   void search();
+  bool is_empty_contact(Contact c);
   void display_list();
   void display_contact();
 

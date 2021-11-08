@@ -58,6 +58,8 @@ void PhoneBook::display_list() {
 
   std::cout << "INDEX     |FIRST NAME|LAST NAME |NICKNAME  |" << std::endl;
   for (int i = 0; i < m_index; i++) {
+    if (is_empty_contact(m_book[i]))
+      continue;
     std::cout << std::left << std::setw(10) << i << "|";
     for (int j = 0; j < 3; j++) {
       str = m_book[i].get_info(j);
@@ -67,6 +69,16 @@ void PhoneBook::display_list() {
     }
     std::cout << std::endl;
   }
+}
+
+bool PhoneBook::is_empty_contact(Contact c) {
+  bool is_empty = true;
+
+  for (size_t i = 0; i < 3; i++) {
+    if (!c.get_info(i).empty())
+      is_empty = false;
+  }
+  return is_empty;
 }
 
 void PhoneBook::display_contact() {

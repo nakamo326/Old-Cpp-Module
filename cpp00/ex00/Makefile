@@ -9,9 +9,9 @@ all: $(NAME)
 $(NAME): $(SRC)
 	clang++ -g -std=c++98 $(CFLAGS) $^ -o $@
 
-clean:
+fclean:
 	$(RM) ./megaphone
 
 re: fclean all
 
-.PHONY: all clean re
+.PHONY: all fclean re
