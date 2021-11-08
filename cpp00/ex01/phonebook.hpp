@@ -14,6 +14,7 @@ class PhoneBook {
   private:
   Contact m_book[MAX_LINE];
   int m_index;
+  int m_oldest_contact;
   void add();
   void search();
   bool is_empty_contact(Contact c);
