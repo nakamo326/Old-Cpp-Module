@@ -21,7 +21,9 @@ int main(void) {
   std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 
   Fixed e(-3.4f);
-  std::cout << "e is " << e << std::endl;
+  std::cout << "e(-3.4) is " << e << std::endl;
+  Fixed f(-5);
+  std::cout << "f(-5) is " << f << std::endl;
 
   return 0;
 }
