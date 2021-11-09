@@ -87,9 +87,8 @@ Fixed Fixed::operator-(const Fixed &a) const {
 
 Fixed Fixed::operator*(const Fixed &a) const {
   Fixed tmp;
-  long long t_num;
-  t_num = m_num;
-  t_num = t_num * a.m_num >> m_bp;
+  long t_num;
+  t_num = (long)m_num * a.m_num >> m_bp;
   tmp.m_num = (int)t_num;
   return tmp;
 }
