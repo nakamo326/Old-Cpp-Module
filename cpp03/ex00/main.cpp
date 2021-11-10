@@ -1,12 +1,12 @@
-#include "FragTrap.hpp"
+#include <iostream>
 
-int main() {
-  FragTrap ft("clap");
+#include "ClapTrap.hpp"
 
-  ft.meleeAttack("Skag");
-  ft.takeDamage(20);
-  ft.beRepaired(30);
-  ft.rangedAttack("Skag");
-  ft.vaulthunter_dot_exe("Handsome Jack");
+int main(void) {
+  ClapTrap crap("CL4P-TP");
+  crap.attack("Handsam jack");
+  crap.takeDamage(5);
+  crap.takeDamage(7);
+  crap.beRepaired(10);
   return 0;
 }

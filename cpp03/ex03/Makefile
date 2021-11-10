@@ -1,10 +1,11 @@
-NAME = ex01
+NAME = ex03
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
 SRC =	./main.cpp \
 			./ClapTrap.cpp \
-			./ScavTrap.cpp
+			./ScavTrap.cpp \
+			./FragTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

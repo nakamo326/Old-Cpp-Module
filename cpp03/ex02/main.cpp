@@ -1,15 +1,15 @@
 #include <iostream>
 
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 // need to "virtual" in claptrap constructor?
 
 int main(void) {
-  ScavTrap test("testname");
+  FragTrap test("testname");
   test.attack("test target");
   test.takeDamage(10);
   test.beRepaired(5);
-  test.guardGate();
+  test.highFivesGuys();
   return 0;
 }
