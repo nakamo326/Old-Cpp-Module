@@ -75,11 +75,12 @@ void PhoneBook::display_list() {
 
   std::cout << "INDEX     |FIRST NAME|LAST NAME |NICKNAME  |" << std::endl;
   std::cout << "----------+----------+----------+----------+" << std::endl;
-  int line = m_index >= MAX_LINE ? 8 : m_index;
-  for (int i = 0; i < line; i++) {
+  int item_num = m_index >= MAX_LINE ? 8 : m_index;
+  for (int i = 0; i < item_num; i++) {
+    int k = (m_index + 8 - item_num + i) % 8;
     std::cout << std::right << std::setw(10) << i << "|";
     for (int j = 0; j < 3; j++) {
-      str = m_book[i].get_info(j);
+      str = m_book[k].get_info(j);
       if (str.length() > 10)
         str = str.substr(0, 9) + ".";
       std::cout << std::right << std::setw(10) << str << "|";
@@ -91,22 +92,24 @@ void PhoneBook::display_list() {
 void PhoneBook::display_contact() {
   std::string str;
   int target_i = -1;
+  int k;
 
   while (true) {
     std::cout << "INPUT INDEX: ";
     std::getline(std::cin, str);
-    // need to fix
+    int item_num = m_index >= MAX_LINE ? 8 : m_index;
     if (str.length() != 1 ||
-        !(str[0] >= '0' && str[0] <= '0' + (m_index - 1))) {
+        !(str[0] >= '0' && str[0] <= '0' + (item_num - 1))) {
       std::cout << "INVALID INPUT!" << std::endl
-                << "PLEASE INPUT: 0 ~ " << m_index - 1 << std::endl;
+                << "PLEASE INPUT: 0 ~ " << item_num - 1 << std::endl;
     } else {
       target_i = std::atoi(str.c_str());
+      k = (m_index + 8 - item_num + target_i) % 8;
       break;
     }
   }
   for (int i = 0; i < Contact::q_num; i++) {
     std::cout << std::right << std::setw(15) << Contact::q_list[i] << " | ";
-    std::cout << std::right << m_book[target_i].get_info(i) << std::endl;
+    std::cout << std::right << m_book[k].get_info(i) << std::endl;
   }
 }
