@@ -13,7 +13,7 @@ Zombie::~Zombie() {
   std::cout << _name << " doesn't seem to move anymore..." << std::endl;
 }
 
-void Zombie::set_name(std::string name) {
+void Zombie::setName(std::string name) {
   std::cout << _name;
   _name = name;
   std::cout << " is named " << _name << "." << std::endl;

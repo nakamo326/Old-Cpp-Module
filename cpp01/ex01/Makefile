@@ -1,4 +1,4 @@
-NAME = zombieHorde
+NAME = ex01
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
