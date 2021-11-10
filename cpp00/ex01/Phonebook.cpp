@@ -31,23 +31,34 @@ void PhoneBook::add() {
   int target_i;
   std::string answer;
 
-  if (m_index == MAX_LINE) {
+  if (m_index >= MAX_LINE) {
     std::cout << "CONTACT IS MAX!" << std::endl;
     std::cout << "SO WE REPLACE THE OLDEST CONTACT." << std::endl;
-    target_i = m_oldest_contact;
-    m_oldest_contact++;
-    if (m_oldest_contact == 7)
-      m_oldest_contact = 0;
-  } else {
-    target_i = m_index;
-    m_index++;
   }
+  target_i = m_index % 8;
+  m_index++;
+
   for (int i = 0; i < Contact::q_num; i++) {
     std::cout << Contact::q_list[i] << ": ";
     std::getline(std::cin, answer, '\n');
     m_book[target_i].set_info(i, answer);
   }
-  std::cout << "CONTACT IS ADDED!" << std::endl;
+  if (is_empty_contact(m_book[target_i])) {
+    std::cout << "CONTACT IS EMPTY!!" << std::endl;
+    m_index--;
+  } else {
+    std::cout << "CONTACT IS ADDED!" << std::endl;
+  }
+}
+
+bool PhoneBook::is_empty_contact(Contact c) {
+  bool is_empty = true;
+
+  for (size_t i = 0; i < 3; i++) {
+    if (!c.get_info(i).empty())
+      is_empty = false;
+  }
+  return is_empty;
 }
 
 void PhoneBook::search() {
@@ -66,9 +77,8 @@ void PhoneBook::display_list() {
 
   std::cout << "INDEX     |FIRST NAME|LAST NAME |NICKNAME  |" << std::endl;
   std::cout << "----------+----------+----------+----------+" << std::endl;
-  for (int i = 0; i < m_index; i++) {
-    if (is_empty_contact(m_book[i]))
-      continue;
+  int line = m_index >= MAX_LINE ? 8 : m_index;
+  for (int i = 0; i < line; i++) {
     std::cout << std::right << std::setw(10) << i << "|";
     for (int j = 0; j < 3; j++) {
       str = m_book[i].get_info(j);
@@ -78,16 +88,6 @@ void PhoneBook::display_list() {
     }
     std::cout << std::endl;
   }
-}
-
-bool PhoneBook::is_empty_contact(Contact c) {
-  bool is_empty = true;
-
-  for (size_t i = 0; i < 3; i++) {
-    if (!c.get_info(i).empty())
-      is_empty = false;
-  }
-  return is_empty;
 }
 
 void PhoneBook::display_contact() {

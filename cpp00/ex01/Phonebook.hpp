@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-#include "contact.hpp"
+#include "Contact.hpp"
 
 #define MAX_LINE 8
 

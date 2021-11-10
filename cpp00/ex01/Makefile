@@ -3,8 +3,8 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
 SRC =	./main.cpp \
-		./contact.cpp \
-		./phonebook.cpp
+		./Contact.cpp \
+		./Phonebook.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -17,7 +17,7 @@ $(NAME): $(OBJ)
 	clang++ -g -std=c++98 $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(NAME)
+	$(RM) $(OBJ)
 
 fclean:
 	$(RM) $(OBJ)
