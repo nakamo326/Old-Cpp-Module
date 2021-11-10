@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
 SRC =	./main.cpp \
-			./sed.cpp
+			./Replace.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
