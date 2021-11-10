@@ -1,4 +1,4 @@
-#include "contact.hpp"
+#include "Contact.hpp"
 
 const std::string Contact::q_list[Contact::q_num] = {
     "first name", "last name", "nickname", "phone number", "darkest secret"};
