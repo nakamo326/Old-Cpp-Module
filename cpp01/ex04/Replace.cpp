@@ -6,18 +6,9 @@ Replace::Replace() {
 Replace::~Replace() {
 }
 
-void Replace::sed(const char *path, std::string search,
-                  std::string replacement) {
-  std::string contents;
-  std::string line;
-  std::ifstream ifs(path);
-  if (!ifs)
-    throw std::string(path);
-  while (std::getline(ifs, line)) {
-    contents += line;
-    if (!ifs.eof())
-      contents.push_back('\n');
-  }
+void Replace::sed(const char* path, const char* search,
+                  const char* replacement) {
+  std::string contents = readFile(path);
   std::string output_path = std::string(path) + ".replace";
   std::ofstream ofs(output_path.c_str());
   if (!ofs)
@@ -26,15 +17,24 @@ void Replace::sed(const char *path, std::string search,
   return;
 }
 
+std::string Replace::readFile(const char* path) {
+  std::ostringstream oss;
+  std::ifstream ifs(path);
+  if (!ifs)
+    throw std::string(path);
+  oss << ifs.rdbuf();
+  return oss.str();
+}
+
 std::string Replace::replace(std::string contents, std::string search,
                              std::string replacement) {
   std::size_t i = 0;
-
-  while (true) {
+  while (1) {
     i = contents.find(search, i);
     if (i == std::string::npos)
       break;
-    contents.replace(i, search.size(), replacement);
+    contents.erase(i, search.size());
+    contents.insert(i, replacement);
     i += replacement.size();
   }
   return contents;
