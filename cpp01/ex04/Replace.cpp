@@ -15,7 +15,8 @@ void Replace::sed(const char *path, std::string search,
     throw std::string(path);
   while (std::getline(ifs, line)) {
     contents += line;
-    contents.push_back('\n');
+    if (!ifs.eof())
+      contents.push_back('\n');
   }
   std::string output_path = std::string(path) + ".replace";
   std::ofstream ofs(output_path.c_str());
