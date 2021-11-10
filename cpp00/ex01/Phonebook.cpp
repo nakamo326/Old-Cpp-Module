@@ -1,8 +1,6 @@
 #include "Phonebook.hpp"
 
-PhoneBook::PhoneBook() {
-  m_index = 0;
-  m_oldest_contact = 0;
+PhoneBook::PhoneBook() : m_index(0) {
   std::cout.exceptions(std::ostream::badbit | std::ostream::eofbit);
   std::cin.exceptions(std::istream::badbit | std::istream::eofbit);
 }
@@ -97,6 +95,7 @@ void PhoneBook::display_contact() {
   while (true) {
     std::cout << "INPUT INDEX: ";
     std::getline(std::cin, str);
+    // need to fix
     if (str.length() != 1 ||
         !(str[0] >= '0' && str[0] <= '0' + (m_index - 1))) {
       std::cout << "INVALID INPUT!" << std::endl
