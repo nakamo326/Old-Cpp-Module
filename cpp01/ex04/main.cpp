@@ -9,8 +9,8 @@ int main(int argc, char const* argv[]) {
   try {
     Replace rep;
     rep.sed(argv[1], argv[2], argv[3]);
-  } catch (const char* e) {
-    std::cerr << argv[0] << ": " << e << std::endl;
+  } catch (std::string e) {
+    std::cerr << argv[0] << ": " << e << ": " << strerror(errno) << std::endl;
     return 1;
   }
   return 0;

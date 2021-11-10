@@ -12,7 +12,7 @@ void Replace::sed(const char *path, std::string search,
   std::string line;
   std::ifstream ifs(path);
   if (!ifs)
-    throw "failed to open the source file.";
+    throw std::string(path);
   while (std::getline(ifs, line)) {
     contents += line;
     contents.push_back('\n');
@@ -20,7 +20,7 @@ void Replace::sed(const char *path, std::string search,
   std::string output_path = std::string(path) + ".replace";
   std::ofstream ofs(output_path.c_str());
   if (!ofs)
-    throw "failed to open output file.";
+    throw std::string(path) + ".replace";
   ofs << replace(contents, search, replacement);
   return;
 }
