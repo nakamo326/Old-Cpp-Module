@@ -16,7 +16,7 @@ class Replace {
   public:
   Replace();
   ~Replace();
-  void sed(const char* path, const char* search, const char* replacement);
+  void sed(const char* path, std::string search, std::string replacement);
 };
 
 #endif

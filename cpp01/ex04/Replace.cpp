@@ -6,8 +6,8 @@ Replace::Replace() {
 Replace::~Replace() {
 }
 
-void Replace::sed(const char* path, const char* search,
-                  const char* replacement) {
+void Replace::sed(const char* path, std::string search,
+                  std::string replacement) {
   std::string contents = readFile(path);
   std::string output_path = std::string(path) + ".replace";
   std::ofstream ofs(output_path.c_str());
