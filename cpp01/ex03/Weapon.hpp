@@ -5,7 +5,7 @@
 
 class Weapon {
   private:
-  std::string m_type;
+  std::string _type;
 
   public:
   Weapon(std::string type);
