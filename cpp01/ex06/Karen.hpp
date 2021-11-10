@@ -11,9 +11,6 @@ class Karen {
   void warning(void);
   void error(void);
 
-  typedef void (Karen::*level)();
-  static const level LEVELS[];
-
   public:
   Karen();
   ~Karen();
