@@ -16,7 +16,7 @@ $(NAME): $(OBJ)
 	c++ -g -std=c++98 $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(NAME)
+	$(RM) $(OBJ)
 
 fclean:
 	$(RM) $(OBJ)

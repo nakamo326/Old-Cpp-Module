@@ -1,4 +1,4 @@
-NAME = zombie
+NAME = ex00
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
@@ -18,7 +18,7 @@ $(NAME): $(OBJ)
 	clang++ -g -std=c++98 $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(NAME)
+	$(RM) $(OBJ)
 
 fclean:
 	$(RM) $(OBJ)
