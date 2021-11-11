@@ -7,7 +7,7 @@
 
 class ScavTrap : public ClapTrap {
   private:
-  bool m_is_gatekeeper;
+  bool _isGatekeeper;
 
   public:
   ScavTrap();
