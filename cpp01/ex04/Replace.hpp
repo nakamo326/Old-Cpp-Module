@@ -10,7 +10,7 @@
 class Replace {
   private:
   std::string readFile(const char* path);
-  std::string replace(std::string contents, std::string search,
+  std::string replace(std::string& contents, std::string search,
                       std::string replacement);
 
   public:
