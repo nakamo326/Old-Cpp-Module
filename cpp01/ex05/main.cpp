@@ -6,5 +6,6 @@ int main(void) {
   karen.complain("INFO");
   karen.complain("WARNING");
   karen.complain("ERROR");
+  karen.complain("NO_SUCH_OPTION");
   return 0;
 }
