@@ -38,6 +38,27 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &rhs) {
   return *this;
 }
 
+void ScavTrap::attack(std::string const &target) {
+  std::cout << "ScavTrap " << _name << " attacks " << target << ", causing "
+            << _attackDamage << " points of damage!" << std::endl;
+}
+
+void ScavTrap::takeDamage(unsigned int amount) {
+  if (_hp <= amount)
+    _hp = 0;
+  else
+    _hp -= amount;
+  std::cout << "ScavTrap " << _name << " takes " << amount
+            << " points of damage!" << std::endl;
+  std::cout << _name << "'s hitpoint is " << _hp << " now!" << std::endl;
+}
+
+void ScavTrap::beRepaired(unsigned int amount) {
+  _hp += amount;
+  std::cout << "ScavTrap " << _name << " be repaired!" << std::endl;
+  std::cout << _name << "'s hitpoint is " << _hp << " now!" << std::endl;
+}
+
 void ScavTrap::guardGate() {
   _isGatekeeper = true;
   std::cout << "[ScavTrap] " << _name << " have enterred in Gate keeper mode."
