@@ -3,8 +3,6 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
-// need to "virtual" in claptrap constructor?
-
 int main(void) {
   ClapTrap crap("CL4P-TP");
   crap.attack("Handsam jack");

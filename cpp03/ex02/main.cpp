@@ -2,14 +2,25 @@
 
 #include "ClapTrap.hpp"
 #include "FragTrap.hpp"
-
-// need to "virtual" in claptrap constructor?
+#include "ScavTrap.hpp"
 
 int main(void) {
-  FragTrap test("testname");
-  test.attack("test target");
-  test.takeDamage(10);
-  test.beRepaired(5);
-  test.highFivesGuys();
+  ClapTrap crap("CL4P-TP");
+  crap.attack("Handsam jack");
+  crap.takeDamage(5);
+  crap.takeDamage(7);
+  crap.beRepaired(10);
+
+  ScavTrap scav("SC4V-TP");
+  scav.attack("test target");
+  scav.takeDamage(10);
+  scav.beRepaired(5);
+  scav.guardGate();
+
+  FragTrap frag("FR4G-TP");
+  frag.attack("test target");
+  frag.takeDamage(10);
+  frag.beRepaired(5);
+  frag.highFivesGuys();
   return 0;
 }

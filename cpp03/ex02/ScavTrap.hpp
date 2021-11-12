@@ -7,7 +7,7 @@
 
 class ScavTrap : public ClapTrap {
   private:
-  bool m_is_gatekeeper;
+  bool _isGatekeeper;
 
   public:
   ScavTrap();
@@ -15,6 +15,9 @@ class ScavTrap : public ClapTrap {
   ScavTrap(const ScavTrap &other);
   ~ScavTrap();
   ScavTrap &operator=(const ScavTrap &other);
+  void attack(std::string const &target);
+  void takeDamage(unsigned int amount);
+  void beRepaired(unsigned int amount);
   void guardGate();
 };
 
