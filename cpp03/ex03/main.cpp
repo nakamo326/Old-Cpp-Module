@@ -35,6 +35,10 @@ int main(void) {
     DiamondTrap dia("Diamond");
     dia.whoAmI();
     dia.attack("test");
+    dia.ClapTrap::takeDamage(10);
+    dia.ClapTrap::beRepaired(5);
+    dia.highFivesGuys();
+    dia.guardGate();
   }
   return 0;
 }
