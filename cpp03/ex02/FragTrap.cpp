@@ -1,25 +1,25 @@
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() {
-  m_hp = 100;
-  m_energy = 100;
-  m_attack_damage = 30;
+  _hp = 100;
+  _energy = 100;
+  _attackDamage = 30;
   std::cout << "[FragTrap] Default constructor called." << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) {
-  m_name = name;
-  m_hp = 100;
-  m_energy = 100;
-  m_attack_damage = 30;
+  _name = name;
+  _hp = 100;
+  _energy = 100;
+  _attackDamage = 30;
   std::cout << "[FragTrap] Constructor with name called." << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &other) {
-  m_name = other.m_name;
-  m_hp = other.m_hp;
-  m_energy = other.m_energy;
-  m_attack_damage = other.m_attack_damage;
+  _name = other._name;
+  _hp = other._hp;
+  _energy = other._energy;
+  _attackDamage = other._attackDamage;
   std::cout << "[FragTrap] Copy constructor called" << std::endl;
 }
 
@@ -28,10 +28,10 @@ FragTrap::~FragTrap() {
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &other) {
-  m_name = other.m_name;
-  m_hp = other.m_hp;
-  m_energy = other.m_energy;
-  m_attack_damage = other.m_attack_damage;
+  _name = other._name;
+  _hp = other._hp;
+  _energy = other._energy;
+  _attackDamage = other._attackDamage;
   std::cout << "[FragTrap] Assignation operator called" << std::endl;
   return *this;
 }
