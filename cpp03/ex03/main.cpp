@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
@@ -28,6 +29,11 @@ int main(void) {
     frag.takeDamage(10);
     frag.beRepaired(5);
     frag.highFivesGuys();
-    return 0;
   }
+  {
+    std::cout << "===DiamondTrap===" << std::endl;
+    DiamondTrap dia("Diamond");
+    dia.whoAmI();
+  }
+  return 0;
 }
