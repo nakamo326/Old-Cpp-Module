@@ -12,5 +12,6 @@ int main() {
   c.print();
   x.print();
   std::cout << bsp(a, b, c, x) << std::endl;
+  std::cout << bsp(a, b, c, a) << std::endl;
   return 0;
 }
