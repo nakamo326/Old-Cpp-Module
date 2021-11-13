@@ -1,5 +1,5 @@
 NAME = ex03
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Wshadow -Wno-shadow
 INCLUDE = ./
 
 SRC =	./main.cpp \

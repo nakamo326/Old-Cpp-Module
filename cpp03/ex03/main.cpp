@@ -34,6 +34,7 @@ int main(void) {
     std::cout << "===DiamondTrap===" << std::endl;
     DiamondTrap dia("Diamond");
     dia.whoAmI();
+    dia.attack("test");
   }
   return 0;
 }
