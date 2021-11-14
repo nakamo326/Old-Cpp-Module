@@ -2,6 +2,7 @@
 
 Cat::Cat() {
   _type = std::string("Cat");
+  _brain = new Brain();
 }
 
 Cat::Cat(const Cat &other) {
@@ -9,6 +10,7 @@ Cat::Cat(const Cat &other) {
 }
 
 Cat::~Cat() {
+  delete _brain;
 }
 
 Cat &Cat::operator=(const Cat &rhs) {

@@ -2,6 +2,7 @@
 
 Dog::Dog() {
   _type = std::string("Dog");
+  _brain = new Brain();
 }
 
 Dog::Dog(const Dog &other) {
@@ -9,6 +10,7 @@ Dog::Dog(const Dog &other) {
 }
 
 Dog::~Dog() {
+  delete _brain;
 }
 
 Dog &Dog::operator=(const Dog &rhs) {

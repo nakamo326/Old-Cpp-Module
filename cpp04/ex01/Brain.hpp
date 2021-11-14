@@ -1,6 +1,8 @@
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
 
+#include <iostream>
+
 class Brain {
 public:
   Brain();
@@ -9,24 +11,7 @@ public:
   Brain &operator=(const Brain &rhs);
 
 private:
-  std::string
+  std::string _ideas[100];
 };
-
-Brain::Brain() {
-}
-
-Brain::Brain(const Brain &other) {
-  *this = other;
-}
-
-Brain::~Brain() {
-}
-
-Brain &Brain::operator=(const Brain &rhs) {
-  if (this == &rhs)
-    return *this;
-
-  return *this;
-}
 
 #endif  // BRAIN_HPP
