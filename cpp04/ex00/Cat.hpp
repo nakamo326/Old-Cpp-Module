@@ -3,14 +3,16 @@
 
 #include <iostream>
 
-class Cat {
+#include "Animal.hpp"
+
+class Cat : public Animal {
   private:
   public:
   Cat();
   Cat(const Cat &other);
   ~Cat();
   Cat &operator=(const Cat &rhs);
-  void makeSound();
+  void makeSound() const;
 };
 
 #endif  // CAT_CPP

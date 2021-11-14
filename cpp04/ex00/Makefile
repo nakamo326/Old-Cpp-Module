@@ -2,7 +2,10 @@ NAME = ex00
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
-SRC =	./main.cpp
+SRC =	./main.cpp \
+			./Animal.cpp \
+			./Dog.cpp \
+			./Cat.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
