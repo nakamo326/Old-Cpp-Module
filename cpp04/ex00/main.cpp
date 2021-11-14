@@ -3,6 +3,8 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main() {
   const Animal* base = new Animal();
@@ -14,5 +16,13 @@ int main() {
   base->makeSound();
   dog->makeSound();
   cat->makeSound();
+
+  std::cout << "===WrongAnimal===" << std::endl;
+  const WrongAnimal* wbase = new WrongAnimal();
+  const WrongAnimal* wcat = new WrongCat();
+  std::cout << wbase->getType() << std::endl;
+  std::cout << wcat->getType() << std::endl;
+  wbase->makeSound();
+  wcat->makeSound();
   return 0;
 }

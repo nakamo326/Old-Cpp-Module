@@ -1,5 +1,5 @@
-#ifndef ANIMAL_CPP
-#define ANIMAL_CPP
+#ifndef WRONGANIMAL_CPP
+#define WRONGANIMAL_CPP
 
 #include <iostream>
 
@@ -12,8 +12,8 @@ class WrongAnimal {
   virtual ~WrongAnimal();
   WrongAnimal(const WrongAnimal &other);
   WrongAnimal &operator=(const WrongAnimal &rhs);
-  virtual void makeSound() const;
+  void makeSound() const;
   const std::string &getType() const;
 };
 
-#endif  // ANIMAL_CPP
+#endif  // WRONGANIMAL_CPP
