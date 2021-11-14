@@ -14,6 +14,7 @@ public:
 
 private:
   std::string _ideas[100];
+  static int _index;
 };
 
 #endif  // BRAIN_HPP
