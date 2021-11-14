@@ -5,12 +5,8 @@
 #include "Dog.hpp"
 
 int main() {
-  const Animal* base = new Animal();
-  const Animal* dog = new Dog();
-  const Animal* cat = new Cat();
-  std::cout << base->getType() << std::endl;
-  std::cout << dog->getType() << std::endl;
-  std::cout << cat->getType() << std::endl;
+  const Animal* arr = new Animal[4];
+
   base->makeSound();
   dog->makeSound();
   cat->makeSound();

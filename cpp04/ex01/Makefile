@@ -5,7 +5,8 @@ INCLUDE = ./
 SRC =	./main.cpp \
 			./Animal.cpp \
 			./Dog.cpp \
-			./Cat.cpp
+			./Cat.cpp \
+			./Brain.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
