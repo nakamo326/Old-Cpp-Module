@@ -5,12 +5,14 @@
 #include "Dog.hpp"
 
 int main() {
-  Animal *arr = new Animal[4];
+  Animal *arr[4];
 
-  arr[0] = Dog();
-  arr[1] = Dog();
-  arr[2] = Cat();
-  arr[3] = Cat();
+  arr[0] = new Dog();
+  arr[1] = new Dog();
+  arr[2] = new Cat();
+  arr[3] = new Cat();
+
+  (dynamic_cast<Dog *>(arr[0]))->showIdeas();
 
   return 0;
 }

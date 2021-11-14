@@ -1,16 +1,20 @@
 #include "Brain.hpp"
 
-static int _index = 0;
+int Brain::_index = 0;
 
 Brain::Brain() {
   std::stringstream ss;
+  std::string ret;
   for (size_t i = 0; i < 100; i++) {
-    ss << "idea No." << i << std::endl;
-    _ideas[i] = ss.str();
+    ss << "(" << _index << ")"
+       << "idea No." << i << std::endl;
+    ss >> ret;
+    _ideas[i] = ret;
     ss.clear();
   }
-
-  std::cout << "[Brain] Default constructor called." << std::endl;
+  std::cout << "[Brain" << _index << "] Default constructor called."
+            << std::endl;
+  _index++;
 }
 
 Brain::Brain(const Brain &other) {
@@ -34,7 +38,8 @@ Brain &Brain::operator=(const Brain &rhs) {
 
 void Brain::showIdeas() const {
   for (size_t i = 0; i < 100; i++) {
-    std::cout << _ideas[i] << std::endl;
+    std::cout << _ideas[i] << ", ";
   }
+  std::cout << std::endl;
   std::cout << "[Brain] it's all ." << std::endl;
 }
