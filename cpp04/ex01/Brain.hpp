@@ -2,6 +2,7 @@
 #define BRAIN_HPP
 
 #include <iostream>
+#include <sstream>
 
 class Brain {
 public:
@@ -9,6 +10,7 @@ public:
   Brain(const Brain &other);
   ~Brain();
   Brain &operator=(const Brain &rhs);
+  void showIdeas() const;
 
 private:
   std::string _ideas[100];

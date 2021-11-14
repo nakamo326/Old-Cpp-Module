@@ -5,10 +5,12 @@
 #include "Dog.hpp"
 
 int main() {
-  const Animal* arr = new Animal[4];
+  Animal *arr = new Animal[4];
 
-  base->makeSound();
-  dog->makeSound();
-  cat->makeSound();
+  arr[0] = Dog();
+  arr[1] = Dog();
+  arr[2] = Cat();
+  arr[3] = Cat();
+
   return 0;
 }
