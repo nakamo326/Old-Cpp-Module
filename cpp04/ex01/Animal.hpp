@@ -4,10 +4,10 @@
 #include <iostream>
 
 class Animal {
-  protected:
+protected:
   std::string _type;
 
-  public:
+public:
   Animal();
   virtual ~Animal();
   Animal(const Animal &other);

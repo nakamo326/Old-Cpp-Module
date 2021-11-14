@@ -4,8 +4,8 @@
 #include "Animal.hpp"
 
 class Dog : public Animal {
-  private:
-  public:
+private:
+public:
   Dog();
   Dog(const Dog &other);
   ~Dog();

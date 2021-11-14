@@ -6,8 +6,8 @@
 #include "Animal.hpp"
 
 class Cat : public Animal {
-  private:
-  public:
+private:
+public:
   Cat();
   Cat(const Cat &other);
   ~Cat();

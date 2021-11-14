@@ -6,8 +6,8 @@
 #include "WrongAnimal.hpp"
 
 class WrongCat : public WrongAnimal {
-  private:
-  public:
+private:
+public:
   WrongCat();
   WrongCat(const WrongCat &other);
   ~WrongCat();

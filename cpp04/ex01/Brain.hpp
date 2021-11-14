@@ -2,13 +2,14 @@
 #define BRAIN_HPP
 
 class Brain {
-  public:
+public:
   Brain();
   Brain(const Brain &other);
   ~Brain();
   Brain &operator=(const Brain &rhs);
 
-  private:
+private:
+  std::string
 };
 
 Brain::Brain() {
