@@ -15,10 +15,10 @@ Dog::~Dog() {
 }
 
 Dog &Dog::operator=(const Dog &rhs) {
-  std::cout << "[Dog] Assignation operator called" << std::endl;
   if (this == &rhs)
     return *this;
   _type = rhs._type;
+  std::cout << "[Dog] Assignation operator called" << std::endl;
   return *this;
 }
 
