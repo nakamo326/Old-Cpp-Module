@@ -28,3 +28,7 @@ void Cat::makeSound() const {
   std::cout << "[" << _type << "]  "
             << "Meow. Meoooooooooow." << std::endl;
 }
+
+void Cat::showIdeas() const {
+  _brain->showIdeas();
+}

@@ -16,6 +16,7 @@ public:
   ~Cat();
   Cat &operator=(const Cat &rhs);
   void makeSound() const;
+  void showIdeas() const;
 };
 
 #endif  // CAT_CPP

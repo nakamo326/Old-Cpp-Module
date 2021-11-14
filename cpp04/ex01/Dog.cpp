@@ -28,3 +28,7 @@ void Dog::makeSound() const {
   std::cout << "[" << _type << "] "
             << "BOWWOW!!" << std::endl;
 }
+
+void Dog::showIdeas() const {
+  _brain->showIdeas();
+}

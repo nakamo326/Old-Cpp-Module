@@ -14,6 +14,7 @@ public:
   ~Dog();
   Dog &operator=(const Dog &rhs);
   void makeSound() const;
+  void showIdeas() const;
 };
 
 #endif  // DOG_CPP
