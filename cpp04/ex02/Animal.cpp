@@ -1,0 +1,26 @@
+#include "Animal.hpp"
+
+Animal::Animal() : _type("None") {
+  std::cout << "[Animal] Default constructor called." << std::endl;
+}
+
+Animal::Animal(const Animal &other) {
+  std::cout << "[Animal] Copy constructor called." << std::endl;
+  *this = other;
+}
+
+Animal::~Animal() {
+  std::cout << "[Animal] Destructor called." << std::endl;
+}
+
+Animal &Animal::operator=(const Animal &rhs) {
+  if (this == &rhs)
+    return *this;
+  _type = rhs._type;
+  std::cout << "[Animal] Assignation operator called" << std::endl;
+  return *this;
+}
+
+const std::string &Animal::getType() const {
+  return _type;
+}
