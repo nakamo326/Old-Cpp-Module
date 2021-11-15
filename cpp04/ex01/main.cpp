@@ -25,8 +25,19 @@ int main() {
   (dynamic_cast<Cat *>(arr[2]))->showIdeas();
 
   std::cout << GRN "copy deeply." NC << std::endl;
+  Dog CopyDog(*dynamic_cast<Dog *>(arr[0]));
+  Cat CopyCat(*dynamic_cast<Cat *>(arr[2]));
 
   std::cout << GRN "delete array." NC << std::endl;
+  delete arr[0];
+  delete arr[1];
+  delete arr[2];
+  delete arr[3];
 
+  std::cout << GRN "show ideas from copy." NC << std::endl;
+  CopyDog.showIdeas();
+  CopyCat.showIdeas();
+
+  std::cout << GRN "return." NC << std::endl;
   return 0;
 }

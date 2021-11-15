@@ -20,7 +20,10 @@ Dog &Dog::operator=(const Dog &rhs) {
   if (this == &rhs)
     return *this;
   _type = rhs._type;
-  std::cout << "[Dog] Assignation operator called" << std::endl;
+  // if (_brain)
+  //  delete _brain;
+  _brain = new Brain(*(rhs._brain));
+  std::cout << "[Dog] Assignation operator called." << std::endl;
   return *this;
 }
 
@@ -32,5 +35,5 @@ void Dog::makeSound() const {
 void Dog::showIdeas() const {
   std::cout << "[Dog] there are my ideas." << std::endl;
   _brain->showIdeas();
-  std::cout << "[Dog] it's all ." << std::endl;
+  std::cout << "[Dog] it's all." << std::endl;
 }

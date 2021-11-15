@@ -6,7 +6,7 @@ Brain::Brain() {
   for (size_t i = 0; i < 100; i++) {
     std::stringstream ss;
     ss << "(" << _index << ")"
-       << "idea No." << std::setfill('0') << std::right << std::setw(2) << i;
+       << "No." << std::setfill('0') << std::right << std::setw(2) << i;
     _ideas[i] = ss.str();
   }
   std::cout << "[Brain" << _index << "] Default constructor called."
@@ -15,8 +15,11 @@ Brain::Brain() {
 }
 
 Brain::Brain(const Brain &other) {
-  *this = other;
   std::cout << "[Brain] Copy constructor called." << std::endl;
+  //*this = other;
+  for (size_t i = 0; i < 100; i++) {
+    _ideas[i] = other._ideas[i];
+  }
 }
 
 Brain::~Brain() {
