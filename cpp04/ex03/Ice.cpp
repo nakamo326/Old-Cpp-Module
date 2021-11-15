@@ -2,7 +2,7 @@
 
 Ice::Ice() : AMateria("ice") {}
 
-Ice::Ice(const Ice &other) { *this = other; }
+Ice::Ice(const Ice &other) : AMateria(other) {}
 
 Ice::~Ice() {}
 
@@ -12,7 +12,6 @@ Ice &Ice::operator=(const Ice &rhs) {
   return *this;
 }
 
-// test
 AMateria *Ice::clone() const {
   std::cout << "[Ice] generated a clone." << std::endl;
   return new Ice();

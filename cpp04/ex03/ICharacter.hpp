@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "AMateria.hpp"
+class AMateria;
 
 class ICharacter {
 public:

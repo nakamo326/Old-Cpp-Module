@@ -17,4 +17,7 @@ AMateria &AMateria::operator=(const AMateria &rhs) {
 
 std::string const &AMateria::getType() const { return _type; }
 
-void AMateria::use(ICharacter &target) {}
+void AMateria::use(ICharacter &target) {
+  (void)target;
+  std::cout << "I guess this func should be virtual." << std::endl;
+}

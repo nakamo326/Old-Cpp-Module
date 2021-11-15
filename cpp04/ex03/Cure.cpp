@@ -3,7 +3,7 @@
 
 Cure::Cure() : AMateria("cure") {}
 
-Cure::Cure(const Cure &other) { *this = other; }
+Cure::Cure(const Cure &other) : AMateria(other) {}
 
 Cure::~Cure() {}
 
@@ -15,8 +15,7 @@ Cure &Cure::operator=(const Cure &rhs) {
 
 AMateria *Cure::clone() const {
   std::cout << "[Cure] generated a clone." << std::endl;
-  AMateria *ret = new Cure();
-  return ret;
+  return new Cure();
 }
 
 void Cure::use(ICharacter &target) {
