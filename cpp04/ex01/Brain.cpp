@@ -16,11 +16,7 @@ Brain::Brain() {
 
 Brain::Brain(const Brain &other) {
   std::cout << "[Brain] Copy constructor called." << std::endl;
-  // why not call assignation?
   *this = other;
-  // for (size_t i = 0; i < 100; i++) {
-  //   _ideas[i] = other._ideas[i];
-  // }
 }
 
 Brain::~Brain() {
@@ -28,7 +24,7 @@ Brain::~Brain() {
 }
 
 Brain &Brain::operator=(const Brain &rhs) {
-  if (this != &rhs)
+  if (this == &rhs)
     return *this;
   for (size_t i = 0; i < 100; i++) {
     _ideas[i] = rhs._ideas[i];

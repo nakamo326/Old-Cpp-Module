@@ -14,7 +14,6 @@ int main() {
   Animal *arr[4];
 
   std::cout << GRN "make array of Animal." NC << std::endl;
-
   arr[0] = new Dog();
   arr[1] = new Dog();
   arr[2] = new Cat();
