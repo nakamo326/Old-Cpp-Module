@@ -3,31 +3,19 @@
 
 #include "ICharacter.hpp"
 
-class Character {
+class Character : public ICharacter {
 public:
   Character();
   Character(const Character &other);
   ~Character();
   Character &operator=(const Character &rhs);
   std::string const &getName() const;
+  void equip(AMateria *m);
+  void unequip(int idx);
+  void use(int idx, ICharacter &target);
 
 private:
   std::string _name;
 };
-
-Character::Character() {}
-
-Character::Character(const Character &other) { *this = other; }
-
-Character::~Character() {}
-
-Character &Character::operator=(const Character &rhs) {
-  if (this == &rhs)
-    return *this;
-
-  return *this;
-}
-
-std::string const &Character::getName() const {}
 
 #endif  // CHARACTER_HPP
