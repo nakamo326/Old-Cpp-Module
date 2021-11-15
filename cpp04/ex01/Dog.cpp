@@ -30,5 +30,7 @@ void Dog::makeSound() const {
 }
 
 void Dog::showIdeas() const {
+  std::cout << "[Dog] there are my ideas." << std::endl;
   _brain->showIdeas();
+  std::cout << "[Dog] it's all ." << std::endl;
 }

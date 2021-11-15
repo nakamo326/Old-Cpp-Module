@@ -4,16 +4,29 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
+#define NC "\e[0m"
+#define RED "\e[0;31m"
+#define GRN "\e[0;32m"
+#define CYN "\e[0;36m"
+#define REDB "\e[41m"
+
 int main() {
   Animal *arr[4];
+
+  std::cout << GRN "make array of Animal." NC << std::endl;
 
   arr[0] = new Dog();
   arr[1] = new Dog();
   arr[2] = new Cat();
   arr[3] = new Cat();
 
+  std::cout << GRN "show ideas from array." NC << std::endl;
   (dynamic_cast<Dog *>(arr[0]))->showIdeas();
   (dynamic_cast<Cat *>(arr[2]))->showIdeas();
+
+  std::cout << GRN "copy deeply." NC << std::endl;
+
+  std::cout << GRN "delete array." NC << std::endl;
 
   return 0;
 }

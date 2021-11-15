@@ -32,5 +32,7 @@ void Cat::makeSound() const {
 }
 
 void Cat::showIdeas() const {
+  std::cout << "[Cat] there are my ideas." << std::endl;
   _brain->showIdeas();
+  std::cout << "[Cat] it's all ." << std::endl;
 }

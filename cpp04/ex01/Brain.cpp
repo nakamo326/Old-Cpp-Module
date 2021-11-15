@@ -34,12 +34,10 @@ Brain &Brain::operator=(const Brain &rhs) {
 }
 
 void Brain::showIdeas() const {
-  std::cout << "[Brain] there are my ideas." << std::endl;
   for (size_t i = 0; i < 10; i++) {
     for (size_t j = i * 10; j < (i + 1) * 10; j++) {
-      std::cout << _ideas[j] << ", ";
+      std::cout << _ideas[j] << " ";
     }
     std::cout << std::endl;
   }
-  std::cout << "[Brain] it's all ." << std::endl;
 }
