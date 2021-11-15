@@ -19,6 +19,8 @@ Cat::~Cat() {
 Cat &Cat::operator=(const Cat &rhs) {
   if (this == &rhs)
     return *this;
+  delete _brain;
+  _brain = new Brain(*rhs._brain);
   _type = rhs._type;
   std::cout << "[Cat] Assignation operator called" << std::endl;
   return *this;

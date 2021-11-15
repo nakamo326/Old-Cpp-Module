@@ -3,14 +3,11 @@
 int Brain::_index = 0;
 
 Brain::Brain() {
-  std::stringstream ss;
-  std::string ret;
   for (size_t i = 0; i < 100; i++) {
+    std::stringstream ss;
     ss << "(" << _index << ")"
-       << "idea No." << i << std::endl;
-    ss >> ret;
-    _ideas[i] = ret;
-    ss.clear();
+       << "idea No." << std::setfill('0') << std::right << std::setw(2) << i;
+    _ideas[i] = ss.str();
   }
   std::cout << "[Brain" << _index << "] Default constructor called."
             << std::endl;
@@ -37,9 +34,12 @@ Brain &Brain::operator=(const Brain &rhs) {
 }
 
 void Brain::showIdeas() const {
-  for (size_t i = 0; i < 100; i++) {
-    std::cout << _ideas[i] << ", ";
+  std::cout << "[Brain] there are my ideas." << std::endl;
+  for (size_t i = 0; i < 10; i++) {
+    for (size_t j = i * 10; j < (i + 1) * 10; j++) {
+      std::cout << _ideas[j] << ", ";
+    }
+    std::cout << std::endl;
   }
-  std::cout << std::endl;
   std::cout << "[Brain] it's all ." << std::endl;
 }
