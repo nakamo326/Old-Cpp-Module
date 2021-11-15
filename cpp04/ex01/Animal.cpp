@@ -5,8 +5,8 @@ Animal::Animal() : _type("None") {
 }
 
 Animal::Animal(const Animal &other) {
-  *this = other;
   std::cout << "[Animal] Copy constructor called." << std::endl;
+  *this = other;
 }
 
 Animal::~Animal() {
