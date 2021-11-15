@@ -15,21 +15,4 @@ public:
 private:
 };
 
-Ice::Ice() {}
-
-Ice::Ice(const Ice &other) { *this = other; }
-
-Ice::~Ice() {}
-
-Ice &Ice::operator=(const Ice &rhs) {
-  if (this == &rhs)
-    return *this;
-
-  return *this;
-}
-
-AMateria *Ice::clone() const {}
-
-void Ice::use(ICharacter &target) {}
-
 #endif  // ICE_HPP

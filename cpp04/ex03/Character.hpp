@@ -9,8 +9,10 @@ public:
   Character(const Character &other);
   ~Character();
   Character &operator=(const Character &rhs);
+  std::string const &getName() const;
 
 private:
+  std::string _name;
 };
 
 Character::Character() {}
@@ -25,5 +27,7 @@ Character &Character::operator=(const Character &rhs) {
 
   return *this;
 }
+
+std::string const &Character::getName() const {}
 
 #endif  // CHARACTER_HPP
