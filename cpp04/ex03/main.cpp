@@ -4,19 +4,17 @@
 #include "MateriaSource.hpp"
 
 int main() {
-  Ice ice;
   Cure cure;
-  AMateria *m;
-  AMateria *m2;
+  Ice ice;
 
-  Ice copy(ice);
+  Cure copy(cure);
   std::cout << copy.getType() << std::endl;
-  Cure copy1(cure);
+  Ice copy1(ice);
   std::cout << copy1.getType() << std::endl;
 
-  m = cure.clone();
+  AMateria *m = cure.clone();
   std::cout << m->getType() << std::endl;
-  m2 = ice.clone();
+  AMateria *m2 = ice.clone();
   std::cout << m2->getType() << std::endl;
 
   Character kuraudo("†kuraudo†");
@@ -32,9 +30,12 @@ int main() {
   kuraudo.unequip(3);
   kuraudo.unequip(3);
   Character sephiroth("Sephiroth");
+  kuraudo.use(-1, sephiroth);
   kuraudo.use(0, sephiroth);
+  kuraudo.use(1, sephiroth);
   kuraudo.use(2, sephiroth);
   kuraudo.use(3, sephiroth);
+  kuraudo.use(4, sephiroth);
 
   MateriaSource ms;
   ms.learnMateria(NULL);

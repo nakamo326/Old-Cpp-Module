@@ -57,6 +57,10 @@ void Character::equip(AMateria *m) {
 }
 
 void Character::unequip(int idx) {
+  if (idx < 0 || idx >= (int)_slotNum) {
+    std::cout << RED "[Character] Index is invalid." NC << std::endl;
+    return;
+  }
   if (_slot[idx] == NULL) {
     std::cout << RED "[Character] " << _name << "'s materia slot " << idx
               << " is empty!" NC << std::endl;
@@ -69,6 +73,10 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter &target) {
+  if (idx < 0 || idx >= (int)_slotNum) {
+    std::cout << RED "[Character] Index is invalid." NC << std::endl;
+    return;
+  }
   if (_slot[idx] == NULL) {
     std::cout << RED "[Character] " << _name << "'s materia slot " << idx
               << " is empty!" NC << std::endl;
