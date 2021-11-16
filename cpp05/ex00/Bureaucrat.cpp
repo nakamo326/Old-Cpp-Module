@@ -4,7 +4,12 @@ Bureaucrat::Bureaucrat() {}
 
 Bureaucrat::Bureaucrat(const std::string &name, unsigned int grade)
     : _name(name), _grade(grade) {
-  // throw exception, if grade not in 1~150
+  if (_grade < 1)
+    throw GradeTooHighException();
+  if (_grade > 150)
+    throw GradeTooLowException();
+  std::cout << "[Bureaucrat] Bureaucrat named " << _name << " grade " << _grade
+            << " was generated." << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) { *this = other; }
@@ -14,19 +19,22 @@ Bureaucrat::~Bureaucrat() {}
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
   if (this == &rhs)
     return *this;
-
+  _name = rhs._name;
+  _grade = rhs._grade;
   return *this;
 }
 
-Bureaucrat &Bureaucrat::operator++(int) {
-  // need to throw exception if grade under 1
+Bureaucrat Bureaucrat::operator++(int) {
+  if (_grade == 1)
+    throw GradeTooHighException();
   Bureaucrat tmp = *this;
   _grade--;
   return tmp;
 }
 
-Bureaucrat &Bureaucrat::operator--(int) {
-  // need to throw exception if grade over 150
+Bureaucrat Bureaucrat::operator--(int) {
+  if (_grade == 150)
+    throw GradeTooLowException();
   Bureaucrat tmp = *this;
   _grade++;
   return tmp;
@@ -34,4 +42,4 @@ Bureaucrat &Bureaucrat::operator--(int) {
 
 const std::string &Bureaucrat::getName() const { return _name; }
 
-const unsigned int Bureaucrat::getGrade() const { return _grade; }
+unsigned int Bureaucrat::getGrade() const { return _grade; }

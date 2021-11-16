@@ -9,15 +9,18 @@ public:
   Bureaucrat(const Bureaucrat &other);
   ~Bureaucrat();
   Bureaucrat &operator=(const Bureaucrat &rhs);
-  Bureaucrat &operator++(int);
-  Bureaucrat &operator--(int);
+  Bureaucrat operator++(int);
+  Bureaucrat operator--(int);
   const std::string &getName() const;
-  const unsigned int getGrade() const;
+  unsigned int getGrade() const;
+
+  class GradeTooHighException : public std::exception {};
+  class GradeTooLowException : public std::exception {};
 
 private:
   static const unsigned int _highestGrade = 1;
   static const unsigned int _lowestGrade = 150;
-  const std::string _name;
+  std::string _name;
   unsigned int _grade;
 
   Bureaucrat();
