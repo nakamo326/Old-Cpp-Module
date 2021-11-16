@@ -1,11 +1,14 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
+#include "AMateria.hpp"
+#include "Color.hpp"
 #include "ICharacter.hpp"
 
 class Character : public ICharacter {
 public:
   Character();
+  Character(const std::string &name);
   Character(const Character &other);
   ~Character();
   Character &operator=(const Character &rhs);
@@ -16,6 +19,8 @@ public:
 
 private:
   std::string _name;
+  static const size_t _slotNum = 4;
+  AMateria *_slot[_slotNum];
 };
 
 #endif  // CHARACTER_HPP
