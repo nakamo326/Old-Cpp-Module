@@ -57,8 +57,8 @@ void Character::equip(AMateria *m) {
 
 void Character::unequip(int idx) {
   if (_slot[idx] == NULL) {
-    std::cout << "[Character] " BLU << _name << NC "'s materia slot " << idx
-              << " is empty!" << std::endl;
+    std::cout << RED "[Character] " << _name << "'s materia slot " << idx
+              << " is empty!" NC << std::endl;
     return;
   }
   std::string type = _slot[idx]->getType();
@@ -68,6 +68,13 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter &target) {
-  (void)idx;
-  (void)target;
+  if (_slot[idx] == NULL) {
+    std::cout << RED "[Character] " << _name << "'s materia slot " << idx
+              << " is empty!" NC << std::endl;
+    return;
+  }
+  std::cout << "[Character] " BLU << _name << NC " use " GRN
+            << _slot[idx]->getType() << NC " materia!" << std::endl;
+  std::cout << BLU << _name << NC;
+  _slot[idx]->use(target);
 }

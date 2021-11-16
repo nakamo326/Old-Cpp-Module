@@ -31,6 +31,11 @@ int main() {
   kuraudo.equip(p);
   kuraudo.equip(p);
   kuraudo.unequip(3);
+  kuraudo.unequip(3);
+  Character sephiroth("Sephiroth");
+  kuraudo.use(0, sephiroth);
+  kuraudo.use(2, sephiroth);
+  kuraudo.use(3, sephiroth);
 
   return 0;
 }

@@ -2,6 +2,7 @@
 #define ICE_HPP
 
 #include "AMateria.hpp"
+#include "Color.hpp"
 
 class Ice : public AMateria {
 public:
