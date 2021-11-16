@@ -8,18 +8,24 @@ MateriaSource::MateriaSource() {
 }
 
 MateriaSource::MateriaSource(const MateriaSource &other) {
+  std::cout << "[MateriaSource] Copy constructor called." << std::endl;
   for (size_t i = 0; i < _slotNum; i++) {
-    if (other._slot[i] != NULL) {
+    if (other._slot[i] != NULL)
       _slot[i] = other._slot[i]->clone();
-    }
+    else
+      _slot[i] = NULL;
   }
-  std::cout << "[MateriaSource] A copy fo MateriaSource was generated."
-            << std::endl;
 }
 
-MateriaSource::~MateriaSource() {}
+MateriaSource::~MateriaSource() {
+  std::cout << "[MateriaSource] Destructor called." << std::endl;
+  for (size_t i = 0; i < _slotNum; i++)
+    if (_slot[i] != NULL)
+      delete _slot[i];
+}
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &rhs) {
+  std::cout << "[MateriaSource] Assignation called." << std::endl;
   if (this == &rhs)
     return *this;
   for (size_t i = 0; i < _slotNum; i++) {
@@ -27,13 +33,12 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &rhs) {
       delete _slot[i];
     _slot[i] = rhs._slot[i] ? rhs._slot[i]->clone() : NULL;
   }
-  std::cout << "[MateriaSource] Assignation called." << std::endl;
   return *this;
 }
 
 void MateriaSource::learnMateria(AMateria *m) {
   if (m == NULL) {
-    std::cout << RED "[MateriaSource] This materia is NULL" NC << std::endl;
+    std::cout << RED "[MateriaSource] This Materia is NULL." NC << std::endl;
     return;
   }
   for (size_t i = 0; i < _slotNum; i++) {
@@ -44,8 +49,19 @@ void MateriaSource::learnMateria(AMateria *m) {
       return;
     }
   }
-  std::cout << RED "[MateriaSource] All materia slots are full!!" NC
+  std::cout << RED "[MateriaSource] All Materia slots are full!!" NC
             << std::endl;
 }
 
-AMateria *MateriaSource::createMateria(std::string const &type) {}
+AMateria *MateriaSource::createMateria(std::string const &type) {
+  for (size_t i = 0; _slot[i] != NULL; i++) {
+    if (_slot[i]->getType() == type) {
+      std::cout << "[MateriaSource] MateriaSource created a Materia of " GRN
+                << type << NC " type" << std::endl;
+      return _slot[i]->clone();
+    }
+  }
+  std::cout << RED "[MateriaSource] This MateriaSource doesn't have " << type
+            << " materia!!" NC << std::endl;
+  return 0;
+}
