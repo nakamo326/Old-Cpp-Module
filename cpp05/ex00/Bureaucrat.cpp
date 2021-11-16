@@ -43,3 +43,8 @@ Bureaucrat Bureaucrat::operator--(int) {
 const std::string &Bureaucrat::getName() const { return _name; }
 
 unsigned int Bureaucrat::getGrade() const { return _grade; }
+
+std::ostream &operator<<(std::ostream &stream, const Bureaucrat &b) {
+  stream << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
+  return stream;
+}

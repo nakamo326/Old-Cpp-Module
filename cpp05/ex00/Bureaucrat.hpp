@@ -26,4 +26,6 @@ private:
   Bureaucrat();
 };
 
+std::ostream &operator<<(std::ostream &stream, const Bureaucrat &b);
+
 #endif  // BUREAUCRAT_HPP
