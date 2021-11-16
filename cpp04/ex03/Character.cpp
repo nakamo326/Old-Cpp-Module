@@ -84,6 +84,6 @@ void Character::use(int idx, ICharacter &target) {
   }
   std::cout << "[Character] " BLU << _name << NC " use " GRN
             << _slot[idx]->getType() << NC " materia!" << std::endl;
-  std::cout << BLU << _name << NC;
+  std::cout << BLU << _name << NC " ";
   _slot[idx]->use(target);
 }
