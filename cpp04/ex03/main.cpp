@@ -5,31 +5,29 @@
 int main() {
   Ice ice;
   Cure cure;
-  AMateria *p;
+  AMateria *m;
+  AMateria *m2;
 
   Ice copy(ice);
   std::cout << copy.getType() << std::endl;
   Cure copy1(cure);
   std::cout << copy1.getType() << std::endl;
 
-  p = ice.clone();
-  std::cout << p->getType() << std::endl;
-  delete p;
-
-  p = cure.clone();
-  std::cout << p->getType() << std::endl;
+  m = cure.clone();
+  std::cout << m->getType() << std::endl;
+  m2 = ice.clone();
+  std::cout << m2->getType() << std::endl;
 
   Character kuraudo("†kuraudo†");
   std::cout << kuraudo.getName() << std::endl;
   Character nameless;
   nameless = kuraudo;
   kuraudo.equip(NULL);
-  kuraudo.equip(p);
-  p = ice.clone();
-  kuraudo.equip(p);
-  kuraudo.equip(p);
-  kuraudo.equip(p);
-  kuraudo.equip(p);
+  kuraudo.equip(m);
+  kuraudo.equip(m);
+  kuraudo.equip(m2);
+  kuraudo.equip(m2);
+  kuraudo.equip(m2);
   kuraudo.unequip(3);
   kuraudo.unequip(3);
   Character sephiroth("Sephiroth");
@@ -37,5 +35,7 @@ int main() {
   kuraudo.use(2, sephiroth);
   kuraudo.use(3, sephiroth);
 
+  delete m;
+  delete m2;
   return 0;
 }
