@@ -7,7 +7,7 @@ SRC =	./main.cpp \
 			./Ice.cpp \
 			./Cure.cpp \
 			./Character.cpp \
-			#./MateriaSource.cpp
+			./MateriaSource.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -47,7 +47,8 @@ void Character::equip(AMateria *m) {
     if (_slot[i] == NULL) {
       _slot[i] = m;
       std::cout << "[Character] " BLU << _name << NC " equipped " GRN
-                << m->getType() << NC " materia." << std::endl;
+                << m->getType() << NC " materia to slot " << i << "."
+                << std::endl;
       return;
     }
   }

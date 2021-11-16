@@ -1,6 +1,7 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
 
+#include "Color.hpp"
 #include "IMateriaSource.hpp"
 
 class MateriaSource : public IMateriaSource {
@@ -9,21 +10,12 @@ public:
   MateriaSource(const MateriaSource &other);
   ~MateriaSource();
   MateriaSource &operator=(const MateriaSource &rhs);
+  void learnMateria(AMateria *m);
+  AMateria *createMateria(std::string const &type);
 
 private:
+  static const size_t _slotNum = 4;
+  AMateria *_slot[_slotNum];
 };
-
-MateriaSource::MateriaSource() {}
-
-MateriaSource::MateriaSource(const MateriaSource &other) { *this = other; }
-
-MateriaSource::~MateriaSource() {}
-
-MateriaSource &MateriaSource::operator=(const MateriaSource &rhs) {
-  if (this == &rhs)
-    return *this;
-
-  return *this;
-}
 
 #endif  // MATERIASOURCE_HPP
