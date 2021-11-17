@@ -25,7 +25,7 @@ public:
 private:
   static const unsigned int _highestGrade = 1;
   static const unsigned int _lowestGrade = 150;
-  std::string _name;
+  const std::string _name;
   unsigned int _grade;
 
   Bureaucrat();

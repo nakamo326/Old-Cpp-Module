@@ -19,7 +19,7 @@ Bureaucrat::~Bureaucrat() {}
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
   if (this == &rhs)
     return *this;
-  _name = rhs._name;
+  const_cast<std::string &>(_name) = rhs._name;
   _grade = rhs._grade;
   return *this;
 }
