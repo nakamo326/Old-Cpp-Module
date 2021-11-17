@@ -37,6 +37,14 @@ Form &Form::operator=(const Form &rhs) {
 
 void Form::beSigned(const Bureaucrat &b) {}
 
+bool Form::getIsSigned() const { return _isSigned; }
+
+const std::string &Form::getName() const { return _name; }
+
+unsigned int Form::getGradeToSign() const { return _gradeToSign; }
+
+unsigned int Form::getGradeToExecute() const { return _gradeToExecute; }
+
 const char *Form::GradeTooHighException::what() const throw() {
   return "Bureaucrat's grade will be too high!";
 }
@@ -45,4 +53,8 @@ const char *Form::GradeTooLowException::what() const throw() {
   return "Bureaucrat's grade will be too low!";
 }
 
-std::ostream &operator<<(std::ostream &stream, const Form &f) {}
+std::ostream &operator<<(std::ostream &stream, const Form &f) {
+  stream << "Form Name: " << f.getName() << ", IsSigned: " << f.getIsSigned()
+         << ", GradeToSigned: " << f.getGradeToSign()
+         << ", GradeToExecute: " << f.getGradeToExecute();
+}

@@ -14,6 +14,10 @@ public:
   ~Form();
   Form &operator=(const Form &rhs);
   void beSigned(const Bureaucrat &b);
+  bool getIsSigned() const;
+  const std::string &getName() const;
+  unsigned int getGradeToSign() const;
+  unsigned int getGradeToExecute() const;
 
   class GradeTooHighException : public std::exception {
     const char *what() const throw();
