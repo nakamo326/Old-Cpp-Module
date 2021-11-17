@@ -21,7 +21,12 @@ Character::Character(const Character &other) {
   *this = other;
 }
 
-Character::~Character() {}
+Character::~Character() {
+  std::cout << "[Character] Destructor called." << std::endl;
+  for (size_t i = 0; i < _slotNum; i++)
+    if (_slot[i] != NULL)
+      delete _slot[i];
+}
 
 Character &Character::operator=(const Character &rhs) {
   std::cout << "[Character] Assignation to " BLU << _name << NC " from " BLU
