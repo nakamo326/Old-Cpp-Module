@@ -13,9 +13,9 @@ Form::Form(const std::string &name, unsigned int gradeToSign,
       _gradeToSign(gradeToSign),
       _gradeToExecute(gradeToExecute) {
   if (_gradeToSign < 1 || _gradeToExecute < 1)
-    throw GradeTooHighException("[Form] Grade you input is too high!");
+    throw GradeTooHighException("Grade you input is too high!");
   if (_gradeToSign > 150 || _gradeToExecute > 150)
-    throw GradeTooLowException("[Form] Grade you input is too low!");
+    throw GradeTooLowException("Grade you input is too low!");
 }
 
 Form::Form(const Form &other)
@@ -40,8 +40,9 @@ void Form::beSigned(const Bureaucrat &b) {
     _isSigned = true;
     std::cout << "[Form] Form Name: " << _name << " is signed by "
               << b.getName() << "." << std::endl;
+    return;
   }
-  throw GradeTooLowException("[Form] Bureaucrat's grade is too low tosign!");
+  throw GradeTooLowException("Bureaucrat's grade is too low to sign!");
 }
 
 // getter

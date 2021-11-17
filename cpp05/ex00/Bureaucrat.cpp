@@ -8,7 +8,7 @@ Bureaucrat::Bureaucrat(const std::string &name, unsigned int grade)
     throw GradeTooHighException();
   if (_grade > 150)
     throw GradeTooLowException();
-  std::cout << "[Bureaucrat] Bureaucrat named " << _name << " grade " << _grade
+  std::cout << "[Bureaucrat] Bureaucrat " << _name << " grade " << _grade
             << " was generated." << std::endl;
 }
 

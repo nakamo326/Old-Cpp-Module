@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+#include "Form.hpp"
+
+class Form;
+
 class Bureaucrat {
 public:
   Bureaucrat();
@@ -12,6 +16,7 @@ public:
   Bureaucrat &operator=(const Bureaucrat &rhs);
   Bureaucrat operator++(int);
   Bureaucrat operator--(int);
+  bool signForm(Form &f);
   const std::string &getName() const;
   unsigned int getGrade() const;
 
