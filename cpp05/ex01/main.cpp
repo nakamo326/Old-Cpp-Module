@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main() {
   try {
@@ -25,6 +26,12 @@ int main() {
   try {
     Bureaucrat a("nop", 1);
     a++;
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << '\n';
+  }
+
+  try {
+    Form f("test", 0, 10);
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }

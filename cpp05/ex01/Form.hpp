@@ -20,10 +20,20 @@ public:
   unsigned int getGradeToExecute() const;
 
   class GradeTooHighException : public std::exception {
+  private:
+    const char *_msg;
+
+  public:
+    GradeTooHighException(const char *msg);
     const char *what() const throw();
   };
 
   class GradeTooLowException : public std::exception {
+  private:
+    const char *_msg;
+
+  public:
+    GradeTooLowException(const char *msg);
     const char *what() const throw();
   };
 
