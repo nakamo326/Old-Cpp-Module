@@ -14,8 +14,13 @@ public:
   const std::string &getName() const;
   unsigned int getGrade() const;
 
-  class GradeTooHighException : public std::exception {};
-  class GradeTooLowException : public std::exception {};
+  class GradeTooHighException : public std::exception {
+    const char *what() const throw();
+  };
+
+  class GradeTooLowException : public std::exception {
+    const char *what() const throw();
+  };
 
 private:
   static const unsigned int _highestGrade = 1;

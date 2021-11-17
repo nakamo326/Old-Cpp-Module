@@ -44,6 +44,14 @@ const std::string &Bureaucrat::getName() const { return _name; }
 
 unsigned int Bureaucrat::getGrade() const { return _grade; }
 
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
+  return "Bureaucrat's grade will be too high!";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
+  return "Bureaucrat's grade will be too low!";
+};
+
 std::ostream &operator<<(std::ostream &stream, const Bureaucrat &b) {
   stream << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
   return stream;
