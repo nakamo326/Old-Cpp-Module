@@ -29,5 +29,7 @@ int main() {
     std::cerr << e.what() << '\n';
   }
 
+  Bureaucrat arr[5];
+
   return 0;
 }

@@ -5,6 +5,7 @@
 
 class Bureaucrat {
 public:
+  Bureaucrat();
   Bureaucrat(const std::string &name, unsigned int grade);
   Bureaucrat(const Bureaucrat &other);
   ~Bureaucrat();
@@ -27,8 +28,6 @@ private:
   static const unsigned int _lowestGrade = 150;
   const std::string _name;
   unsigned int _grade;
-
-  Bureaucrat();
 };
 
 std::ostream &operator<<(std::ostream &stream, const Bureaucrat &b);
