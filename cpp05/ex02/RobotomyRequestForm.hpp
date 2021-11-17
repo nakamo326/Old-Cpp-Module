@@ -14,11 +14,14 @@ public:
   RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs);
 
 private:
+  std::string _target;
 };
 
-RobotomyRequestForm::RobotomyRequestForm() {}
+RobotomyRequestForm::RobotomyRequestForm()
+    : Form("RobotomyRequestForm", 72, 45), _target("blank") {}
 
-RobotomyRequestForm::RobotomyRequestForm(std::string &target) {}
+RobotomyRequestForm::RobotomyRequestForm(std::string &target)
+    : Form("RobotomyRequestForm", 72, 45), _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) {
   *this = other;

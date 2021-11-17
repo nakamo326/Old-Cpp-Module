@@ -14,11 +14,14 @@ public:
   PresidentialPardonForm &operator=(const PresidentialPardonForm &rhs);
 
 private:
+  std::string _target;
 };
 
-PresidentialPardonForm::PresidentialPardonForm() {}
+PresidentialPardonForm::PresidentialPardonForm()
+    : Form("PresidentialPardonForm", 25, 5), _target("blank") {}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string &target) {}
+PresidentialPardonForm::PresidentialPardonForm(std::string &target)
+    : Form("PresidentialPardonForm", 25, 5), _target(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(
     const PresidentialPardonForm &other) {

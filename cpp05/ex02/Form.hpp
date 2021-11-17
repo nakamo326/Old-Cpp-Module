@@ -13,7 +13,7 @@ public:
   Form(const std::string &name, unsigned int gradeToSign,
        unsigned int gradeToExecute);
   Form(const Form &other);
-  ~Form();
+  virtual ~Form();
   Form &operator=(const Form &rhs);
   void beSigned(const Bureaucrat &b);
   bool getIsSigned() const;
