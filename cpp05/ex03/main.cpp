@@ -11,8 +11,10 @@ int main() {
   Intern bob;
 
   Form* sf = bob.makeForm("shrubbery creation", "home");
-  Form* pf = bob.makeForm("robotomy request", "home");
-  Form* rf = bob.makeForm("presidential pardon", "home");
+  Form* pf = bob.makeForm("presidential pardon", "home");
+  Form* rf = bob.makeForm("robotomy request", "home");
+  Form* null = bob.makeForm("no_such_form", "test_target");
+  delete null;
 
   Bureaucrat b0("nop", 1);
   Bureaucrat b1("louis", 30);

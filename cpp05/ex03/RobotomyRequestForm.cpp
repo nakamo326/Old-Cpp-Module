@@ -6,7 +6,9 @@ RobotomyRequestForm::RobotomyRequestForm()
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
-    : Form("RobotomyRequestForm", 72, 45), _target(target) {}
+    : Form("RobotomyRequestForm", 72, 45), _target(target) {
+  std::srand(std::time(NULL));
+}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) {
   *this = other;
