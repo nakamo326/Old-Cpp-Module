@@ -3,7 +3,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm()
     : Form("ShrubberyCreationForm", 145, 137), _target("blank") {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string &target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : Form("ShrubberyCreationForm", 145, 137), _target(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(
