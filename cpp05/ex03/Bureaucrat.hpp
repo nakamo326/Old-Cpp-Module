@@ -14,8 +14,8 @@ public:
   Bureaucrat(const Bureaucrat &other);
   ~Bureaucrat();
   Bureaucrat &operator=(const Bureaucrat &rhs);
-  Bureaucrat operator++(int);
-  Bureaucrat operator--(int);
+  void incrementGrade();
+  void decrementGrade();
   bool signForm(Form &f);
   bool executeForm(Form const &form);
   const std::string &getName() const;

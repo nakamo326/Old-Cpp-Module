@@ -10,8 +10,8 @@ public:
   Bureaucrat(const Bureaucrat &other);
   ~Bureaucrat();
   Bureaucrat &operator=(const Bureaucrat &rhs);
-  Bureaucrat operator++(int);
-  Bureaucrat operator--(int);
+  void incrementGrade();
+  void decrementGrade();
   const std::string &getName() const;
   unsigned int getGrade() const;
 

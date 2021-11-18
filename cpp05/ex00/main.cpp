@@ -19,7 +19,7 @@ int main() {
 
   try {
     Bureaucrat b("test", 1);
-    b++;
+    b.incrementGrade();
   } catch (const Bureaucrat::GradeTooHighException& e) {
     std::cerr << "High;inc to 0: " << e.what() << '\n';
   } catch (const Bureaucrat::GradeTooLowException& e) {
@@ -28,7 +28,7 @@ int main() {
 
   try {
     Bureaucrat b("test", 150);
-    b--;
+    b.decrementGrade();
   } catch (const Bureaucrat::GradeTooHighException& e) {
     std::cerr << "High;dec to 151: " << e.what() << '\n';
   } catch (const Bureaucrat::GradeTooLowException& e) {

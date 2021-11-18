@@ -24,20 +24,18 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
   return *this;
 }
 
-Bureaucrat Bureaucrat::operator++(int) {
+void Bureaucrat::incrementGrade() {
   if (_grade == 1)
     throw GradeTooHighException();
   Bureaucrat tmp = *this;
   _grade--;
-  return tmp;
 }
 
-Bureaucrat Bureaucrat::operator--(int) {
+void Bureaucrat::decrementGrade() {
   if (_grade == 150)
     throw GradeTooLowException();
   Bureaucrat tmp = *this;
   _grade++;
-  return tmp;
 }
 
 bool Bureaucrat::signForm(Form &f) {
