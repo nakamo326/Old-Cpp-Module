@@ -13,7 +13,7 @@ Intern &Intern::operator=(const Intern &rhs) {
 
 Form *Intern::makeForm(const std::string &name, const std::string &target) {
   Form *f;
-  int i = 0 + (name == "shrubbery creation") * 1 +
+  int i = (name == "shrubbery creation") * 1 +
           (name == "robotomy request") * 2 +
           (name == "presidential pardon") * 3;
 

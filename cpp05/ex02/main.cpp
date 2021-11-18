@@ -16,6 +16,12 @@ int main() {
 
   try {
     sf->execute(b0);
+  } catch (const Form::GradeTooHighException& e) {
+    std::cerr << "High;sf->execute(b0): " << e.what() << '\n';
+  } catch (const Form::GradeTooLowException& e) {
+    std::cerr << "Low;sf->execute(b0): " << e.what() << '\n';
+  } catch (const Form::FormNotSignedException& e) {
+    std::cerr << "NotSigned;sf->execute(b0): " << e.what() << '\n';
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
