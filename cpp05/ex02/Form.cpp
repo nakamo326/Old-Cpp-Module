@@ -74,3 +74,6 @@ std::ostream &operator<<(std::ostream &stream, const Form &f) {
          << ", GradeToExecute: " << f.getGradeToExecute();
   return stream;
 }
+
+// add for ex02
+bool Form::execute(Bureaucrat const &executor) const {}
