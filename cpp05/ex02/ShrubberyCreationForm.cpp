@@ -26,10 +26,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
   std::string filepath(_target + "_shrubbery");
   std::ofstream ofs(filepath.c_str());
   ofs.exceptions(std::ofstream::badbit | std::ofstream::failbit);
-  // if (!ofs) {
-  // std::cout << "its should be exception but temporary msg" << std::endl;
-  // return;
-  // }
 
   ofs << "       _-_\n"
       << "    /~~   ~~\\\n"
