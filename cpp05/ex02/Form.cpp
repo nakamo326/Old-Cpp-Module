@@ -57,6 +57,11 @@ unsigned int Form::getGradeToExecute() const { return _gradeToExecute; }
 
 // Exception class
 
+Form::FormNotSignedException::FormNotSignedException(const char *msg)
+    : _msg(msg) {}
+
+const char *Form::FormNotSignedException::what() const throw() { return _msg; }
+
 Form::GradeTooHighException::GradeTooHighException(const char *msg)
     : _msg(msg) {}
 
@@ -76,4 +81,10 @@ std::ostream &operator<<(std::ostream &stream, const Form &f) {
 }
 
 // add for ex02
-bool Form::execute(Bureaucrat const &executor) const {}
+void Form::checkExecutable(Bureaucrat const &executor) const {
+  if (executor.getGrade() <= _gradeToExecute)
+    throw Form::GradeTooLowException(
+        "Bureaucrat's grade is too low to execute!");
+  if (!_isSigned)
+    throw Form::FormNotSignedException("This form is not signed!");
+};

@@ -22,8 +22,17 @@ public:
   unsigned int getGradeToExecute() const;
 
   // add for ex02
-  bool execute(Bureaucrat const &executor) const;
-  virtual void do_action(std::string target) const = 0;
+  void checkExecutable(Bureaucrat const &executor) const;
+  virtual void execute(Bureaucrat const &executor) const = 0;
+
+  class FormNotSignedException : public std::exception {
+  private:
+    const char *_msg;
+
+  public:
+    FormNotSignedException(const char *msg);
+    const char *what() const throw();
+  };
 
   class GradeTooHighException : public std::exception {
   private:

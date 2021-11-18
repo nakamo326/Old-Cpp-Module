@@ -13,29 +13,10 @@ public:
   ~PresidentialPardonForm();
   PresidentialPardonForm &operator=(const PresidentialPardonForm &rhs);
 
+  void execute(Bureaucrat const &executor) const;
+
 private:
   std::string _target;
 };
-
-PresidentialPardonForm::PresidentialPardonForm()
-    : Form("PresidentialPardonForm", 25, 5), _target("blank") {}
-
-PresidentialPardonForm::PresidentialPardonForm(std::string &target)
-    : Form("PresidentialPardonForm", 25, 5), _target(target) {}
-
-PresidentialPardonForm::PresidentialPardonForm(
-    const PresidentialPardonForm &other) {
-  *this = other;
-}
-
-PresidentialPardonForm::~PresidentialPardonForm() {}
-
-PresidentialPardonForm &PresidentialPardonForm::operator=(
-    const PresidentialPardonForm &rhs) {
-  if (this == &rhs)
-    return *this;
-
-  return *this;
-}
 
 #endif  // PRESIDENTIALPARDONFORM_HPP

@@ -1,6 +1,7 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 #define SHRUBBERYCREATIONFORM_HPP
 
+#include <fstream>
 #include <iostream>
 
 #include "Form.hpp"
@@ -13,29 +14,24 @@ public:
   ~ShrubberyCreationForm();
   ShrubberyCreationForm &operator=(const ShrubberyCreationForm &rhs);
 
+  void execute(Bureaucrat const &executor) const;
+
 private:
   std::string _target;
 };
 
-ShrubberyCreationForm::ShrubberyCreationForm()
-    : Form("ShrubberyCreationForm", 145, 137), _target("blank") {}
-
-ShrubberyCreationForm::ShrubberyCreationForm(std::string &target)
-    : Form("ShrubberyCreationForm", 145, 137), _target(target) {}
-
-ShrubberyCreationForm::ShrubberyCreationForm(
-    const ShrubberyCreationForm &other) {
-  *this = other;
-}
-
-ShrubberyCreationForm::~ShrubberyCreationForm() {}
-
-ShrubberyCreationForm &ShrubberyCreationForm::operator=(
-    const ShrubberyCreationForm &rhs) {
-  if (this == &rhs)
-    return *this;
-
-  return *this;
-}
-
 #endif  // SHRUBBERYCREATIONFORM_HPP
+
+/*
+
+"       _-_"
+"    /~~   ~~\"
+" /~~         ~~\"
+"{               }"
+" \  _-     -_  /"
+"   ~  \\ //  ~"
+"_- -   | | _- _"
+"  _ -  | |   -_"
+"      // \\"
+
+*/

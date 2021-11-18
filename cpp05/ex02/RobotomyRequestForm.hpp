@@ -1,6 +1,8 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 #include "Form.hpp"
@@ -13,28 +15,10 @@ public:
   ~RobotomyRequestForm();
   RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs);
 
+  void execute(Bureaucrat const &executor) const;
+
 private:
   std::string _target;
 };
-
-RobotomyRequestForm::RobotomyRequestForm()
-    : Form("RobotomyRequestForm", 72, 45), _target("blank") {}
-
-RobotomyRequestForm::RobotomyRequestForm(std::string &target)
-    : Form("RobotomyRequestForm", 72, 45), _target(target) {}
-
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) {
-  *this = other;
-}
-
-RobotomyRequestForm::~RobotomyRequestForm() {}
-
-RobotomyRequestForm &RobotomyRequestForm::operator=(
-    const RobotomyRequestForm &rhs) {
-  if (this == &rhs)
-    return *this;
-
-  return *this;
-}
 
 #endif  // ROBOTOMYREQUESTFORM_HPP
