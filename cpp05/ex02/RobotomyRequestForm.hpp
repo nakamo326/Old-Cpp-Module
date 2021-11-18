@@ -7,7 +7,7 @@
 
 #include "Form.hpp"
 
-class RobotomyRequestForm : Form {
+class RobotomyRequestForm : public Form {
 public:
   RobotomyRequestForm();
   RobotomyRequestForm(const std::string &target);

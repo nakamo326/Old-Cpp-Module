@@ -5,7 +5,7 @@
 
 #include "Form.hpp"
 
-class PresidentialPardonForm : Form {
+class PresidentialPardonForm : public Form {
 public:
   PresidentialPardonForm();
   PresidentialPardonForm(const std::string &target);
