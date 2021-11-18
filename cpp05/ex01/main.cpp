@@ -19,6 +19,7 @@ int main() {
     std::cerr << "Low;(\"test\", 1, 151): " << e.what() << '\n';
   }
   Form f("test", 10, 100);
+  std::cout << f << std::endl;
   Bureaucrat b0("nop", 1);
   Bureaucrat b1("louis", 15);
 
