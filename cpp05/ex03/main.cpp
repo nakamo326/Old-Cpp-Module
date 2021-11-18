@@ -13,12 +13,10 @@ int main() {
   Form* sf = bob.makeForm("shrubbery creation", "home");
   Form* pf = bob.makeForm("presidential pardon", "home");
   Form* rf = bob.makeForm("robotomy request", "home");
-  Form* null = bob.makeForm("no_such_form", "test_target");
-  delete null;
+  Form* nullp = bob.makeForm("no_such_form", "test_target");
 
   Bureaucrat b0("nop", 1);
   Bureaucrat b1("louis", 30);
-
   try {
     sf->execute(b0);
   } catch (const std::exception& e) {
@@ -36,6 +34,10 @@ int main() {
   b0.executeForm(*dynamic_cast<PresidentialPardonForm*>(pf));
   b0.signForm(*dynamic_cast<PresidentialPardonForm*>(pf));
   b0.executeForm(*dynamic_cast<PresidentialPardonForm*>(pf));
+
+  delete sf;
+  delete pf;
+  delete rf;
 
   return 0;
 }
