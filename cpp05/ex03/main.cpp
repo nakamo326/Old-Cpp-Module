@@ -2,14 +2,17 @@
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
 int main() {
-  Form* sf = new ShrubberyCreationForm("home");
-  Form* pf = new PresidentialPardonForm("john");
-  Form* rf = new RobotomyRequestForm("bob");
+  Intern bob;
+
+  Form* sf = bob.makeForm("shrubbery creation", "home");
+  Form* pf = bob.makeForm("robotomy request", "home");
+  Form* rf = bob.makeForm("presidential pardon", "home");
 
   Bureaucrat b0("nop", 1);
   Bureaucrat b1("louis", 30);
