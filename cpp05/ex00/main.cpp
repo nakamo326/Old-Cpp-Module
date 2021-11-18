@@ -2,34 +2,38 @@
 
 #include "Bureaucrat.hpp"
 
+void test(size_t grade) {
+  try {
+    Bureaucrat b("test", grade);
+  } catch (const Bureaucrat::GradeTooHighException& e) {
+    std::cerr << grade << ": " << e.what() << '\n';
+  } catch (const Bureaucrat::GradeTooLowException& e) {
+    std::cerr << grade << ": " << e.what() << '\n';
+  }
+}
+
 int main() {
-  try {
-    Bureaucrat a("nop", 1);
-    std::cout << a << std::endl;
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
+  for (size_t i = 0; i < 155; i++) {
+    test(i);
   }
 
   try {
-    Bureaucrat b("louis", 0);
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
+    Bureaucrat b("test", 1);
+    b++;
+  } catch (const Bureaucrat::GradeTooHighException& e) {
+    std::cerr << "High;inc to 0: " << e.what() << '\n';
+  } catch (const Bureaucrat::GradeTooLowException& e) {
+    std::cerr << "Low;inc to 0: " << e.what() << '\n';
   }
 
   try {
-    Bureaucrat c("bunjiro", 151);
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
+    Bureaucrat b("test", 150);
+    b--;
+  } catch (const Bureaucrat::GradeTooHighException& e) {
+    std::cerr << "High;dec to 151: " << e.what() << '\n';
+  } catch (const Bureaucrat::GradeTooLowException& e) {
+    std::cerr << "Low;dec to 151: " << e.what() << '\n';
   }
-
-  try {
-    Bureaucrat a("nop", 1);
-    a++;
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
-  }
-
-  Bureaucrat arr[5];
 
   return 0;
 }
