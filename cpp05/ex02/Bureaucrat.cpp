@@ -57,6 +57,18 @@ bool Bureaucrat::signForm(Form &f) {
   return true;
 }
 
+bool Bureaucrat::executeForm(Form const &form) {
+  try {
+    form.execute(*this);
+  } catch (const std::exception &e) {
+    std::cout << _name << " cannot execute " << form.getName() << " because "
+              << e.what() << "." << std::endl;
+    return false;
+  }
+  std::cout << _name << " executes " << form.getName() << "." << std::endl;
+  return true;
+}
+
 const std::string &Bureaucrat::getName() const { return _name; }
 
 unsigned int Bureaucrat::getGrade() const { return _grade; }

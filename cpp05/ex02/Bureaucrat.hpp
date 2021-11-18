@@ -17,6 +17,7 @@ public:
   Bureaucrat operator++(int);
   Bureaucrat operator--(int);
   bool signForm(Form &f);
+  bool executeForm(Form const &form);
   const std::string &getName() const;
   unsigned int getGrade() const;
 
