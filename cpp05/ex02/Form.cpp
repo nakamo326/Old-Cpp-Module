@@ -82,7 +82,7 @@ std::ostream &operator<<(std::ostream &stream, const Form &f) {
 
 // add for ex02
 void Form::checkExecutable(Bureaucrat const &executor) const {
-  if (executor.getGrade() <= _gradeToExecute)
+  if (executor.getGrade() > _gradeToExecute)
     throw Form::GradeTooLowException(
         "Bureaucrat's grade is too low to execute!");
   if (!_isSigned)

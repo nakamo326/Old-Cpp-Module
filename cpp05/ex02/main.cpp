@@ -2,26 +2,22 @@
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main() {
   try {
-    Form f("test", 0, 10);
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
-  }
-  try {
-    Form f("test", 1, 151);
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << '\n';
-  }
-  try {
-    Form f("test", 10, 100);
+    Form* f = new ShrubberyCreationForm("home");
+    PresidentialPardonForm pf("john");
+    // Form RobotomyRequestForm rf("bob");
+    ShrubberyCreationForm sf("home");
+
     Bureaucrat b0("nop", 1);
     Bureaucrat b1("louis", 15);
 
-    b1.signForm(f);
-    b0.signForm(f);
-    b0.signForm(f);
+    b1.signForm(*dynamic_cast<ShrubberyCreationForm*>(f));
+    f->execute(b0);
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }

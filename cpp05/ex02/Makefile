@@ -5,7 +5,7 @@ INCLUDE = ./
 SRC =	./main.cpp \
 			./Bureaucrat.cpp \
 			./Form.cpp \
-			# ./PresidentialPardonForm.cpp \
+			./PresidentialPardonForm.cpp \
 			./RobotomyRequestForm.cpp \
 			./ShrubberyCreationForm.cpp
 
