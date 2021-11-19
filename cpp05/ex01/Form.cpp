@@ -13,7 +13,7 @@ Form::Form(const std::string &name, unsigned int gradeToSign,
       _gradeToSign(gradeToSign),
       _gradeToExecute(gradeToExecute) {
   if (_gradeToSign < 1 || _gradeToExecute < 1)
-    throw GradeTooHighException("Grade you input is too high!");
+    throw GradeTooHighException();
   if (_gradeToSign > 150 || _gradeToExecute > 150)
     throw GradeTooLowException("Grade you input is too low!");
 }
@@ -57,10 +57,14 @@ unsigned int Form::getGradeToExecute() const { return _gradeToExecute; }
 
 // Exception class
 
-Form::GradeTooHighException::GradeTooHighException(const char *msg)
-    : _msg(msg) {}
+Form::GradeTooHighException::GradeTooHighException(const std::string &msg)
+    : range_error(msg){};
 
-const char *Form::GradeTooHighException::what() const throw() { return _msg; }
+// Form::GradeTooHighException::GradeTooHighException(const char *msg)
+//     : _msg(msg) {}
+
+// const char *Form::GradeTooHighException::what() const throw() { return _msg;
+// }
 
 Form::GradeTooLowException::GradeTooLowException(const char *msg) : _msg(msg) {}
 

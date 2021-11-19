@@ -21,13 +21,9 @@ public:
   unsigned int getGradeToSign() const;
   unsigned int getGradeToExecute() const;
 
-  class GradeTooHighException : public std::exception {
-  private:
-    const char *_msg;
-
+  class GradeTooHighException : public std::range_error {
   public:
-    GradeTooHighException(const char *msg);
-    const char *what() const throw();
+    GradeTooHighException(const std::string &msg = "grade is too high!");
   };
 
   class GradeTooLowException : public std::exception {
