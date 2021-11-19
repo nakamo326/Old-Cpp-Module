@@ -27,11 +27,16 @@ void Convert::print() {
     case nInf:
       printInf();
       break;
-    case nonDisplayable:
-      printNonDisplayable();
+    case _int:
+      printInt();
       break;
+    case _float:
+      printFloat();
+      break;
+    case _double:
+      printDouble();
     default:
-      printDisplayable();
+      printNonDisplayable();
       break;
   }
 }
@@ -87,14 +92,54 @@ void Convert::printInf() {
 
 void Convert::printDisplayable() {
   char *e;
-  const char *c = _l.c_str();
-  double d = std::strtod(c, &e);
-  int i = std::atoi(c);
+  int i;
+  double d;
+  if (_t == _int)
+    i = std::atoi(_l.c_str());
+  else
+    d = std::strtod(_l.c_str(), &e);
   if (!std::isprint(i))
     std::cout << "char: Not displayable" << std::endl;
   else
     std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
   std::cout << "int: " << i << std::endl;
+  std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
+  std::cout << "double: " << d << std::endl;
+}
+void Convert::printInt() {
+  int i;
+  double d;
+  i = std::atoi(_l.c_str());
+  if (!std::isprint(i))
+    std::cout << "char: Not displayable" << std::endl;
+  else
+    std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
+  std::cout << "int: " << i << std::endl;
+  std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
+  std::cout << "double: " << static_cast<double>(i) << std::endl;
+}
+
+void Convert::printFloat() {
+  char *e;
+  double d;
+  d = std::strtod(_l.c_str(), &e);
+  if (!std::isprint(d))
+    std::cout << "char: Not displayable" << std::endl;
+  else
+    std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+  std::cout << "int: " << static_cast<int>(d) << std::endl;
+  std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
+  std::cout << "double: " << d << std::endl;
+}
+void Convert::printDouble() {
+  char *e;
+  double d;
+  d = std::strtod(_l.c_str(), &e);
+  if (!std::isprint(d))
+    std::cout << "char: Not displayable" << std::endl;
+  else
+    std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+  std::cout << "int: " << static_cast<int>(d) << std::endl;
   std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
   std::cout << "double: " << d << std::endl;
 }
