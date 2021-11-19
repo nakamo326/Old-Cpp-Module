@@ -1,8 +1,9 @@
 #include "Convert.hpp"
 
-Convert::Convert() : _l(""), _t(displayable) {}
+Convert::Convert() : _l(""), _t(nonDisplayable) {}
 
-Convert::Convert(const std::string &literal) : _l(literal), _t(displayable) {}
+Convert::Convert(const std::string &literal)
+    : _l(literal), _t(nonDisplayable) {}
 
 Convert::Convert(const Convert &other) { *this = other; }
 
@@ -35,10 +36,12 @@ void Convert::print() {
 void Convert::checkLiteral() {
   if (_l == "nan" || _l == "nanf")
     _t = nan;
-  if (_l == "+inf" || _l == "+inff")
+  if (_l == "+inf" || _l == "+inff" || _l == "inf" || _l == "inff")
     _t = pInf;
   if (_l == "-inf" || _l == "-inff")
     _t = nInf;
+  //_t = checkDisplayable();
+  // リテラルの型判定後->変換、キャストして表示！
 }
 
 void Convert::printNan() {
@@ -60,14 +63,15 @@ void Convert::printInf() {
 }
 
 void Convert::printDisplayable() {
-  int i = std::atoi(_l.c_str());
+  char *e;
+  const char *c = _l.c_str();
+  double d = std::strtod(c, &e);
+  int i = std::atoi(c);
   if (!std::isprint(i))
     std::cout << "char: Not displayable" << std::endl;
   else
     std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
   std::cout << "int: " << i << std::endl;
+  std::cout << "float: " << static_cast<float>(d) << std::endl;
+  std::cout << "double: " << d << std::endl;
 }
-
-void Convert::outputFloat() {}
-
-void Convert::outputDouble() {}
