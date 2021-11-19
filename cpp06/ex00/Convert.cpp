@@ -18,7 +18,7 @@ Convert &Convert::operator=(const Convert &rhs) {
 }
 
 void Convert::print() {
-  _t = checkLiteral();
+  _t = checkType();
   switch (_t) {
     case nan:
       printNan();
@@ -36,7 +36,7 @@ void Convert::print() {
   }
 }
 
-Convert::e_type Convert::checkLiteral() {
+Convert::e_type Convert::checkType() {
   if (_l == "nan" || _l == "nanf")
     return nan;
   if (_l == "+inf" || _l == "+inff" || _l == "inf" || _l == "inff")
@@ -44,31 +44,27 @@ Convert::e_type Convert::checkLiteral() {
   if (_l == "-inf" || _l == "-inff")
     return nInf;
   return checkDisplayable();
-  // リテラルの型判定後->変換、キャストして表示！
 }
 
 Convert::e_type Convert::checkDisplayable() {
-  if (!isDigits())
-    return nonDisplayable;
-
-  return displayable;
-}
-
-bool Convert::isDigits() {
   const char *p = _l.c_str();
   while (std::isspace(static_cast<int>(*p))) p++;
   if (*p == '+' || *p == '-')
     p++;
   if (*p == '\0')
-    return false;
+    return nonDisplayable;
   while (std::isdigit(static_cast<int>(*p))) p++;
+  if (*p == '\0')
+    return _int;
   if (*p == '.')
     p++;
   while (std::isdigit(static_cast<int>(*p))) p++;
-  if (*p == '\0' || (*p == 'f' && *(p + 1) == '\0'))
-    return true;
+  if (*p == 'f' && *(p + 1) == '\0')
+    return _float;
+  if (*p == '\0')
+    return _double;
   else
-    return false;
+    return nonDisplayable;
 }
 
 void Convert::printNan() {

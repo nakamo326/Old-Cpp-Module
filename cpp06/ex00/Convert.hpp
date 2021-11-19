@@ -12,16 +12,22 @@ public:
   ~Convert();
   Convert &operator=(const Convert &rhs);
   void print();
-  typedef enum { nonDisplayable, displayable, nan, pInf, nInf } e_type;
+  typedef enum {
+    nonDisplayable,
+    nan,
+    pInf,
+    nInf,
+    _int,
+    _float,
+    _double
+  } e_type;
 
 private:
   std::string _l;
   e_type _t;
 
-  Convert::e_type checkLiteral();
+  Convert::e_type checkType();
   Convert::e_type checkDisplayable();
-
-  bool isDigits();
 
   void printNan();
   void printInf();
