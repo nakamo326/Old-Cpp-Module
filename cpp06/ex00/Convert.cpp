@@ -27,6 +27,9 @@ void Convert::print() {
     case nInf:
       printInf();
       break;
+    case _char:
+      printChar();
+      break;
     case _int:
       printInt();
       break;
@@ -35,6 +38,7 @@ void Convert::print() {
       break;
     case _double:
       printDouble();
+      break;
     default:
       printNonDisplayable();
       break;
@@ -53,6 +57,8 @@ Convert::e_type Convert::checkType() {
 
 Convert::e_type Convert::checkDisplayable() {
   const char *p = _l.c_str();
+  if (std::isprint(*p) && !std::isdigit(*p) && *(p + 1) == '\0')
+    return _char;
   while (std::isspace(static_cast<int>(*p))) p++;
   if (*p == '+' || *p == '-')
     p++;
@@ -90,39 +96,40 @@ void Convert::printInf() {
               << "double: -inf" << std::endl;
 }
 
-void Convert::printDisplayable() {
-  char *e;
-  int i;
-  double d;
-  if (_t == _int)
-    i = std::atoi(_l.c_str());
-  else
-    d = std::strtod(_l.c_str(), &e);
-  if (!std::isprint(i))
-    std::cout << "char: Not displayable" << std::endl;
-  else
-    std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
-  std::cout << "int: " << i << std::endl;
-  std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
-  std::cout << "double: " << d << std::endl;
+void Convert::printChar() {
+  char c = _l.at(0);
+  std::cout << "char: '" << c << "'" << std::endl;
+  std::cout << "float: " << static_cast<int>(c) << std::endl;
+  std::cout << "float: " << std::fixed << std::setprecision(1)
+            << static_cast<float>(c) << "f" << std::endl;
+  std::cout << "double: " << std::fixed << std::setprecision(1)
+            << static_cast<double>(c) << std::endl;
 }
+
 void Convert::printInt() {
-  int i;
-  double d;
-  i = std::atoi(_l.c_str());
-  if (!std::isprint(i))
+  char *e;
+  long l = std::strtol(_l.c_str(), &e, 10);
+  if (!(l >= 32 && l <= 126))
     std::cout << "char: Not displayable" << std::endl;
   else
-    std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
-  std::cout << "int: " << i << std::endl;
-  std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
-  std::cout << "double: " << static_cast<double>(i) << std::endl;
+    std::cout << "char: '" << static_cast<char>(l) << "'" << std::endl;
+
+  if (l <= std::numeric_limits<int>::max() &&
+      l >= std::numeric_limits<int>::min())
+    std::cout << "int: " << l << std::endl;
+  else
+    std::cout << "int: impossible" << std::endl;
+  std::cout << "float: " << std::fixed << std::setprecision(1)
+            << static_cast<float>(l) << "f" << std::endl;
+  std::cout << "double: " << std::fixed << std::setprecision(1)
+            << static_cast<double>(l) << std::endl;
 }
 
 void Convert::printFloat() {
   char *e;
+  const char *p = _l.c_str();
   double d;
-  d = std::strtod(_l.c_str(), &e);
+  d = std::strtod(p, &e);
   if (!std::isprint(d))
     std::cout << "char: Not displayable" << std::endl;
   else
@@ -133,8 +140,9 @@ void Convert::printFloat() {
 }
 void Convert::printDouble() {
   char *e;
+  const char *p = _l.c_str();
   double d;
-  d = std::strtod(_l.c_str(), &e);
+  d = std::strtod(p, &e);
   if (!std::isprint(d))
     std::cout << "char: Not displayable" << std::endl;
   else

@@ -2,7 +2,9 @@
 #define CONVERT_HPP
 
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
+#include <limits>
 
 class Convert {
 public:
@@ -17,6 +19,7 @@ public:
     nan,
     pInf,
     nInf,
+    _char,
     _int,
     _float,
     _double
@@ -31,7 +34,7 @@ private:
 
   void printNan();
   void printInf();
-  void printDisplayable();
+  void printChar();
   void printInt();
   void printFloat();
   void printDouble();
