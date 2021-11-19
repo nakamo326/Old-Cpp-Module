@@ -32,6 +32,9 @@ private:
   void printNan();
   void printInf();
   void printDisplayable();
+  void printInt();
+  void printFloat();
+  void printDouble();
   void printNonDisplayable();
 };
 
