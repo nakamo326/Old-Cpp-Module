@@ -3,6 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
 SRC =	./main.cpp \
+			./Convert.cpp
 
 
 OBJ = $(SRC:.cpp=.o)
