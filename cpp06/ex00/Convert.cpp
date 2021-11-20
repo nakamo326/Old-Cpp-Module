@@ -1,5 +1,7 @@
 #include "Convert.hpp"
 
+#include "Color.hpp"
+
 Convert::Convert() : _l(""), _t(nonDisplayable) {}
 
 Convert::Convert(const std::string &literal)
@@ -90,6 +92,7 @@ void Convert::printNonDisplayable() {
 }
 
 void Convert::printChar() {
+  std::cout << GRN "output as char" NC << std::endl;
   char c = _l.at(0);
   std::cout << "char: '" << c << "'" << std::endl;
   std::cout << "float: " << static_cast<int>(c) << std::endl;
@@ -100,6 +103,7 @@ void Convert::printChar() {
 }
 
 void Convert::printInt() {
+  std::cout << GRN "output as integer" NC << std::endl;
   char *e;
   long l = std::strtol(_l.c_str(), &e, 10);
   if (l >= 32 && l <= 126)
@@ -118,6 +122,7 @@ void Convert::printInt() {
 }
 
 void Convert::printFloat() {
+  std::cout << GRN "output as float" NC << std::endl;
   char *e;
   errno = 0;
   double d = std::strtod(_l.c_str(), &e);
@@ -147,6 +152,7 @@ void Convert::printFloat() {
 }
 
 void Convert::printDouble() {
+  std::cout << GRN "output as double" NC << std::endl;
   char *e;
   errno = 0;
   double d = std::strtod(_l.c_str(), &e);
