@@ -1,6 +1,7 @@
 #ifndef CONVERT_HPP
 #define CONVERT_HPP
 
+#include <cmath>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -33,13 +34,12 @@ private:
   Convert::e_type checkType();
   Convert::e_type checkDisplayable();
 
-  void printNan();
-  void printInf();
+  void printNonDisplayable();
   void printChar();
   void printInt();
   void printFloat();
   void printDouble();
-  void printNonDisplayable();
+  int getPrec(double d);
 };
 
 #endif  // CONVERT_HPP
