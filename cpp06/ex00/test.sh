@@ -14,9 +14,13 @@ printf "${BLU}--Char test--${NC}\n"
 printf "${BLU}--Int test--${NC}\n"
 ./convert 10
 ./convert 10000
+printf "${BLU}./convert 2147483647${NC}\n"
 ./convert 2147483647
+printf "${BLU}./convert 2147483648${NC}\n"
 ./convert 2147483648
+printf "${BLU}./convert -2147483648${NC}\n"
 ./convert -2147483648
+printf "${BLU}./convert -2147483649${NC}\n"
 ./convert -2147483649
 
 printf "${BLU}--float test--${NC}\n"

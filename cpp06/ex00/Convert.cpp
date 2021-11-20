@@ -2,10 +2,9 @@
 
 #include "Color.hpp"
 
-Convert::Convert() : _l(""), _t(nonDisplayable) {}
+Convert::Convert() : _l(""), _t(def) {}
 
-Convert::Convert(const std::string &literal)
-    : _l(literal), _t(nonDisplayable) {}
+Convert::Convert(const std::string &literal) : _l(literal), _t(def) {}
 
 Convert::Convert(const Convert &other) { *this = other; }
 
@@ -19,22 +18,6 @@ Convert &Convert::operator=(const Convert &rhs) {
   return *this;
 }
 
-void Convert::print() {
-  _t = checkType();
-  switch (_t) {
-    case _char:
-      return printChar();
-    case _int:
-      return printInt();
-    case _float:
-      return printFloating();
-    case _double:
-      return printFloating();
-    default:
-      return printNonDisplayable();
-  }
-}
-
 Convert::e_type Convert::checkType() {
   if (_l == "nan" || _l == "nanf")
     return nan;
@@ -42,121 +25,115 @@ Convert::e_type Convert::checkType() {
     return pInf;
   if (_l == "-inf" || _l == "-inff")
     return nInf;
-  return checkDisplayable();
-}
-
-Convert::e_type Convert::checkDisplayable() {
-  const char *p = _l.c_str();
-  if (std::isprint(*p) && !std::isdigit(*p) && *(p + 1) == '\0')
+  if (_l.size() == 0 || _l == "inf")
+    return def;
+  if (std::isprint(_l.at(0)) && !std::isdigit(_l.at(0)) && _l.size() == 1)
     return _char;
-  while (std::isspace(static_cast<int>(*p))) p++;
-  if (*p == '+' || *p == '-')
-    p++;
-  if (*p == '\0')
-    return nonDisplayable;
-  while (std::isdigit(static_cast<int>(*p))) p++;
-  if (*p == '\0')
-    return _int;
-  if (*p == '.')
-    p++;
-  while (std::isdigit(static_cast<int>(*p))) p++;
-  if (*p == 'f' && *(p + 1) == '\0')
-    return _float;
-  if (*p == '\0')
+  if (_l.size() && (_l.find(".", 0) != std::string::npos)) {
+    if (_l.at(_l.size() - 1) == 'f') {
+      _l = _l.substr(0, _l.size() - 1);
+      return _float;
+    }
     return _double;
-  else
-    return nonDisplayable;
+  }
+  return _int;
 }
 
 void Convert::printNonDisplayable() {
-  std::cout << "char: impossible\n"
-            << "int: impossible" << std::endl;
+  _ss_c << "impossible";
+  _ss_i << "impossible";
   switch (_t) {
     case nan:
-      std::cout << "float: nanf\n"
-                << "double: nan" << std::endl;
+      _ss_f << "nan";
+      _ss_d << "nan";
       break;
     case pInf:
-      std::cout << "float: +inff\n"
-                << "double: +inf" << std::endl;
+      _ss_f << "inff";
+      _ss_d << "inf";
       break;
     case nInf:
-      std::cout << "float: -inff\n"
-                << "double: -inf" << std::endl;
+      _ss_f << "-inff";
+      _ss_d << "-inf";
       break;
     default:
-      std::cout << "float: impossible\n"
-                << "double: impossible" << std::endl;
+      _ss_f << "impossible";
+      _ss_d << "impossible";
       break;
   }
+}
+
+void Convert::convert() {
+  _t = checkType();
+  if (_t != _char)
+    if (!getValue())
+      return printNonDisplayable();
+
+  switch (_t) {
+    case _char:
+      printChar();
+      break;
+    case _int:
+      printInt();
+      break;
+    case _float:
+      printFloat();
+      break;
+    case _double:
+      printDouble();
+      break;
+    default:
+      printNonDisplayable();
+      break;
+  }
+  output();
+}
+
+bool Convert::getValue() {
+  char *e;
+  errno = 0;
+  _d = std::strtod(_l.c_str(), &e);
+  if (*e || errno == ERANGE || _l.at(_l.size() - 1) == '.') {
+    return false;
+  }
+  return true;
 }
 
 void Convert::printChar() {
   std::cout << GRN "output as char" NC << std::endl;
   char c = _l.at(0);
-  std::cout << "char: '" << c << "'" << std::endl;
-  std::cout << "float: " << static_cast<int>(c) << std::endl;
-  std::cout << "float: " << std::fixed << std::setprecision(1)
-            << static_cast<float>(c) << "f" << std::endl;
-  std::cout << "double: " << std::fixed << std::setprecision(1)
-            << static_cast<double>(c) << std::endl;
+  printAsChar<char>(c);
+  printAsInt<char>(c);
+  printAsFloat<char>(c);
+  printAsDouble<char>(c);
 }
 
 void Convert::printInt() {
-  std::cout << GRN "output as integer" NC << std::endl;
-  char *e;
-  errno = 0;
-  long l = std::strtol(_l.c_str(), &e, 10);
-  if (errno == ERANGE) {
-    return printNonDisplayable();
-  }
-  if (l >= 32 && l <= 126)
-    std::cout << "char: '" << static_cast<char>(l) << "'" << std::endl;
-  else
-    std::cout << "char: Non displayable" << std::endl;
-  if (l <= std::numeric_limits<int>::max() &&
-      l >= std::numeric_limits<int>::min())
-    std::cout << "int: " << l << std::endl;
-  else
-    std::cout << "int: impossible" << std::endl;
-  std::cout << "float: " << std::fixed << std::setprecision(1)
-            << static_cast<float>(l) << "f" << std::endl;
-  std::cout << "double: " << std::fixed << std::setprecision(1)
-            << static_cast<double>(l) << std::endl;
+  std::cout << GRN "output as int" NC << std::endl;
+  printAsChar<double>(_d);
+  printAsInt<double>(_d);
+  printAsFloat<double>(_d);
+  printAsDouble<double>(_d);
 }
 
-void Convert::printFloating() {
-  std::cout << GRN "output as floating point number" NC << std::endl;
-  char *e;
-  errno = 0;
-  double d = std::strtod(_l.c_str(), &e);
-  if (errno == ERANGE) {
-    return printNonDisplayable();
-  }
-  if (d >= 32 && d <= 126)
-    std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
-  else
-    std::cout << "char: Non displayable" << std::endl;
-  if (d <= std::numeric_limits<int>::max() &&
-      d >= std::numeric_limits<int>::min())
-    std::cout << "int: " << static_cast<int>(d) << std::endl;
-  else
-    std::cout << "int: impossible" << std::endl;
-  int p = getPrec(d);
-
-  if (d <= std::numeric_limits<float>::max() &&
-      d >= std::numeric_limits<float>::min())
-    std::cout << "float: " << std::fixed << std::setprecision(p)
-              << static_cast<float>(d) << "f" << std::endl;
-  else
-    std::cout << "float: impossible" << std::endl;
-  std::cout << "double: " << std::fixed << std::setprecision(p) << d
-            << std::endl;
+void Convert::printFloat() {
+  std::cout << GRN "output as float" NC << std::endl;
+  printAsChar<double>(_d);
+  printAsInt<double>(_d);
+  printAsFloat<double>(_d);
+  printAsDouble<double>(_d);
 }
 
-int Convert::getPrec(double d) {
-  if (std::floor(d) == d)
-    return 1;
-  else
-    return 10;
+void Convert::printDouble() {
+  std::cout << GRN "output as double" NC << std::endl;
+  printAsChar<double>(_d);
+  printAsInt<double>(_d);
+  printAsFloat<double>(_d);
+  printAsDouble<double>(_d);
+}
+
+void Convert::output() {
+  std::cout << "char:" << _ss_c.str() << "\n"
+            << "int: " << _ss_i.str() << "\n"
+            << "float: " << _ss_f.str() << "\n"
+            << "double: " << _ss_d.str() << std::endl;
 }

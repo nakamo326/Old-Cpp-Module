@@ -9,6 +9,6 @@ int main(int argc, char const *argv[]) {
     return 1;
   }
   Convert c(argv[1]);
-  c.print();
+  c.convert();
   return 0;
 }
