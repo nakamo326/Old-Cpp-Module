@@ -20,13 +20,6 @@ Convert &Convert::operator=(const Convert &rhs) {
 void Convert::print() {
   _t = checkType();
   switch (_t) {
-    case nan:
-      printNan();
-      break;
-    case pInf:
-    case nInf:
-      printInf();
-      break;
     case _char:
       printChar();
       break;
@@ -78,24 +71,6 @@ Convert::e_type Convert::checkDisplayable() {
     return nonDisplayable;
 }
 
-void Convert::printNan() {
-  std::cout << "char: impossible\n"
-            << "int: impossible\n"
-            << "float: nanf\n"
-            << "double: nan" << std::endl;
-}
-
-void Convert::printInf() {
-  std::cout << "char: impossible\n"
-            << "int: impossible\n";
-  if (_t == pInf)
-    std::cout << "float: +inff\n"
-              << "double: +inf" << std::endl;
-  else if (_t == nInf)
-    std::cout << "float: -inff\n"
-              << "double: -inf" << std::endl;
-}
-
 void Convert::printChar() {
   char c = _l.at(0);
   std::cout << "char: '" << c << "'" << std::endl;
@@ -113,7 +88,6 @@ void Convert::printInt() {
     std::cout << "char: Not displayable" << std::endl;
   else
     std::cout << "char: '" << static_cast<char>(l) << "'" << std::endl;
-
   if (l <= std::numeric_limits<int>::max() &&
       l >= std::numeric_limits<int>::min())
     std::cout << "int: " << l << std::endl;
@@ -126,35 +100,61 @@ void Convert::printInt() {
 }
 
 void Convert::printFloat() {
-  char *e;
-  const char *p = _l.c_str();
-  double d;
-  d = std::strtod(p, &e);
-  if (!std::isprint(d))
+  float f;
+  std::istringstream iss(_l);
+  iss >> f;
+  int i = static_cast<int>(f);
+  if (!(i >= 32 && i <= 126))
     std::cout << "char: Not displayable" << std::endl;
   else
-    std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
-  std::cout << "int: " << static_cast<int>(d) << std::endl;
-  std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
-  std::cout << "double: " << d << std::endl;
+    std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
+  if (i <= std::numeric_limits<int>::max() &&
+      i >= std::numeric_limits<int>::min())
+    std::cout << "int: " << i << std::endl;
+  else
+    std::cout << "int: impossible" << std::endl;
+  std::cout << "float: " << std::fixed << std::setprecision(10) << f << "f"
+            << std::endl;
+  std::cout << "double: " << std::fixed << std::setprecision(10)
+            << static_cast<double>(f) << std::endl;
 }
+
 void Convert::printDouble() {
   char *e;
   const char *p = _l.c_str();
   double d;
   d = std::strtod(p, &e);
-  if (!std::isprint(d))
+  std::cout << d << std::endl;
+  d = std::strtod(p, &e);
+  if (!(d >= 32 && d <= 126))
     std::cout << "char: Not displayable" << std::endl;
   else
     std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
-  std::cout << "int: " << static_cast<int>(d) << std::endl;
-  std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
-  std::cout << "double: " << d << std::endl;
+  int i = static_cast<int>(d);
+  if (i <= std::numeric_limits<int>::max() &&
+      i >= std::numeric_limits<int>::min())
+    std::cout << "int: " << i << std::endl;
+  else
+    std::cout << "int: impossible" << std::endl;
+  std::cout << "float: " << std::fixed << std::setprecision(10)
+            << static_cast<float>(d) << "f" << std::endl;
+  std::cout << "double: " << std::fixed << std::setprecision(10) << d
+            << std::endl;
 }
 
 void Convert::printNonDisplayable() {
   std::cout << "char: impossible\n"
-            << "int: impossible\n"
-            << "float: impossible\n"
-            << "double: impossible" << std::endl;
+            << "int: impossible" << std::endl;
+  if (_t == nan)
+    std::cout << "float: nanf\n"
+              << "double: nan" << std::endl;
+  else if (_t == pInf)
+    std::cout << "float: +inff\n"
+              << "double: +inf" << std::endl;
+  else if (_t == nInf)
+    std::cout << "float: -inff\n"
+              << "double: -inf" << std::endl;
+  else
+    std::cout << "float: impossible\n"
+              << "double: impossible" << std::endl;
 }
