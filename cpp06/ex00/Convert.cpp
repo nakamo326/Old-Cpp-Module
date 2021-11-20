@@ -36,7 +36,7 @@ void Convert::print() {
 Convert::e_type Convert::checkType() {
   if (_l == "nan" || _l == "nanf")
     return nan;
-  if (_l == "+inf" || _l == "+inff" || _l == "inf" || _l == "inff")
+  if (_l == "+inf" || _l == "+inff")
     return pInf;
   if (_l == "-inf" || _l == "-inff")
     return nInf;
@@ -119,6 +119,8 @@ void Convert::printInt() {
   std::cout << "double: " << std::fixed << std::setprecision(1)
             << static_cast<double>(l) << std::endl;
 }
+
+// need overflow check?
 
 void Convert::printFloat() {
   float f;
