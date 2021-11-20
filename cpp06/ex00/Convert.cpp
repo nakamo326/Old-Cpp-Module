@@ -27,9 +27,9 @@ void Convert::print() {
     case _int:
       return printInt();
     case _float:
-      return printFloat();
+      return printFloating();
     case _double:
-      return printDouble();
+      return printFloating();
     default:
       return printNonDisplayable();
   }
@@ -105,7 +105,11 @@ void Convert::printChar() {
 void Convert::printInt() {
   std::cout << GRN "output as integer" NC << std::endl;
   char *e;
+  errno = 0;
   long l = std::strtol(_l.c_str(), &e, 10);
+  if (errno == ERANGE) {
+    return printNonDisplayable();
+  }
   if (l >= 32 && l <= 126)
     std::cout << "char: '" << static_cast<char>(l) << "'" << std::endl;
   else
@@ -121,8 +125,8 @@ void Convert::printInt() {
             << static_cast<double>(l) << std::endl;
 }
 
-void Convert::printFloat() {
-  std::cout << GRN "output as float" NC << std::endl;
+void Convert::printFloating() {
+  std::cout << GRN "output as floating point number" NC << std::endl;
   char *e;
   errno = 0;
   double d = std::strtod(_l.c_str(), &e);
@@ -146,31 +150,6 @@ void Convert::printFloat() {
               << static_cast<float>(d) << "f" << std::endl;
   else
     std::cout << "float: impossible" << std::endl;
-
-  std::cout << "double: " << std::fixed << std::setprecision(p) << d
-            << std::endl;
-}
-
-void Convert::printDouble() {
-  std::cout << GRN "output as double" NC << std::endl;
-  char *e;
-  errno = 0;
-  double d = std::strtod(_l.c_str(), &e);
-  if (errno == ERANGE) {
-    return printNonDisplayable();
-  }
-  if (d >= 32 && d <= 126)
-    std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
-  else
-    std::cout << "char: Non displayable" << std::endl;
-  if (d <= std::numeric_limits<int>::max() &&
-      d >= std::numeric_limits<int>::min())
-    std::cout << "int: " << static_cast<int>(d) << std::endl;
-  else
-    std::cout << "int: impossible" << std::endl;
-  int p = getPrec(d);
-  std::cout << "float: " << std::fixed << std::setprecision(p)
-            << static_cast<float>(d) << "f" << std::endl;
   std::cout << "double: " << std::fixed << std::setprecision(p) << d
             << std::endl;
 }

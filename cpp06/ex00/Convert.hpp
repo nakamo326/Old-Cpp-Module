@@ -38,8 +38,7 @@ private:
   void printNonDisplayable();
   void printChar();
   void printInt();
-  void printFloat();
-  void printDouble();
+  void printFloating();
   int getPrec(double d);
 };
 
