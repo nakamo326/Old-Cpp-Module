@@ -102,13 +102,10 @@ void Convert::printChar() {
 void Convert::printInt() {
   char *e;
   long l = std::strtol(_l.c_str(), &e, 10);
-  if (l < 32)
-    std::cout << "char: Non displayable" << std::endl;
-  else if (!(l >= 32 && l <= 126))
-    std::cout << "char: impossible" << std::endl;
-  else
+  if (l >= 32 && l <= 126)
     std::cout << "char: '" << static_cast<char>(l) << "'" << std::endl;
-
+  else
+    std::cout << "char: Non displayable" << std::endl;
   if (l <= std::numeric_limits<int>::max() &&
       l >= std::numeric_limits<int>::min())
     std::cout << "int: " << l << std::endl;
@@ -120,41 +117,46 @@ void Convert::printInt() {
             << static_cast<double>(l) << std::endl;
 }
 
-// need overflow check?
-
 void Convert::printFloat() {
-  float f;
-  std::istringstream iss(_l);
-  iss >> f;
-  if (f < 32)
-    std::cout << "char: Non displayable" << std::endl;
-  else if (!(f >= 32 && f <= 126))
-    std::cout << "char: impossible" << std::endl;
+  char *e;
+  errno = 0;
+  double d = std::strtod(_l.c_str(), &e);
+  if (errno == ERANGE) {
+    return printNonDisplayable();
+  }
+  if (d >= 32 && d <= 126)
+    std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
   else
-    std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
-
-  if (f <= std::numeric_limits<int>::max() &&
-      f >= std::numeric_limits<int>::min())
-    std::cout << "int: " << static_cast<int>(f) << std::endl;
+    std::cout << "char: Non displayable" << std::endl;
+  if (d <= std::numeric_limits<int>::max() &&
+      d >= std::numeric_limits<int>::min())
+    std::cout << "int: " << static_cast<int>(d) << std::endl;
   else
     std::cout << "int: impossible" << std::endl;
-  int p = getPrec(f);
-  std::cout << "float: " << std::fixed << std::setprecision(p) << f << "f"
+  int p = getPrec(d);
+
+  if (d <= std::numeric_limits<float>::max() &&
+      d >= std::numeric_limits<float>::min())
+    std::cout << "float: " << std::fixed << std::setprecision(p)
+              << static_cast<float>(d) << "f" << std::endl;
+  else
+    std::cout << "float: impossible" << std::endl;
+
+  std::cout << "double: " << std::fixed << std::setprecision(p) << d
             << std::endl;
-  std::cout << "double: " << std::fixed << std::setprecision(p)
-            << static_cast<double>(f) << std::endl;
 }
 
 void Convert::printDouble() {
-  double d;
-  std::istringstream iss(_l);
-  iss >> d;
-  if (d < 32)
-    std::cout << "char: Non displayable" << std::endl;
-  else if (!(d >= 32 && d <= 126))
-    std::cout << "char: impossible" << std::endl;
-  else
+  char *e;
+  errno = 0;
+  double d = std::strtod(_l.c_str(), &e);
+  if (errno == ERANGE) {
+    return printNonDisplayable();
+  }
+  if (d >= 32 && d <= 126)
     std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+  else
+    std::cout << "char: Non displayable" << std::endl;
   if (d <= std::numeric_limits<int>::max() &&
       d >= std::numeric_limits<int>::min())
     std::cout << "int: " << static_cast<int>(d) << std::endl;

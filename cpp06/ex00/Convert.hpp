@@ -1,6 +1,7 @@
 #ifndef CONVERT_HPP
 #define CONVERT_HPP
 
+#include <cerrno>
 #include <cmath>
 #include <cstdlib>
 #include <iomanip>
