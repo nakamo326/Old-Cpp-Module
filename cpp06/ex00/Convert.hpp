@@ -30,7 +30,7 @@ private:
   std::stringstream _ss_d;
 
   Convert::e_type checkType();
-  bool getValue();
+  void getValue();
 
   void printChar();
   void printInt();

@@ -65,9 +65,7 @@ void Convert::printNonDisplayable() {
 void Convert::convert() {
   _t = checkType();
   if (_t != _char)
-    if (!getValue())
-      return printNonDisplayable();
-
+    getValue();
   switch (_t) {
     case _char:
       printChar();
@@ -88,14 +86,13 @@ void Convert::convert() {
   output();
 }
 
-bool Convert::getValue() {
+void Convert::getValue() {
   char *e;
   errno = 0;
   _d = std::strtod(_l.c_str(), &e);
   if (*e || errno == ERANGE || _l.at(_l.size() - 1) == '.') {
-    return false;
+    _t = def;
   }
-  return true;
 }
 
 void Convert::printChar() {
