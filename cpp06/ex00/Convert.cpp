@@ -2,9 +2,16 @@
 
 #include "Color.hpp"
 
-Convert::Convert() : _l(""), _t(def) {}
+Convert::Convert() {}
 
-Convert::Convert(const std::string &literal) : _l(literal), _t(def) {}
+Convert::Convert(const std::string &literal)
+    : _l(literal),
+      _t(def),
+      _overflowC(false),
+      _overflowI(false),
+      _overflowF(false),
+      _overflowD(false),
+      _isInf(false) {}
 
 Convert::Convert(const Convert &other) { *this = other; }
 
@@ -18,7 +25,32 @@ Convert &Convert::operator=(const Convert &rhs) {
   return *this;
 }
 
-Convert::e_type Convert::checkType() {
+void Convert::convert() {
+  _t = detectType();
+  if (_t == _int || _t == _float || _t == _double)
+    getValue();
+  detectOverflow(_d);
+  switch (_t) {
+    case _char:
+      printAsChar();
+      break;
+    case _int:
+      printAsInt();
+      break;
+    case _float:
+      printAsFloat();
+      break;
+    case _double:
+      printAsDouble();
+      break;
+    default:
+      printNonDisplayable();
+      break;
+  }
+  output();
+}
+
+Convert::e_type Convert::detectType() {
   if (_l == "nan" || _l == "nanf")
     return nan;
   if (_l == "+inf" || _l == "+inff")
@@ -44,46 +76,27 @@ void Convert::printNonDisplayable() {
   _ss_i << "impossible";
   switch (_t) {
     case nan:
+      std::cout << RED "[output as nan]" NC << std::endl;
       _ss_f << "nan";
       _ss_d << "nan";
       break;
     case pInf:
+      std::cout << RED "[output as +inf]" NC << std::endl;
       _ss_f << "inff";
       _ss_d << "inf";
       break;
     case nInf:
+      std::cout << RED "[output as -inf]" NC << std::endl;
       _ss_f << "-inff";
       _ss_d << "-inf";
       break;
     default:
+      std::cout << RED "[output as invalid input or range error]" NC
+                << std::endl;
       _ss_f << "impossible";
       _ss_d << "impossible";
       break;
   }
-}
-
-void Convert::convert() {
-  _t = checkType();
-  if (_t != _char)
-    getValue();
-  switch (_t) {
-    case _char:
-      printChar();
-      break;
-    case _int:
-      printInt();
-      break;
-    case _float:
-      printFloat();
-      break;
-    case _double:
-      printDouble();
-      break;
-    default:
-      printNonDisplayable();
-      break;
-  }
-  output();
 }
 
 void Convert::getValue() {
@@ -95,37 +108,47 @@ void Convert::getValue() {
   }
 }
 
-void Convert::printChar() {
-  std::cout << GRN "output as char" NC << std::endl;
+void Convert::detectOverflow(double d) {
+  if (d < std::numeric_limits<char>::min() ||
+      d > std::numeric_limits<char>::max())
+    _overflowC = true;
+  if (d < std::numeric_limits<int>::min() ||
+      d > std::numeric_limits<int>::max())
+    _overflowI = true;
+  if (d < -std::numeric_limits<float>::max() ||
+      d > std::numeric_limits<float>::max())
+    _overflowF = true;
+}
+
+void Convert::printAsChar() {
+  std::cout << GRN "[output as char]" NC << std::endl;
   char c = _l.at(0);
-  printAsChar<char>(c);
-  printAsInt<char>(c);
-  printAsFloat<char>(c);
-  printAsDouble<char>(c);
+  printAll<char>(c);
 }
 
-void Convert::printInt() {
-  std::cout << GRN "output as int" NC << std::endl;
-  printAsChar<double>(_d);
-  printAsInt<double>(_d);
-  printAsFloat<double>(_d);
-  printAsDouble<double>(_d);
+void Convert::printAsInt() {
+  std::cout << YLW "[output as int]" NC << std::endl;
+  if (_overflowI) {
+    _overflowF = true;
+    _overflowD = true;
+  }
+  int i = static_cast<int>(_d);
+  printAll<int>(i);
 }
 
-void Convert::printFloat() {
-  std::cout << GRN "output as float" NC << std::endl;
-  printAsChar<double>(_d);
-  printAsInt<double>(_d);
-  printAsFloat<double>(_d);
-  printAsDouble<double>(_d);
+void Convert::printAsFloat() {
+  std::cout << MGN "[output as float]" NC << std::endl;
+  if (_overflowF) {
+    _overflowD = true;
+    _isInf = true;
+  }
+  float f = static_cast<float>(_d);
+  printAll<float>(f);
 }
 
-void Convert::printDouble() {
-  std::cout << GRN "output as double" NC << std::endl;
-  printAsChar<double>(_d);
-  printAsInt<double>(_d);
-  printAsFloat<double>(_d);
-  printAsDouble<double>(_d);
+void Convert::printAsDouble() {
+  std::cout << CYN "[output as double]" NC << std::endl;
+  printAll<double>(_d);
 }
 
 void Convert::output() {
