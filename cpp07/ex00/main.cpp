@@ -13,5 +13,16 @@ int main(void) {
   std::cout << "c = " << c << ", d = " << d << std::endl;
   std::cout << "min( c, d ) = " << ::min(c, d) << std::endl;
   std::cout << "max( c, d ) = " << ::max(c, d) << std::endl;
+  {
+    float e = 3.45;
+    float f = 8.67;
+    ::testAll(e, f);
+  }
+  {
+    double e = 1234567.2345678;
+    double f = 9999999.12341234;
+    ::testAll(e, f);
+  }
+
   return 0;
 }
