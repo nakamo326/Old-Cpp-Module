@@ -32,8 +32,9 @@ int main() {
   uintptr_t serialized = serialize(ptr);
   Data* des = deserialize(serialized);
 
-  std::cout << "ptr: " << &(*ptr) << std::endl;
-  std::cout << "ptr: " << &(*des) << std::endl << std::endl;
+  std::cout << BLU "--compare ptr--" NC << std::endl;
+  std::cout << "ptr: " << ptr << std::endl;
+  std::cout << "ptr: " << des << std::endl << std::endl;
 
   std::cout << MGN "--deserialized data--" NC << std::endl
             << "c0 : " << des->c0 << std::endl
