@@ -2,7 +2,11 @@ NAME = exe
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
-SRC =	./serialization.cpp
+SRC =	./main.cpp \
+			./A.cpp \
+			./B.cpp \
+			./C.cpp \
+			./Base.cpp
 
 
 OBJ = $(SRC:.cpp=.o)
