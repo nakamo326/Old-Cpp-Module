@@ -21,26 +21,19 @@ void init_data(Data* ptr) {
             << std::endl;
 }
 
-uintptr_t serialize(Data* ptr) {
-  std::string str;
-  unsigned char* c = reinterpret_cast<unsigned char*>(ptr);
-  unsigned char* ret = new unsigned char[sizeof(Data)];
-  for (size_t i = 0; i < sizeof(Data); i++) {
-    ret[i] = c[i];
-  }
-  std::cout << "serialized: " << ret << std::endl;
-  return reinterpret_cast<uintptr_t>(ret);
-}
+uintptr_t serialize(Data* ptr) { return reinterpret_cast<uintptr_t>(ptr); }
 
 Data* deserialize(uintptr_t raw) { return reinterpret_cast<Data*>(raw); }
 
 int main() {
   Data* ptr = new Data;
-  std::cout << "sizeof(Data): " << sizeof(Data) << std::endl;
   init_data(ptr);
 
   uintptr_t serialized = serialize(ptr);
   Data* des = deserialize(serialized);
+
+  std::cout << "ptr: " << &(*ptr) << std::endl;
+  std::cout << "ptr: " << &(*des) << std::endl << std::endl;
 
   std::cout << MGN "--deserialized data--" NC << std::endl
             << "c0 : " << des->c0 << std::endl
