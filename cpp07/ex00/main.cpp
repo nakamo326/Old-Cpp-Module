@@ -20,7 +20,7 @@ int main(void) {
   }
   {
     double e = 1234567.2345678;
-    double f = 9999999.12341234;
+    double f = 9999.1234;
     ::testAll(e, f);
   }
 
