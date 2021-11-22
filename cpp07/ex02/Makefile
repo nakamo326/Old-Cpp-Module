@@ -9,8 +9,8 @@ OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	clang++ -g $(CFLAGS) -I $(INCLUDE) $^ -o $@
+$(NAME): $(OBJ) Array.hpp
+	clang++ -g $(CFLAGS) -I $(INCLUDE) $< -o $@
 
 %.o: %.cpp
 	clang++ -g $(CFLAGS) -c $< -o $@
