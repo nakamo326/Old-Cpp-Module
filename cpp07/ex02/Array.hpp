@@ -10,7 +10,7 @@ private:
   size_t _size;
 
 public:
-  Array();
+  Array() : _data(NULL), _size(0) {}
   Array(size_t n) : _data(new Elm[n]()), _size(n) {}
 
   Array(const Array &other)
@@ -35,20 +35,30 @@ public:
   }
 
   const Elm &operator[](size_t index) const {
-    if (index >= _size || index < 0) {
+    if (index >= _size || index < 0 || _size == 0)
       throw std::out_of_range("Access to out of range!");
-    }
     return _data[index];
   }
 
   Elm &operator[](size_t index) {
-    if (index >= _size || index < 0) {
+    if (index >= _size || index < 0 || _size == 0)
       throw std::out_of_range("Access to out of range!");
-    }
     return _data[index];
   }
 
   size_t size() const { return _size; }
+};
+
+template <typename T>
+std::ostream &operator<<(std::ostream &s, Array<T> arr) {
+  s << "{ ";
+  for (size_t i = 0; i < arr.size(); i++) {
+    s << arr[i];
+    if (i != arr.size() - 1)
+      s << ", ";
+  }
+  s << " }";
+  return s;
 };
 
 #endif  // ARRAY_HPP
