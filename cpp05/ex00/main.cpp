@@ -7,9 +7,9 @@ void test(size_t grade) {
   try {
     Bureaucrat b("test", grade);
   } catch (const Bureaucrat::GradeTooHighException& e) {
-    std::cerr << RED << grade << ": " << e.what() << NC << '\n';
+    std::cerr << RED << grade << ": " << e.what() << "." NC << '\n';
   } catch (const Bureaucrat::GradeTooLowException& e) {
-    std::cerr << RED << grade << ": " << e.what() << NC << '\n';
+    std::cerr << RED << grade << ": " << e.what() << "." NC << '\n';
   }
 }
 
@@ -20,6 +20,7 @@ int main() {
     test(i);
   }
 
+  std::cout << std::endl;
   try {
     std::cout << BLU "=== generate B~ grade 3 and increment to 0 ===" NC
               << std::endl;
@@ -35,7 +36,7 @@ int main() {
   } catch (const Bureaucrat::GradeTooLowException& e) {
     std::cerr << RED << "Low;inc to 0: " << e.what() << NC << '\n';
   }
-
+  std::cout << std::endl;
   try {
     std::cout << BLU "=== generate B~ grade 148 and decrement to 151 ===" NC
               << std::endl;
@@ -51,6 +52,6 @@ int main() {
   } catch (const Bureaucrat::GradeTooLowException& e) {
     std::cerr << RED << "Low;dec to 151: " << e.what() << NC << '\n';
   }
-
+  std::cout << std::endl;
   return 0;
 }

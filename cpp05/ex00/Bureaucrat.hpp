@@ -17,12 +17,12 @@ public:
 
   class GradeTooHighException : public std::range_error {
   public:
-    GradeTooHighException(const std::string &msg = "grade is too high!");
+    GradeTooHighException(const std::string &msg = "grade is too high");
   };
 
   class GradeTooLowException : public std::range_error {
   public:
-    GradeTooLowException(const std::string &msg = "grade is too low!");
+    GradeTooLowException(const std::string &msg = "grade is too low");
   };
 
 private:

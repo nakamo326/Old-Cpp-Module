@@ -23,16 +23,12 @@ public:
 
   class GradeTooHighException : public std::range_error {
   public:
-    GradeTooHighException(const std::string &msg = "grade is too high!");
+    GradeTooHighException(const std::string &msg = "grade is too high");
   };
 
-  class GradeTooLowException : public std::exception {
-  private:
-    const char *_msg;
-
+  class GradeTooLowException : public std::range_error {
   public:
-    GradeTooLowException(const char *msg);
-    const char *what() const throw();
+    GradeTooLowException(const std::string &msg = "grade is too low");
   };
 
 private:
@@ -40,6 +36,8 @@ private:
   const std::string _name;
   const unsigned int _gradeToSign;
   const unsigned int _gradeToExecute;
+  static const unsigned int _highestGrade = 1;
+  static const unsigned int _lowestGrade = 150;
 };
 
 std::ostream &operator<<(std::ostream &stream, const Form &f);
