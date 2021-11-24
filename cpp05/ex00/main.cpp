@@ -32,9 +32,9 @@ int main() {
     std::cout << GRN << b << NC << std::endl;
     b.incrementGrade();
   } catch (const Bureaucrat::GradeTooHighException& e) {
-    std::cerr << RED << "High;inc to 0: " << e.what() << NC << '\n';
+    std::cerr << RED << "High;inc to 0: " << e.what() << "." NC << '\n';
   } catch (const Bureaucrat::GradeTooLowException& e) {
-    std::cerr << RED << "Low;inc to 0: " << e.what() << NC << '\n';
+    std::cerr << RED << "Low;inc to 0: " << e.what() << "." NC << '\n';
   }
   std::cout << std::endl;
   try {
@@ -48,9 +48,9 @@ int main() {
     std::cout << GRN << b << NC << std::endl;
     b.decrementGrade();
   } catch (const Bureaucrat::GradeTooHighException& e) {
-    std::cerr << RED << "High;dec to 151: " << e.what() << NC << '\n';
+    std::cerr << RED << "High;dec to 151: " << e.what() << "." NC << '\n';
   } catch (const Bureaucrat::GradeTooLowException& e) {
-    std::cerr << RED << "Low;dec to 151: " << e.what() << NC << '\n';
+    std::cerr << RED << "Low;dec to 151: " << e.what() << "." NC << '\n';
   }
   std::cout << std::endl;
   return 0;
