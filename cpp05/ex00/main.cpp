@@ -1,38 +1,55 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
+#include "Color.hpp"
 
 void test(size_t grade) {
   try {
     Bureaucrat b("test", grade);
   } catch (const Bureaucrat::GradeTooHighException& e) {
-    std::cerr << grade << ": " << e.what() << '\n';
+    std::cerr << RED << grade << ": " << e.what() << NC << '\n';
   } catch (const Bureaucrat::GradeTooLowException& e) {
-    std::cerr << grade << ": " << e.what() << '\n';
+    std::cerr << RED << grade << ": " << e.what() << NC << '\n';
   }
 }
 
 int main() {
+  std::cout << BLU "=== generate Bureaucrat with grade 0 to 155. ===" NC
+            << std::endl;
   for (size_t i = 0; i < 155; i++) {
     test(i);
   }
 
   try {
-    Bureaucrat b("test", 1);
+    std::cout << BLU "=== generate B~ grade 3 and increment to 0 ===" NC
+              << std::endl;
+    Bureaucrat b("test", 3);
+    std::cout << GRN << b << NC << std::endl;
+    b.incrementGrade();
+    std::cout << GRN << b << NC << std::endl;
+    b.incrementGrade();
+    std::cout << GRN << b << NC << std::endl;
     b.incrementGrade();
   } catch (const Bureaucrat::GradeTooHighException& e) {
-    std::cerr << "High;inc to 0: " << e.what() << '\n';
+    std::cerr << RED << "High;inc to 0: " << e.what() << NC << '\n';
   } catch (const Bureaucrat::GradeTooLowException& e) {
-    std::cerr << "Low;inc to 0: " << e.what() << '\n';
+    std::cerr << RED << "Low;inc to 0: " << e.what() << NC << '\n';
   }
 
   try {
-    Bureaucrat b("test", 150);
+    std::cout << BLU "=== generate B~ grade 148 and decrement to 151 ===" NC
+              << std::endl;
+    Bureaucrat b("test", 148);
+    std::cout << GRN << b << NC << std::endl;
+    b.decrementGrade();
+    std::cout << GRN << b << NC << std::endl;
+    b.decrementGrade();
+    std::cout << GRN << b << NC << std::endl;
     b.decrementGrade();
   } catch (const Bureaucrat::GradeTooHighException& e) {
-    std::cerr << "High;dec to 151: " << e.what() << '\n';
+    std::cerr << RED << "High;dec to 151: " << e.what() << NC << '\n';
   } catch (const Bureaucrat::GradeTooLowException& e) {
-    std::cerr << "Low;dec to 151: " << e.what() << '\n';
+    std::cerr << RED << "Low;dec to 151: " << e.what() << NC << '\n';
   }
 
   return 0;
