@@ -25,31 +25,19 @@ public:
   void checkExecutable(Bureaucrat const &executor) const;
   virtual void execute(Bureaucrat const &executor) const = 0;
 
-  class FormNotSignedException : public std::exception {
-  private:
-    const char *_msg;
-
+  class GradeTooHighException : public std::range_error {
   public:
-    FormNotSignedException(const char *msg);
-    const char *what() const throw();
+    GradeTooHighException(const std::string &msg = "grade is too high");
   };
 
-  class GradeTooHighException : public std::exception {
-  private:
-    const char *_msg;
-
+  class GradeTooLowException : public std::range_error {
   public:
-    GradeTooHighException(const char *msg);
-    const char *what() const throw();
+    GradeTooLowException(const std::string &msg = "grade is too low");
   };
 
-  class GradeTooLowException : public std::exception {
-  private:
-    const char *_msg;
-
+  class FormNotSignedException : public std::logic_error {
   public:
-    GradeTooLowException(const char *msg);
-    const char *what() const throw();
+    FormNotSignedException(const std::string &msg = "This form is not signed!");
   };
 
 private:
@@ -57,6 +45,8 @@ private:
   const std::string _name;
   const unsigned int _gradeToSign;
   const unsigned int _gradeToExecute;
+  static const unsigned int _highestGrade = 1;
+  static const unsigned int _lowestGrade = 150;
 };
 
 std::ostream &operator<<(std::ostream &stream, const Form &f);

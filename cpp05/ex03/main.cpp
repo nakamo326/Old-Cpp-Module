@@ -13,6 +13,8 @@ int main() {
   Form* sf = bob.makeForm("shrubbery creation", "home");
   Form* pf = bob.makeForm("presidential pardon", "home");
   Form* rf = bob.makeForm("robotomy request", "home");
+  Form* nf = bob.makeForm("no_such_form", "home");
+  (void)nf;
 
   Bureaucrat b0("nop", 1);
   Bureaucrat b1("louis", 30);

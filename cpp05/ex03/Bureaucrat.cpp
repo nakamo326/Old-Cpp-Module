@@ -4,9 +4,9 @@ Bureaucrat::Bureaucrat() : _name("nameless"), _grade(150) {}
 
 Bureaucrat::Bureaucrat(const std::string &name, unsigned int grade)
     : _name(name), _grade(grade) {
-  if (_grade < 1)
+  if (_grade < _highestGrade)
     throw GradeTooHighException();
-  if (_grade > 150)
+  if (_grade > _lowestGrade)
     throw GradeTooLowException();
   std::cout << "[Bureaucrat] Bureaucrat " << _name << " grade " << _grade
             << " was generated." << std::endl;
@@ -24,20 +24,20 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
   return *this;
 }
 
+// inc and dec
 void Bureaucrat::incrementGrade() {
-  if (_grade == 1)
+  if (_grade == _highestGrade)
     throw GradeTooHighException();
-  Bureaucrat tmp = *this;
   _grade--;
 }
 
 void Bureaucrat::decrementGrade() {
-  if (_grade == 150)
+  if (_grade == _lowestGrade)
     throw GradeTooLowException();
-  Bureaucrat tmp = *this;
   _grade++;
 }
 
+// add to ex01
 bool Bureaucrat::signForm(Form &f) {
   if (f.getIsSigned()) {
     std::cout << _name << " cannot sign " << f.getName()
@@ -55,6 +55,7 @@ bool Bureaucrat::signForm(Form &f) {
   return true;
 }
 
+// add to ex02
 bool Bureaucrat::executeForm(Form const &form) {
   try {
     form.execute(*this);
@@ -67,18 +68,19 @@ bool Bureaucrat::executeForm(Form const &form) {
   return true;
 }
 
+// getter
 const std::string &Bureaucrat::getName() const { return _name; }
 
 unsigned int Bureaucrat::getGrade() const { return _grade; }
 
-const char *Bureaucrat::GradeTooHighException::what() const throw() {
-  return "Bureaucrat's grade will be too high!";
-}
+// Exception class
+Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string &msg)
+    : range_error(msg){};
 
-const char *Bureaucrat::GradeTooLowException::what() const throw() {
-  return "Bureaucrat's grade will be too low!";
-};
+Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string &msg)
+    : range_error(msg){};
 
+// stream overload
 std::ostream &operator<<(std::ostream &stream, const Bureaucrat &b) {
   stream << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
   return stream;
