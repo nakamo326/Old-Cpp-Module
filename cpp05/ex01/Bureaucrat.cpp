@@ -37,6 +37,7 @@ void Bureaucrat::decrementGrade() {
   _grade++;
 }
 
+// add to ex01
 bool Bureaucrat::signForm(Form &f) {
   if (f.getIsSigned()) {
     std::cout << _name << " cannot sign " << f.getName()
