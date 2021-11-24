@@ -15,14 +15,14 @@ public:
   const std::string &getName() const;
   unsigned int getGrade() const;
 
-  class GradeTooHighException : public std::exception {
+  class GradeTooHighException : public std::range_error {
   public:
-    const char *what() const throw();
+    GradeTooHighException(const std::string &msg = "grade is too high!");
   };
 
-  class GradeTooLowException : public std::exception {
+  class GradeTooLowException : public std::range_error {
   public:
-    const char *what() const throw();
+    GradeTooLowException(const std::string &msg = "grade is too low!");
   };
 
 private:
