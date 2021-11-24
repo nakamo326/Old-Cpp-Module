@@ -22,7 +22,6 @@ public:
   unsigned int getGradeToExecute() const;
 
   // add for ex02
-  void checkExecutable(Bureaucrat const &executor) const;
   virtual void execute(Bureaucrat const &executor) const = 0;
 
   class GradeTooHighException : public std::range_error {
@@ -39,6 +38,9 @@ public:
   public:
     FormNotSignedException(const std::string &msg = "This form is not signed!");
   };
+
+protected:
+  void checkExecutable(Bureaucrat const &executor) const;
 
 private:
   bool _isSigned;
