@@ -57,5 +57,9 @@ int main() {
   b0.executeForm(*pf);
   std::cout << std::endl;
 
+  delete sf;
+  delete pf;
+  delete rf;
+
   return 0;
 }
