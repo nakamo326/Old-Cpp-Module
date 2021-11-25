@@ -3,16 +3,15 @@ CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror
 INCLUDE = ./
 
-SRC =	./main.cpp
+SRC =	./main.cpp \
 			./Span.cpp
-
 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) -I $(INCLUDE) $< -o $@
+	$(CXX) $(CXXFLAGS) -I $(INCLUDE) $^ -o $@
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@

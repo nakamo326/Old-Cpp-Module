@@ -26,30 +26,43 @@ void Span::addNumber(int num) {
   _currentSize++;
 }
 
-void Span::print() {
-  for (std::multiset<int>::const_iterator it(_ms.begin()); it != _ms.end();
-       it++) {
-    std::cout << *it << ", ";
-  }
-  std::cout << std::endl;
-}
+void Span::print() {}
 
-long Span::shortestSpan() {
+unsigned int Span::shortestSpan() {
   if (_currentSize < 2)
     throw SpanException("Elements are less to get span.");
   std::vector<int> result(_ms.size());
   std::adjacent_difference(_ms.begin(), _ms.end(), result.begin());
   result.erase(result.begin());
-  long ret = *(std::min_element(result.begin(), result.end()));
+  unsigned int ret = *(std::min_element(result.begin(), result.end()));
 
   return ret;
 }
 
-long Span::longestSpan() {
+unsigned int Span::longestSpan() {
   if (_currentSize < 2)
     throw SpanException("Elements are less to get span.");
-  long ret = *(--_ms.end()) - *(_ms.begin());
+  unsigned int ret = *(_ms.rbegin()) - *(_ms.begin());
   return ret;
 }
 
-Span::SpanException::SpanException(const std::string &msg) : logic_error(msg){};
+unsigned int Span::getCurrentSize() const { return _currentSize; }
+unsigned int Span::getSize() const { return _size; }
+
+std::multiset<int> Span::getContainer() const { return _ms; }
+
+Span::SpanException::SpanException(const std::string &msg) : logic_error(msg) {}
+
+std::ostream &operator<<(std::ostream &stream, const Span &span) {
+  stream << "CurrentSize: " << span.getCurrentSize()
+         << ", Size: " << span.getSize() << std::endl;
+  std::multiset<int> ms = span.getContainer();
+  std::multiset<int>::const_iterator it(ms.begin());
+  unsigned int size = span.getSize();
+  for (unsigned int i = 0; i < size; i++) {
+    stream << *it++;
+    if (i < size - 1)
+      stream << ", ";
+  }
+  return stream;
+}

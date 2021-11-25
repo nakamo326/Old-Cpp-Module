@@ -2,6 +2,7 @@
 #define SPAN_HPP
 
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <numeric>
 #include <set>
@@ -15,9 +16,12 @@ public:
   ~Span();
   Span &operator=(const Span &rhs);
   void addNumber(int num);
-  long shortestSpan();
-  long longestSpan();
+  unsigned int shortestSpan();
+  unsigned int longestSpan();
   void print();
+  unsigned int getCurrentSize() const;
+  unsigned int getSize() const;
+  std::multiset<int> getContainer() const;
 
   class SpanException : public std::logic_error {
   public:
@@ -29,5 +33,7 @@ private:
   unsigned int _size;
   std::multiset<int> _ms;
 };
+
+std::ostream &operator<<(std::ostream &stream, const Span &span);
 
 #endif  // SPAN_HPP
