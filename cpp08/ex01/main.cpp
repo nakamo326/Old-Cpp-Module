@@ -61,6 +61,16 @@ int main() {
     std::cout << mc.shortestSpan() << std::endl;
     std::cout << mc.longestSpan() << std::endl;
   }
+  {
+    std::cout << BLU "== 100000 elm ===" NC << std::endl;
+    Span mc = Span(100000);
+    for (size_t i = 0; i < 100000; i++) {
+      mc.addNumber(i);
+    }
+    // std::cout << mc << std::endl;
+    std::cout << mc.shortestSpan() << std::endl;
+    std::cout << mc.longestSpan() << std::endl;
+  }
 
   return 0;
 }
