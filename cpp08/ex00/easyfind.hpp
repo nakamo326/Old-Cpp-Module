@@ -6,8 +6,8 @@
 #include <iterator>
 
 template <typename T>
-typename T::const_iterator easyfind(T &t, int i) {
-  return std::find(t.begin(), t.end(), i);
+typename T::const_iterator easyfind(T &t, int val) {
+  return std::find(t.begin(), t.end(), val);
 }
 
 #endif  // EASYFIND_HPP
