@@ -2,7 +2,10 @@
 #define SPAN_HPP
 
 #include <algorithm>
+#include <iostream>
+#include <numeric>
 #include <set>
+#include <vector>
 
 class Span {
 public:
@@ -14,24 +17,17 @@ public:
   void addNumber(int num);
   long shortestSpan();
   long longestSpan();
-  // use abs?
+  void print();
+
+  class SpanException : public std::logic_error {
+  public:
+    SpanException(const std::string &msg = "something wrong");
+  };
 
 private:
-  unsigned int _maxElm;
+  unsigned int _currentSize;
+  unsigned int _size;
   std::multiset<int> _ms;
 };
-
-Span::Span() {}
-
-Span::Span(const Span &other) { *this = other; }
-
-Span::~Span() {}
-
-Span &Span::operator=(const Span &rhs) {
-  if (this == &rhs)
-    return *this;
-
-  return *this;
-}
 
 #endif  // SPAN_HPP
