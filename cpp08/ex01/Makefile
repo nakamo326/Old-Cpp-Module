@@ -1,6 +1,6 @@
 NAME = exe
 CXX = clang++
-CXXFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDE = ./
 
 SRC =	./main.cpp \

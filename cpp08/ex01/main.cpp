@@ -2,7 +2,7 @@
 // span max size check
 
 #include <iostream>
-#include <numeric>
+#include <limits>
 
 #include "Span.hpp"
 
