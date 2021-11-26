@@ -1,5 +1,5 @@
 NAME = exe
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDE = ./
 
 SRC =	./main.cpp
