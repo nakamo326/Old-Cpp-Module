@@ -35,7 +35,6 @@ unsigned int Span::shortestSpan() {
   std::adjacent_difference(_ms.begin(), _ms.end(), result.begin());
   result.erase(result.begin());
   unsigned int ret = *(std::min_element(result.begin(), result.end()));
-
   return ret;
 }
 
@@ -46,16 +45,17 @@ unsigned int Span::longestSpan() {
   return ret;
 }
 
+// getter
 unsigned int Span::getCurrentSize() const { return _currentSize; }
 unsigned int Span::getSize() const { return _size; }
-
 std::multiset<int> Span::getContainer() const { return _ms; }
 
 Span::SpanException::SpanException(const std::string &msg) : logic_error(msg) {}
 
 std::ostream &operator<<(std::ostream &stream, const Span &span) {
   stream << "CurrentSize: " << span.getCurrentSize()
-         << ", Size: " << span.getSize() << std::endl;
+         << ", Size: " << span.getSize() << std::endl
+         << "{";
   std::multiset<int> ms = span.getContainer();
   std::multiset<int>::const_iterator it(ms.begin());
   unsigned int size = span.getSize();
@@ -64,5 +64,6 @@ std::ostream &operator<<(std::ostream &stream, const Span &span) {
     if (i < size - 1)
       stream << ", ";
   }
+  stream << "}";
   return stream;
 }
