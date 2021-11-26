@@ -6,25 +6,14 @@
 #include <iterator>
 #include <stack>
 
-template <typename M>
-class MutantStackIterator {
-private:
-  M &_ms;
-  size_t _i;
-
-public:
-  MutantStackIterator(M &ms, size_t i) : _ms(ms), _i(i) {}
-  ~MutantStackIterator() {}
-  // M &operator*() { return ; }
-};
-
 template <class T, class Container = std::deque<T> >
 class MutantStack : public std::stack<T, Container> {
 private:
   typedef std::stack<T, Container> st;
 
 public:
-  typedef MutantStackIterator<MutantStack> iterator;
+  typedef typename std::deque<T>::iterator iterator;
+  typedef typename std::deque<T>::reverse_iterator reverse_iterator;
 
   MutantStack() {}
   ~MutantStack() {}
@@ -43,8 +32,10 @@ public:
   void push(const T &value) { return st::push(value); }
   void push(T &value) { return st::push(value); }
   void pop() { return st::pop(); }
-  iterator begin() { return iterator(*this, 0); }
-  iterator end() { return iterator(*this, size()); }
+  iterator begin() { return st::c.begin(); }
+  iterator end() { return st::c.end(); }
+  reverse_iterator rbegin() { return st::c.rbegin(); }
+  reverse_iterator rend() { return st::c.rend(); }
 };
 
 #endif  // MUTANTSTACK_HPP
