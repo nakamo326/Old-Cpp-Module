@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <stack>
 
 #include "MutantStack.hpp"
 
@@ -26,6 +27,12 @@ int main() {
   mstack.push(0);
   MutantStack<int>::iterator it = mstack.begin();
   MutantStack<int>::iterator ite = mstack.end();
+
+  std::stack<int> st;
+  st.push(4);
+  st.push(42);
+  st.push(99);
+
   // ++it;
   // --it;
   // while (it != ite) {
