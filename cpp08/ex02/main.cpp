@@ -2,7 +2,23 @@
 #include <iostream>
 #include <stack>
 
+#include "Color.hpp"
 #include "MutantStack.hpp"
+
+void test_copy(MutantStack<int> ms) {
+  std::cout << BLU "test copy constructor" NC << std::endl;
+  MutantStack<int> mstack2;
+  mstack2.push(333);
+  std::cout << GRN "mstack2 (before copy): " NC;
+  printMstack(mstack2);
+  mstack2 = ms;
+  std::cout << GRN "mstack: " NC;
+  printMstack(ms);
+  std::cout << GRN "mstack2 (after copy): " NC;
+  printMstack(mstack2);
+  std::cout << mstack2.top() << std::endl;
+  std::cout << std::endl;
+}
 
 int main() {
   MutantStack<int> mstack;
@@ -16,13 +32,7 @@ int main() {
   mstack.push(737);
   std::cout << mstack.size() << std::endl;
 
-  MutantStack<int> mstack2;
-  mstack2.push(333);
-  mstack2 = mstack;
-  std::cout << mstack.size() << std::endl;
-  std::cout << mstack2.size() << std::endl;
-  std::cout << mstack2.top() << std::endl;
-  std::cout << std::endl;
+  test_copy(mstack);
 
   mstack.push(0);
   MutantStack<int>::iterator it = mstack.begin();
@@ -40,5 +50,6 @@ int main() {
     ++it;
   }
   std::stack<int> s(mstack);
+
   return 0;
 }

@@ -38,4 +38,18 @@ public:
   reverse_iterator rend() { return st::c.rend(); }
 };
 
+template <typename T>
+void printMstack(MutantStack<T> &ms) {
+  std::cout << "size: " << ms.size() << ": {";
+  MutantStack<int>::iterator it(ms.begin());
+  MutantStack<int>::iterator ite(ms.end());
+  MutantStack<int>::iterator rit = --ms.end();
+  for (; it != ms.end(); it++) {
+    std::cout << *it;
+    if (it != rit)
+      std::cout << ", ";
+  }
+  std::cout << "}" << std::endl;
+}
+
 #endif  // MUTANTSTACK_HPP
