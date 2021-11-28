@@ -39,17 +39,18 @@ public:
 };
 
 template <typename T>
-void printMstack(MutantStack<T> &ms) {
-  std::cout << "size: " << ms.size() << ": {";
+std::ostream &operator<<(std::ostream &stream, MutantStack<T> &ms) {
+  stream << "size: " << ms.size() << ": {";
   MutantStack<int>::iterator it(ms.begin());
   MutantStack<int>::iterator ite(ms.end());
   MutantStack<int>::iterator rit = --ms.end();
   for (; it != ms.end(); it++) {
-    std::cout << *it;
+    stream << *it;
     if (it != rit)
-      std::cout << ", ";
+      stream << ", ";
   }
-  std::cout << "}" << std::endl;
+  stream << "}";
+  return stream;
 }
 
 #endif  // MUTANTSTACK_HPP
