@@ -61,6 +61,56 @@ void test_copy(MutantStack<int> ms) {
   std::cout << std::endl;
 }
 
+void test_poptoppush() {
+  std::cout << BLU "test pop, push, top" NC << std::endl;
+  MutantStack<int> mstack;
+  std::cout << GRN "mstack: " NC << mstack << std::endl;
+  std::cout << YLW "mstack.push(5);" NC << std::endl;
+  mstack.push(5);
+  std::cout << GRN "mstack: " NC << mstack << std::endl;
+  std::cout << YLW "mstack.top(): " NC << mstack.top() << std::endl;
+  std::cout << YLW "mstack.pop();" NC << std::endl;
+  mstack.pop();
+  std::cout << GRN "mstack: " NC << mstack << std::endl;
+  std::cout << YLW "mstack.push(9); mstack.push(42);" NC << std::endl;
+  mstack.push(9);
+  mstack.push(42);
+  std::cout << GRN "mstack: " NC << mstack << std::endl;
+  std::cout << YLW "mstack.top(): " NC << mstack.top() << std::endl;
+  std::cout << std::endl;
+}
+
+void tset_iterator(MutantStack<int> mstack) {
+  std::cout << BLU "test iterator equal" NC << std::endl;
+  std::cout << GRN "mstack: " NC << mstack << std::endl;
+  std::cout << YLW "decalared two iterator it and it2" << std::endl;
+  MutantStack<int>::iterator it(mstack.begin());
+  MutantStack<int>::iterator it2(mstack.begin());
+  std::cout << GRN "(it == it2): " NC << (it == it2)
+            << "; " GRN "(it != it2): " NC << (it != it2) << std::endl;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it--;" NC << std::endl;
+  it--;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "(it == it2): " NC << (it == it2)
+            << "; " GRN "(it != it2): " NC << (it != it2) << std::endl;
+  std::cout << YLW "it++; ++it;" NC << std::endl;
+  it++;
+  ++it;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "(it == mstack.end()): " NC << (it == mstack.end())
+            << "; " GRN "(it != mstack.end()): " NC << (it != mstack.end())
+            << std::endl
+            << std::endl;
+}
+
 int main() {
   MutantStack<int> mstack;
   mstack.push(5);
@@ -73,21 +123,28 @@ int main() {
   test_assignation(mstack);
   test_copy(mstack);
 
-  // test_pop and top;
-  // tset_iterator equal;
-  // test_iterator not equal;
-  // test_iterator compare;
+  test_poptoppush();
+  tset_iterator(mstack);
+  // test_reverse_iterator(mstack);
+  // test_stdstackfrommstack;
 
-  MutantStack<int>::iterator it = mstack.begin();
-  MutantStack<int>::iterator ite = mstack.end();
+  // MutantStack<int>::iterator it = mstack.begin();
+  // MutantStack<int>::iterator ite = mstack.end();
 
-  ++it;
-  --it;
-  while (it != ite) {
-    std::cout << *it << std::endl;
-    ++it;
-  }
-  std::stack<int> s(mstack);
-
+  // ++it;
+  // --it;
+  // while (it != ite) {
+  //   std::cout << *it << std::endl;
+  //   ++it;
+  // }
+  // std::stack<int> s(mstack);
+  // std::cout << "stack s(mstack)" << std::endl;
+  // std::cout << s.top() << std::endl;
+  // s.pop();
+  // std::cout << s.top() << std::endl;
+  // s.pop();
+  // std::cout << s.top() << std::endl;
+  // s.pop();
+  // std::cout << s.top() << std::endl;
   return 0;
 }

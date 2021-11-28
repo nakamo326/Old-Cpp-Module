@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <deque>
-#include <iterator>
 #include <stack>
 
 template <class T, class Container = std::deque<T> >
