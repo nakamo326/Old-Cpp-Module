@@ -80,8 +80,8 @@ void test_poptoppush() {
   std::cout << std::endl;
 }
 
-void tset_iterator(MutantStack<int> mstack) {
-  std::cout << BLU "test iterator equal" NC << std::endl;
+void test_iterator(MutantStack<int> mstack) {
+  std::cout << BLU "test iterator" NC << std::endl;
   std::cout << GRN "mstack: " NC << mstack << std::endl;
   std::cout << YLW "decalared two iterator it and it2" << std::endl;
   MutantStack<int>::iterator it(mstack.begin());
@@ -111,6 +111,37 @@ void tset_iterator(MutantStack<int> mstack) {
             << std::endl;
 }
 
+void test_reverse_iterator(MutantStack<int> mstack) {
+  std::cout << BLU "test reverse_iterator" NC << std::endl;
+  std::cout << GRN "mstack: " NC << mstack << std::endl;
+  std::cout << YLW "decalared two reverse_iterator it and it2" << std::endl;
+  MutantStack<int>::reverse_iterator it(mstack.rbegin());
+  MutantStack<int>::reverse_iterator it2(mstack.rbegin());
+  std::cout << GRN "(it == it2): " NC << (it == it2)
+            << "; " GRN "(it != it2): " NC << (it != it2) << std::endl;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it--;" NC << std::endl;
+  it--;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "(it == it2): " NC << (it == it2)
+            << "; " GRN "(it != it2): " NC << (it != it2) << std::endl;
+  std::cout << YLW "it++; ++it;" NC << std::endl;
+  it++;
+  ++it;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "(it == mstack.end()): " NC << (it == mstack.rend())
+            << "; " GRN "(it != mstack.end()): " NC << (it != mstack.rend())
+            << std::endl
+            << std::endl;
+}
+
 int main() {
   MutantStack<int> mstack;
   mstack.push(5);
@@ -122,29 +153,10 @@ int main() {
   test_size();
   test_assignation(mstack);
   test_copy(mstack);
-
   test_poptoppush();
-  tset_iterator(mstack);
-  // test_reverse_iterator(mstack);
-  // test_stdstackfrommstack;
 
-  // MutantStack<int>::iterator it = mstack.begin();
-  // MutantStack<int>::iterator ite = mstack.end();
+  test_iterator(mstack);
+  test_reverse_iterator(mstack);
 
-  // ++it;
-  // --it;
-  // while (it != ite) {
-  //   std::cout << *it << std::endl;
-  //   ++it;
-  // }
-  // std::stack<int> s(mstack);
-  // std::cout << "stack s(mstack)" << std::endl;
-  // std::cout << s.top() << std::endl;
-  // s.pop();
-  // std::cout << s.top() << std::endl;
-  // s.pop();
-  // std::cout << s.top() << std::endl;
-  // s.pop();
-  // std::cout << s.top() << std::endl;
   return 0;
 }
