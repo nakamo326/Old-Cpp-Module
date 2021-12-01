@@ -5,7 +5,7 @@
 #include <iostream>
 
 template <typename T>
-void iter(T *arr, size_t length, void (*fp)(T &elm)) {
+void iter(T *arr, size_t length, void (*fp)(T const &elm)) {
   for (size_t i = 0; i < length; i++) {
     fp(arr[i]);
   }
@@ -13,12 +13,12 @@ void iter(T *arr, size_t length, void (*fp)(T &elm)) {
 
 // for test
 template <typename T>
-void print(T &a) {
+void print(const T &a) {
   std::cout << a << ", ";
 }
 
 template <typename T>
-void times(T &a) {
+void times(const T &a) {
   a = a * 2;
 }
 
