@@ -5,7 +5,14 @@
 #include <iostream>
 
 template <typename T>
-void iter(T *arr, size_t length, void (*fp)(T const &elm)) {
+void iter(T const *arr, size_t length, void (*fp)(T const &elm)) {
+  for (size_t i = 0; i < length; i++) {
+    fp(arr[i]);
+  }
+}
+
+template <typename T>
+void iter(T *arr, size_t length, void (*fp)(T &elm)) {
   for (size_t i = 0; i < length; i++) {
     fp(arr[i]);
   }
