@@ -7,7 +7,7 @@ int main(void) {
   iter(arr0, (size_t)(sizeof(arr0) / sizeof(arr0[0])), show);
   std::cout << std::endl;
   // iter(arr0, (size_t)(sizeof(arr0) / sizeof(arr0[0])), times);
-  // iter(arr0, (size_t)(sizeof(arr0) / sizeof(arr0[0])), print);
+  // iter(arr0, (size_t)(sizeof(arr0) / sizeof(arr0[0])), show);
   std::cout << std::endl;
 
   double arr1[5] = {1.5, 2.8, 7.6, 9.9, 13.2};

@@ -17,6 +17,7 @@ void show(T const &a) {
   std::cout << a << ", ";
 }
 
+// doesn't work
 template <typename T>
 void times(T &a) {
   a = a * 2;
