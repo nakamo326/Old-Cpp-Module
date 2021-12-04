@@ -13,12 +13,12 @@ void iter(T *arr, size_t length, void (*fp)(T const &elm)) {
 
 // for test
 template <typename T>
-void print(const T &a) {
+void show(T const &a) {
   std::cout << a << ", ";
 }
 
 template <typename T>
-void times(const T &a) {
+void times(T &a) {
   a = a * 2;
 }
 
