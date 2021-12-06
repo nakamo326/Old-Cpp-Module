@@ -23,6 +23,11 @@ int main(void) {
     double f = 9999.1234;
     ::testAll(e, f);
   }
+  {
+    const std::string str1("hello");
+    const std::string str2("hello!");
+    ::testAll(str1, str2);
+  }
 
   return 0;
 }
