@@ -136,8 +136,8 @@ void test_reverse_iterator(MutantStack<int> mstack) {
   std::cout << GRN "*it: " NC << *it << std::endl;
   std::cout << YLW "it++;" NC << std::endl;
   it++;
-  std::cout << GRN "(it == mstack.end()): " NC << (it == mstack.rend())
-            << "; " GRN "(it != mstack.end()): " NC << (it != mstack.rend())
+  std::cout << GRN "(it == mstack.rend()): " NC << (it == mstack.rend())
+            << "; " GRN "(it != mstack.rend()): " NC << (it != mstack.rend())
             << std::endl
             << std::endl;
 }

@@ -35,18 +35,19 @@ public:
   iterator end() { return st::c.end(); }
   reverse_iterator rbegin() { return st::c.rbegin(); }
   reverse_iterator rend() { return st::c.rend(); }
+  // const iterator???
 };
 
 template <typename T>
 std::ostream &operator<<(std::ostream &stream, MutantStack<T> &ms) {
   stream << "size: " << ms.size() << ": {";
   MutantStack<int>::iterator it(ms.begin());
-  //  MutantStack<int>::iterator ite(ms.end());
-  // MutantStack<int>::iterator rit = --ms.end();
+  MutantStack<int>::iterator rit(ms.end());
+  rit--;
   for (; it != ms.end(); it++) {
     stream << *it;
-    // if (it != rit)
-    //   stream << ", ";
+    if (it != rit)
+      stream << ", ";
   }
   stream << "}";
   return stream;

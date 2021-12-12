@@ -45,6 +45,8 @@ unsigned int Span::longestSpan() {
   return ret;
 }
 
+// add number iterator
+
 // getter
 unsigned int Span::getCurrentSize() const { return _currentSize; }
 unsigned int Span::getSize() const { return _size; }
