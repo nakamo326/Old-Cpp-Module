@@ -42,8 +42,6 @@ template <typename T>
 std::ostream &operator<<(std::ostream &stream, MutantStack<T> &ms) {
   stream << "size: " << ms.size() << ": {";
   MutantStack<int>::iterator it(ms.begin());
-  MutantStack<int>::iterator rit(ms.end());
-  rit--;
   for (; it != ms.end(); it++) {
     stream << *it << ", ";
   }
