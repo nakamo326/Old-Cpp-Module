@@ -45,9 +45,7 @@ std::ostream &operator<<(std::ostream &stream, MutantStack<T> &ms) {
   MutantStack<int>::iterator rit(ms.end());
   rit--;
   for (; it != ms.end(); it++) {
-    stream << *it;
-    if (it != rit)
-      stream << ", ";
+    stream << *it << ", ";
   }
   stream << "}";
   return stream;
