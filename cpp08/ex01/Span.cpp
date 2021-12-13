@@ -26,8 +26,6 @@ void Span::addNumber(int num) {
   _currentSize++;
 }
 
-void Span::print() {}
-
 unsigned int Span::shortestSpan() {
   if (_currentSize < 2)
     throw SpanException("Elements are less to get span.");
@@ -44,8 +42,6 @@ unsigned int Span::longestSpan() {
   unsigned int ret = *(_ms.rbegin()) - *(_ms.begin());
   return ret;
 }
-
-// add number iterator
 
 // getter
 unsigned int Span::getCurrentSize() const { return _currentSize; }
