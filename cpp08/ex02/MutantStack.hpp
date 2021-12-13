@@ -13,6 +13,8 @@ private:
 public:
   typedef typename std::deque<T>::iterator iterator;
   typedef typename std::deque<T>::reverse_iterator reverse_iterator;
+  typedef typename std::deque<T>::const_iterator const_iterator;
+  typedef typename std::deque<T>::const_reverse_iterator const_reverse_iterator;
 
   MutantStack() {}
   ~MutantStack() {}
@@ -36,6 +38,10 @@ public:
   reverse_iterator rbegin() { return st::c.rbegin(); }
   reverse_iterator rend() { return st::c.rend(); }
   // const iterator???
+  const_iterator begin() const { return st::c.begin(); }
+  const_iterator end() const { return st::c.end(); }
+  const_reverse_iterator rbegin() const { return st::c.rbegin(); }
+  const_reverse_iterator rend() const { return st::c.rend(); }
 };
 
 template <typename T>
