@@ -44,8 +44,10 @@ int main() {
   std::cout << std::endl;
   {
     std::cout << BLU "== span size exception check ===" NC << std::endl;
+    std::cout << "sp: " << sp << std::endl;
     try {
       sp.addNumber(42);
+      std::cout << "sp: " << sp << std::endl;
       sp.addNumber(42);
     } catch (const std::exception& e) {
       std::cerr << RED << e.what() << NC << '\n';
@@ -74,10 +76,12 @@ int main() {
   std::cout << std::endl;
   {
     std::cout << BLU "== 100000 elm (0 to 999999)===" NC << std::endl;
-    Span mc = Span(100000);
+    std::vector<int> vec;
     for (size_t i = 0; i < 100000; i++) {
-      mc.addNumber(i);
+      vec.push_back(i);
     }
+    Span mc = Span(100000);
+    mc.addIterator(vec.begin(), vec.end());
     // std::cout << mc << std::endl;
     std::cout << "ShortestSpan: " << mc.shortestSpan() << std::endl;
     std::cout << "LongestSpan: " << mc.longestSpan() << std::endl;

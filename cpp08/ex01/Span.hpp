@@ -18,10 +18,20 @@ public:
   void addNumber(int num);
   unsigned int shortestSpan();
   unsigned int longestSpan();
-  void print();
   unsigned int getCurrentSize() const;
   unsigned int getSize() const;
   std::multiset<int> getContainer() const;
+
+  template <typename Iterator>
+  void addIterator(Iterator begin, Iterator end) {
+    for (Iterator it = begin; it != end; ++it) {
+      if (_currentSize == _size) {
+        throw SpanException("Elements is full.");
+      }
+      _ms.insert(*it);
+      _currentSize++;
+    }
+  }
 
   class SpanException : public std::logic_error {
   public:

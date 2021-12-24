@@ -103,6 +103,9 @@ void test_iterator(MutantStack<int> mstack) {
   it++;
   ++it;
   std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "*it = 9999;" NC << std::endl;
+  *it = 9999;
+  std::cout << GRN "*it: " NC << *it << std::endl;
   std::cout << YLW "it++;" NC << std::endl;
   it++;
   std::cout << GRN "(it == mstack.end()): " NC << (it == mstack.end())
@@ -134,10 +137,82 @@ void test_reverse_iterator(MutantStack<int> mstack) {
   it++;
   ++it;
   std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "*it = 9999;" NC << std::endl;
+  *it = 9999;
+  std::cout << GRN "*it: " NC << *it << std::endl;
   std::cout << YLW "it++;" NC << std::endl;
   it++;
-  std::cout << GRN "(it == mstack.end()): " NC << (it == mstack.rend())
-            << "; " GRN "(it != mstack.end()): " NC << (it != mstack.rend())
+  std::cout << GRN "(it == mstack.rend()): " NC << (it == mstack.rend())
+            << "; " GRN "(it != mstack.rend()): " NC << (it != mstack.rend())
+            << std::endl
+            << std::endl;
+}
+
+void test_const_iterator(MutantStack<int> mstack) {
+  std::cout << BLU "test const_iterator" NC << std::endl;
+  std::cout << GRN "mstack: " NC << mstack << std::endl;
+  std::cout << YLW "decalared two const_iterator it and it2" << std::endl;
+  MutantStack<int>::const_iterator it(mstack.begin());
+  MutantStack<int>::const_iterator it2(mstack.begin());
+  std::cout << GRN "(it == it2): " NC << (it == it2)
+            << "; " GRN "(it != it2): " NC << (it != it2) << std::endl;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it--;" NC << std::endl;
+  it--;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "(it == it2): " NC << (it == it2)
+            << "; " GRN "(it != it2): " NC << (it != it2) << std::endl;
+  std::cout << YLW "it++; ++it;" NC << std::endl;
+  it++;
+  ++it;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  // std::cout << YLW "*it = 9999;" NC << std::endl;
+  // *it = 9999;
+  // std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "(it == mstack.end()): " NC << (it == mstack.end())
+            << "; " GRN "(it != mstack.end()): " NC << (it != mstack.end())
+            << std::endl
+            << std::endl;
+}
+
+void test_reverse_const_iterator(MutantStack<int> mstack) {
+  std::cout << BLU "test reverse_const_iterator" NC << std::endl;
+  std::cout << GRN "mstack: " NC << mstack << std::endl;
+  std::cout << YLW "decalared two reverse_const_iterator it and it2"
+            << std::endl;
+  MutantStack<int>::const_reverse_iterator it(mstack.rbegin());
+  MutantStack<int>::const_reverse_iterator it2(mstack.rbegin());
+  std::cout << GRN "(it == it2): " NC << (it == it2)
+            << "; " GRN "(it != it2): " NC << (it != it2) << std::endl;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it--;" NC << std::endl;
+  it--;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "(it == it2): " NC << (it == it2)
+            << "; " GRN "(it != it2): " NC << (it != it2) << std::endl;
+  std::cout << YLW "it++; ++it;" NC << std::endl;
+  it++;
+  ++it;
+  std::cout << GRN "*it: " NC << *it << std::endl;
+  // std::cout << YLW "*it = 9999;" NC << std::endl;
+  // *it = 9999;
+  // std::cout << GRN "*it: " NC << *it << std::endl;
+  std::cout << YLW "it++;" NC << std::endl;
+  it++;
+  std::cout << GRN "(it == mstack.rend()): " NC << (it == mstack.rend())
+            << "; " GRN "(it != mstack.rend()): " NC << (it != mstack.rend())
             << std::endl
             << std::endl;
 }
@@ -158,5 +233,7 @@ int main() {
   test_iterator(mstack);
   test_reverse_iterator(mstack);
 
+  test_const_iterator(mstack);
+  test_reverse_const_iterator(mstack);
   return 0;
 }

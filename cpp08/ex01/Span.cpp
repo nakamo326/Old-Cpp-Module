@@ -26,8 +26,6 @@ void Span::addNumber(int num) {
   _currentSize++;
 }
 
-void Span::print() {}
-
 unsigned int Span::shortestSpan() {
   if (_currentSize < 2)
     throw SpanException("Elements are less to get span.");
@@ -58,7 +56,7 @@ std::ostream &operator<<(std::ostream &stream, const Span &span) {
          << "{";
   std::multiset<int> ms = span.getContainer();
   std::multiset<int>::const_iterator it(ms.begin());
-  unsigned int size = span.getSize();
+  unsigned int size = span.getCurrentSize();
   for (unsigned int i = 0; i < size; i++) {
     stream << *it++;
     if (i < size - 1)
